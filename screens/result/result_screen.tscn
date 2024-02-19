@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd8nyq6wxo4xx"]
+
+[ext_resource type="Script" path="res://screens/result/ResultScreen.cs" id="1_i7s0t"]
+
+[node name="ResultScreen" type="Node"]
+script = ExtResource("1_i7s0t")
+_gameScreenPath = "res://scenes/game_screen.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" type="Label" parent="CanvasLayer"]
+offset_left = 306.0
+offset_top = 83.0
+offset_right = 825.0
+offset_bottom = 223.0
+theme_override_font_sizes/font_size = 100
+text = "GameOver"
+
+[node name="Restart" type="Button" parent="CanvasLayer"]
+offset_left = 327.0
+offset_top = 318.0
+offset_right = 778.0
+offset_bottom = 434.0
+scale = Vector2(0.996665, 1)
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[connection signal="pressed" from="CanvasLayer/Restart" to="." method="RestartGame"]

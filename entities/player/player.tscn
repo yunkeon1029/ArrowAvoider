@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://2tlnswc213ld"]
+
+[ext_resource type="Script" path="res://entities/player/PlayerController.cs" id="1_lu8uj"]
+[ext_resource type="Texture2D" uid="uid://6mtfclyplfjk" path="res://entities/player/player.png" id="3_f2mtj"]
+[ext_resource type="Script" path="res://entities/player/PlayerMovementHandler.cs" id="4_cfaob"]
+[ext_resource type="Script" path="res://common/scripts/HealthHandler.cs" id="4_qu73o"]
+[ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="4_wehnf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bu73"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5opyf"]
+size = Vector2(8, 16)
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("_playerMovement")]
+top_level = true
+position = Vector2(0, 40)
+script = ExtResource("1_lu8uj")
+_playerMovement = NodePath("MovementHandler")
+
+[node name="Collider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("RectangleShape2D_5bu73")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_5opyf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("3_f2mtj")
+
+[node name="HealthHandler" type="Node" parent="."]
+script = ExtResource("4_qu73o")
+MaxHealth = 3.0
+
+[node name="MovementHandler" type="Node" parent="." node_paths=PackedStringArray("_movingNode", "_collider")]
+script = ExtResource("4_cfaob")
+_movingNode = NodePath("..")
+_collider = NodePath("../Collider")
+_maxSpeed = 90.0
+_acceleration = 16.67
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -243.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = 61.0
+grow_horizontal = 0
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_wehnf")
+texture_progress = ExtResource("4_wehnf")
+tint_under = Color(0.254902, 0.254902, 0.254902, 1)
+tint_progress = Color(0.952941, 0, 0.129412, 1)

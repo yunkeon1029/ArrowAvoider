@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://ikoix038qpb5"]
+
+[ext_resource type="Script" path="res://screens/game/GameScreen.cs" id="1_46yq0"]
+[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="2_ma3wl"]
+[ext_resource type="Script" path="res://entities/arrow/ArrowSpawner.cs" id="3_5yeeh"]
+[ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="4_46em7"]
+[ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="5_1lj10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdyc6"]
+size = Vector2(233, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q50gy"]
+size = Vector2(16, 16)
+
+[node name="GameScreen" type="Node" node_paths=PackedStringArray("_survivedTimeLabel")]
+script = ExtResource("1_46yq0")
+_survivedTimeLabel = NodePath("CanvasLayer/SurvivedTime")
+_resultScreenPath = "res://scenes/result_screen.tscn"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+zoom = Vector2(5, 5)
+
+[node name="Player" parent="." instance=ExtResource("2_ma3wl")]
+
+[node name="DespawnArea" type="Area2D" parent="." groups=["DespawnArea"]]
+position = Vector2(0, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
+visible = false
+shape = SubResource("RectangleShape2D_rdyc6")
+
+[node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_arrowContainer")]
+script = ExtResource("3_5yeeh")
+_arrowContainer = NodePath("../ArrowContainer")
+_arrowPrefab = ExtResource("4_46em7")
+_minSpawnPos = Vector2(-100, -100)
+_maxSpawnPos = Vector2(100, -200)
+_spawnRate = 6.0
+_spawnRateIncreaceRate = 0.2
+
+[node name="ArrowContainer" type="Node" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-90, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+shape = SubResource("RectangleShape2D_q50gy")
+
+[node name="Square" type="Sprite2D" parent="Walls/LeftWall"]
+texture = ExtResource("5_1lj10")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(90, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+shape = SubResource("RectangleShape2D_q50gy")
+
+[node name="Square" type="Sprite2D" parent="Walls/RightWall"]
+texture = ExtResource("5_1lj10")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SurvivedTime" type="Label" parent="CanvasLayer"]
+offset_right = 221.0
+offset_bottom = 45.0
