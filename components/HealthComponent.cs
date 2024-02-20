@@ -1,9 +1,9 @@
-using System;
 using Godot;
+using System;
 
 namespace ArrowAvoider;
 
-public partial class HealthHandler : Node
+public partial class HealthComponent : Node
 {
 	[Signal]
 	public delegate void HealthChangedEventHandler(float amount);

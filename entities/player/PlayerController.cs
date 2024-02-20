@@ -5,13 +5,14 @@ namespace ArrowAvoider;
 public partial class PlayerController : Node2D
 {
     [Export] 
-    private PlayerMovementHandler _playerMovement;
-
-    // handle player health & UI
+    private PlayerMovementHandler _movementHandler;
+    [Export]
+    private PlayerHealthHandler _healthHandler;
 
     public override void _PhysicsProcess(double elapsedTime)
     {
-        _playerMovement.CalculateMovement(GetMoveInput(), elapsedTime);
+        _movementHandler.CalculateMovement(GetMoveInput(), elapsedTime);
+        _healthHandler.CalculateHealth(elapsedTime);
     }
 
     public static Vector2 GetMoveInput()
