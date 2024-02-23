@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://2tlnswc213ld"]
+[gd_scene load_steps=10 format=3 uid="uid://2tlnswc213ld"]
 
 [ext_resource type="Script" path="res://entities/player/PlayerController.cs" id="1_lu8uj"]
 [ext_resource type="Texture2D" uid="uid://6mtfclyplfjk" path="res://entities/player/player.png" id="3_f2mtj"]
+[ext_resource type="Script" path="res://components/HitboxComponent.cs" id="3_n3a64"]
+[ext_resource type="Script" path="res://components/HealthComponent.cs" id="4_1my6s"]
 [ext_resource type="Script" path="res://entities/player/PlayerMovementHandler.cs" id="4_cfaob"]
-[ext_resource type="Script" path="res://common/scripts/HealthHandler.cs" id="4_qu73o"]
 [ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="4_wehnf"]
+[ext_resource type="Script" path="res://entities/player/PlayerHealthRegenerator.cs" id="6_ibb4s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bu73"]
 size = Vector2(8, 16)
@@ -12,28 +14,34 @@ size = Vector2(8, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5opyf"]
 size = Vector2(8, 16)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("_playerMovement")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("_healthComponent", "_hitboxComponent", "_movementHandler", "_healthRegenerator", "_healthBar")]
 top_level = true
-position = Vector2(0, 40)
 script = ExtResource("1_lu8uj")
-_playerMovement = NodePath("MovementHandler")
+_healthComponent = NodePath("HealthComponent")
+_hitboxComponent = NodePath("HitboxComponent")
+_movementHandler = NodePath("MovementHandler")
+_healthRegenerator = NodePath("HealthRegenerator")
+_healthBar = NodePath("CanvasLayer/HealthBar")
+_resultScreenPath = "res://screens/result/result_screen.tscn"
+_invincibillityTime = 0.2
 
 [node name="Collider" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("RectangleShape2D_5bu73")
 
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_5opyf")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("3_f2mtj")
 
-[node name="HealthHandler" type="Node" parent="."]
-script = ExtResource("4_qu73o")
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_n3a64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_5opyf")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_1my6s")
 MaxHealth = 3.0
 
 [node name="MovementHandler" type="Node" parent="." node_paths=PackedStringArray("_movingNode", "_collider")]
@@ -42,6 +50,12 @@ _movingNode = NodePath("..")
 _collider = NodePath("../Collider")
 _maxSpeed = 90.0
 _acceleration = 16.67
+
+[node name="HealthRegenerator" type="Node" parent="." node_paths=PackedStringArray("_healthComponent")]
+script = ExtResource("6_ibb4s")
+_healthComponent = NodePath("../HealthComponent")
+_healthRegenRate = 0.33
+_healthRegenDelay = 4.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

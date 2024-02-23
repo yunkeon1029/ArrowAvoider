@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ikoix038qpb5"]
 
 [ext_resource type="Script" path="res://screens/game/GameScreen.cs" id="1_46yq0"]
-[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="2_ma3wl"]
+[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="2_g7iy7"]
 [ext_resource type="Script" path="res://entities/arrow/ArrowSpawner.cs" id="3_5yeeh"]
 [ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="4_46em7"]
 [ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="5_1lj10"]
@@ -21,7 +21,8 @@ _resultScreenPath = "res://scenes/result_screen.tscn"
 top_level = true
 zoom = Vector2(5, 5)
 
-[node name="Player" parent="." instance=ExtResource("2_ma3wl")]
+[node name="Player" parent="." instance=ExtResource("2_g7iy7")]
+position = Vector2(0, 40)
 
 [node name="DespawnArea" type="Area2D" parent="." groups=["DespawnArea"]]
 position = Vector2(0, 110)

@@ -17,11 +17,11 @@ public partial class ArrowController : Node2D
 
     public void OnAreaEntered(Area2D area)
 	{
-		// if (/*OnHit*/)
-		// {
-		// 		// change hited objects health
-		// 		QueueFree();
-		// }
+		if (area is HitboxComponent hitbox)
+		{
+			hitbox.NotifyHit(-_damage);
+			QueueFree();
+		}
 
 		if (area.IsInGroup("DespawnArea"))
 			QueueFree();
