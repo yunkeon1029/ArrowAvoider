@@ -7,6 +7,7 @@
 size = Vector2(5, 5)
 
 [node name="Arrow" type="Node2D"]
+z_index = -1
 script = ExtResource("1_hwf3p")
 _speed = 70.0
 _damage = 1.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ikoix038qpb5"]
+[gd_scene load_steps=9 format=3 uid="uid://ikoix038qpb5"]
 
 [ext_resource type="Script" path="res://screens/game/GameScreen.cs" id="1_46yq0"]
 [ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="2_g7iy7"]
 [ext_resource type="Script" path="res://entities/arrow/ArrowSpawner.cs" id="3_5yeeh"]
+[ext_resource type="PackedScene" uid="uid://crjcgdc8bk867" path="res://ground/ground.tscn" id="3_pq6jb"]
 [ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="4_46em7"]
 [ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="5_1lj10"]
 
@@ -31,18 +32,8 @@ position = Vector2(0, 110)
 visible = false
 shape = SubResource("RectangleShape2D_rdyc6")
 
-[node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_arrowContainer")]
-script = ExtResource("3_5yeeh")
-_arrowContainer = NodePath("../ArrowContainer")
-_arrowPrefab = ExtResource("4_46em7")
-_minSpawnPos = Vector2(-100, -100)
-_maxSpawnPos = Vector2(100, -200)
-_spawnRate = 6.0
-_spawnRateIncreaceRate = 0.2
-
-[node name="ArrowContainer" type="Node" parent="."]
-
-[node name="Walls" type="Node" parent="."]
+[node name="Walls" type="Node2D" parent="."]
+z_index = 2
 
 [node name="LeftWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(-90, 40)
@@ -62,8 +53,32 @@ shape = SubResource("RectangleShape2D_q50gy")
 [node name="Square" type="Sprite2D" parent="Walls/RightWall"]
 texture = ExtResource("5_1lj10")
 
+[node name="Ground" parent="." instance=ExtResource("3_pq6jb")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -180.0
+offset_top = 48.0
+offset_right = 180.0
+offset_bottom = 102.0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_arrowContainer")]
+script = ExtResource("3_5yeeh")
+_arrowContainer = NodePath("../ArrowContainer")
+_arrowPrefab = ExtResource("4_46em7")
+_minSpawnPos = Vector2(-100, -100)
+_maxSpawnPos = Vector2(100, -200)
+_spawnRate = 6.0
+_spawnRateIncreaceRate = 0.2
+
+[node name="ArrowContainer" type="Node" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SurvivedTime" type="Label" parent="CanvasLayer"]
+visible = false
 offset_right = 221.0
 offset_bottom = 45.0
