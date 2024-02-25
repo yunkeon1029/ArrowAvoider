@@ -14,6 +14,12 @@ config/name="ArrowAvoider"
 run/main_scene="res://screens/game/game_screen.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+
 [dotnet]
 
 project/assembly_name="ArrowAvoider"

@@ -20,9 +20,10 @@ _resultScreenPath = "res://scenes/result_screen.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
-zoom = Vector2(5, 5)
+zoom = Vector2(7, 7)
 
 [node name="Player" parent="." instance=ExtResource("2_g7iy7")]
+z_index = -1
 position = Vector2(0, 40)
 
 [node name="DespawnArea" type="Area2D" parent="." groups=["DespawnArea"]]
@@ -36,7 +37,7 @@ shape = SubResource("RectangleShape2D_rdyc6")
 z_index = 2
 
 [node name="LeftWall" type="StaticBody2D" parent="Walls"]
-position = Vector2(-90, 40)
+position = Vector2(-110, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
 shape = SubResource("RectangleShape2D_q50gy")
@@ -45,7 +46,7 @@ shape = SubResource("RectangleShape2D_q50gy")
 texture = ExtResource("5_1lj10")
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
-position = Vector2(90, 40)
+position = Vector2(110, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
 shape = SubResource("RectangleShape2D_q50gy")
