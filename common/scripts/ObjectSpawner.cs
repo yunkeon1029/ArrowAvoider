@@ -3,12 +3,10 @@ using System;
 
 namespace ArrowAvoider;
 
-public partial class ArrowSpawner : Node
+public partial class ObjectSpawner : Node
 {
 	[Export] 
-	private Node _arrowContainer;
-	[Export] 
-	private PackedScene _arrowPrefab;
+	private PackedScene _objectPrefab;
 
 	[Export] 
 	private Vector2 _minSpawnPos;
@@ -36,12 +34,12 @@ public partial class ArrowSpawner : Node
 
 	public void SpawnArrow()
 	{
-		Node2D arrow = _arrowPrefab.Instantiate<Node2D>();
+		Node2D arrow = _objectPrefab.Instantiate<Node2D>();
 
 		float x = (float)GD.RandRange(_minSpawnPos.X, _maxSpawnPos.X);
 		float y = (float)GD.RandRange(_minSpawnPos.Y, _maxSpawnPos.Y);
 
 		arrow.Position = new Vector2(x, y);
-		_arrowContainer.AddChild(arrow);
+		AddChild(arrow);
 	}
 }

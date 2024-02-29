@@ -1,41 +1,74 @@
 using Godot;
-using System;
 
 namespace ArrowAvoider;
 
+[Tool]
 public partial class HealthComponent : Node
 {
-	[Signal]
-	public delegate void HealthChangedEventHandler(float amount);
-	[Signal]
-	public delegate void HealthDepleatedEventHandler();
+    [Signal]
+    public delegate void HealthChangedEventHandler(float delta);
+    [Signal]
+    public delegate void MaxHealthChangedEventHandler(float delta);
+    [Signal]
+    public delegate void HealthDepletedEventHandler();
 
-	[Export] 
-	public float MaxHealth { get; private set; }
-	[Export] 
-	public float Health { get; private set; }
+    [Export]
+    public float Health
+    {
+        get => _health;
+        set => SetHealth(value);
+    }
 
-	[Export] 
-	private bool _startAtFullHealth = true;
+    [Export]
+    public float MaxHealth
+    {
+        get => _maxHealth;
+        set => SetMaxHealth(value);
+    }
+
+    [Export]
+    private bool _startAtMaxHealth = true;
+
+    private float _health = 0;
+    private float _maxHealth = 0;
 
     public override void _Ready()
     {
-		if (_startAtFullHealth)
-			Health = MaxHealth;
-
-		RequestReady();
+        if (_startAtMaxHealth && !Engine.IsEditorHint())
+            Health = MaxHealth;
     }
 
-    public void ChangeHealth(float amount)
-	{
-		float previousHealth = Health;
+    public void SetHealth(float value)
+    {
+        float previousHealth = _health;
 
-		Health += amount;
-		Health = Mathf.Clamp(Health, 0, MaxHealth);
+        _health = value;
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
 
-		EmitSignal(SignalName.HealthChanged, Health - previousHealth);
+        if (previousHealth != _health)
+            EmitSignal(SignalName.HealthChanged, previousHealth - _health);
 
-		if (Health == 0)
-			EmitSignal(SignalName.HealthDepleated);
-	}
+        if (_health == 0 && previousHealth != 0)
+            EmitSignal(SignalName.HealthDepleted);
+    }
+
+    public void SetMaxHealth(float value)
+    {
+        float previousHealth = _health;
+        float previousMaxHealth = _maxHealth;
+
+        _maxHealth = value;
+        _maxHealth = Mathf.Max(value, 0);
+
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
+
+        if (previousHealth != _health)
+            EmitSignal(SignalName.HealthChanged, previousHealth - _health);
+
+        if (previousMaxHealth != _maxHealth)
+            EmitSignal(SignalName.MaxHealthChanged, previousMaxHealth - _maxHealth);
+            
+        if (_health == 0 && previousHealth != 0)
+            EmitSignal(SignalName.HealthDepleted);
+    }
 }

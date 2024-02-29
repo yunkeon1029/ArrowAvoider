@@ -5,61 +5,38 @@ namespace ArrowAvoider;
 public partial class PlayerController : Node2D
 {
 	[Export]
-	private HealthComponent _healthComponent;
+	public HealthComponent HealthComponent { get; private set; }
 	[Export]
-	private HitboxComponent _hitboxComponent;
-    [Export]
-    private PlayerMovementHandler _movementHandler;
-	[Export]
-	private PlayerHealthRegenerator _healthRegenerator;
-	[Export]
-	private TextureProgressBar _healthBar;
-    
-	[Export(PropertyHint.File, "*.tscn")]
-	private string _resultScreenPath;
+	public HitboxComponent HitboxComponent { get; private set; }
+	[Export] 
+    public PhysicsBody2D Collider { get; private set; }
 
+	[Export] 
+    private float _maxSpeed;
+    [Export] 
+    private float _acceleration;
     [Export]
 	private float _invincibillityTime;
 
+	private Vector2 _velocity;
 	private float? _lastDamagedTime = null;
 
 	public override void _Ready()
 	{
 		SceneTree tree = GetTree();
 
-		_healthComponent.HealthChanged += _ => UpdateHealthBar();
-		_healthComponent.HealthDepleated += () => tree.ChangeSceneToFile(_resultScreenPath);
-
-		_hitboxComponent.Damaged += RecieveDamage;
-		_hitboxComponent.Healed += _healthComponent.ChangeHealth;
-
-		UpdateHealthBar();
+		HitboxComponent.Damaged += RecieveDamage;
+		HitboxComponent.Healed += amount => HealthComponent.Health += amount;
 	}
-
-	public override void _PhysicsProcess(double elapsedTime)
+	
+    public override void _PhysicsProcess(double elapsedTime)
 	{
         if (_lastDamagedTime != null)
 		    _lastDamagedTime += (float)elapsedTime;
 
-		_movementHandler.CalculateMovement(GetMoveInput(), elapsedTime);
-		_healthRegenerator.CalculateHealthRegen(_lastDamagedTime, elapsedTime);
+		CalculateMovement(elapsedTime);
 	}
-
-	public void RecieveDamage(float amount)
-	{
-		if (_lastDamagedTime < _invincibillityTime)
-			return;
-		
-		_lastDamagedTime = 0;
-		_healthComponent.ChangeHealth(-amount);
-	}
-
-	public void UpdateHealthBar()
-	{
-		_healthBar.MaxValue = _healthComponent.MaxHealth;
-		_healthBar.Value = _healthComponent.Health;
-	}
-    
+	
 	public Vector2 GetMoveInput()
 	{
         Vector2 moveInput = new(0, 0);
@@ -74,5 +51,31 @@ public partial class PlayerController : Node2D
             moveInput = moveInput.Normalized();
 
         return moveInput;
+	}
+
+    public void CalculateMovement(double elapsedTime)
+    {
+		Vector2 moveInput = GetMoveInput();
+        Vector2 targetVelocity = moveInput * _maxSpeed;
+
+        _velocity = _velocity.MoveToward(targetVelocity, _acceleration);
+
+        Vector2 targetMoveAmount = _velocity * (float)elapsedTime;
+        KinematicCollision2D collisionResult = Collider?.MoveAndCollide(targetMoveAmount, true, 0);
+        Vector2 moveAmount = collisionResult?.GetTravel() ?? targetMoveAmount;
+
+        if (collisionResult != null)
+            _velocity = Vector2.Zero;
+
+        Position += moveAmount;
+    }
+
+	public void RecieveDamage(float amount)
+	{
+		if (_lastDamagedTime < _invincibillityTime)
+			return;
+		
+		_lastDamagedTime = 0;
+		HealthComponent.Health -= amount;
 	}
 }
