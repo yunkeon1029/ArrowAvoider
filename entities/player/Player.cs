@@ -2,12 +2,12 @@ using Godot;
 
 namespace ArrowAvoider;
 
-public partial class PlayerController : Node2D
+public partial class Player : Node2D
 {
 	[Export]
 	public HealthComponent HealthComponent { get; private set; }
 	[Export]
-	public HitboxComponent HitboxComponent { get; private set; }
+	public EffectReciever EffectReciever { get; private set; }
 	[Export] 
     public PhysicsBody2D Collider { get; private set; }
 
@@ -25,8 +25,8 @@ public partial class PlayerController : Node2D
 	{
 		SceneTree tree = GetTree();
 
-		HitboxComponent.Damaged += RecieveDamage;
-		HitboxComponent.Healed += amount => HealthComponent.Health += amount;
+		EffectReciever.Damaged += RecieveDamage;
+		EffectReciever.Healed += amount => HealthComponent.Health += amount;
 	}
 	
     public override void _PhysicsProcess(double elapsedTime)

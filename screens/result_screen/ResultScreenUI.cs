@@ -2,7 +2,7 @@ using Godot;
 
 namespace ArrowAvoider;
 
-public partial class ResultMenuUI : CanvasLayer
+public partial class ResultScreenUI : CanvasLayer
 {
 	[Export]
 	private Label _scoreLabel;

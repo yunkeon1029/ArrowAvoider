@@ -3,10 +3,10 @@ using System;
 
 namespace ArrowAvoider;
 
-public partial class ResultMenuManager : Node
+public partial class ResultScreen : Node
 {
 	[Export]
-	private ResultMenuUI _resultScreenUI;
+	private ResultScreenUI _resultScreenUI;
 
 	public void NotifyScore(int score)
 	{

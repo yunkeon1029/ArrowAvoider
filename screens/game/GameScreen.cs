@@ -2,14 +2,14 @@ using Godot;
 
 namespace ArrowAvoider;
 
-public partial class GameManager : Node
+public partial class GameScreen : Node
 {
     [Export]
-    private PlayerController _playerController;
+    private Player _playerController;
     [Export]
     private ScoreManager _scoreManager;
     [Export]
-    private GameUI _gameUI;
+    private GameScreenUI _gameUI;
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuPath;
@@ -28,7 +28,7 @@ public partial class GameManager : Node
         Window root = tree.Root;
 
         PackedScene resultMenuScene = GD.Load<PackedScene>(_resultMenuPath);
-        ResultMenuManager resultMenuManager = resultMenuScene.Instantiate<ResultMenuManager>();
+        ResultScreen resultMenuManager = resultMenuScene.Instantiate<ResultScreen>();
 
         root.AddChild(resultMenuManager);
         tree.CurrentScene = resultMenuManager;

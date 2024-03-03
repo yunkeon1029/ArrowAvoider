@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjfu6uixh31o2"]
 
-[ext_resource type="Script" path="res://entities/arrow/ArrowController.cs" id="1_hwf3p"]
+[ext_resource type="Script" path="res://entities/arrow/Arrow.cs" id="1_uafdh"]
 [ext_resource type="Texture2D" uid="uid://dlthn4yxysg7j" path="res://entities/arrow/arrow.png" id="2_sbgvc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48w5i"]
@@ -8,7 +8,7 @@ size = Vector2(5, 5)
 
 [node name="Arrow" type="Node2D"]
 z_index = -1
-script = ExtResource("1_hwf3p")
+script = ExtResource("1_uafdh")
 _fallSpeed = 70.0
 _damage = 1.0
 

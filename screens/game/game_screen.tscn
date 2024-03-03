@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://ikoix038qpb5"]
 
-[ext_resource type="Script" path="res://screens/game/GameManager.cs" id="1_on7bs"]
-[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="1_wch8i"]
-[ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="2_q1l4w"]
-[ext_resource type="PackedScene" uid="uid://crjcgdc8bk867" path="res://ground/ground.tscn" id="3_pumi2"]
-[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_bnrps"]
-[ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="5_1rmxv"]
-[ext_resource type="Script" path="res://screens/game/GameUI.cs" id="7_dqd63"]
-[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="8_ltjsa"]
+[ext_resource type="Script" path="res://screens/game/GameScreen.cs" id="1_ku65g"]
+[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="2_osuf8"]
+[ext_resource type="Texture2D" uid="uid://ba2unrt7mcob8" path="res://common/sprites/square.png" id="3_2b8d1"]
+[ext_resource type="PackedScene" uid="uid://crjcgdc8bk867" path="res://ground/ground.tscn" id="4_r3k7o"]
+[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="5_60tew"]
+[ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="6_tljps"]
+[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="7_8uqkt"]
+[ext_resource type="Script" path="res://screens/game/GameScreenUI.cs" id="8_ly4vx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdyc6"]
 size = Vector2(233, 65)
@@ -15,18 +15,18 @@ size = Vector2(233, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q50gy"]
 size = Vector2(16, 16)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("_playerController", "_scoreManager", "_gameUI")]
-script = ExtResource("1_on7bs")
+[node name="GameScreen" type="Node" node_paths=PackedStringArray("_playerController", "_scoreManager", "_gameUI")]
+script = ExtResource("1_ku65g")
 _playerController = NodePath("Player")
 _scoreManager = NodePath("ScoreManager")
 _gameUI = NodePath("UI")
-_resultMenuPath = "res://screens/result_menu/result_menu.tscn"
+_resultMenuPath = "res://screens/result_screen/result_screen.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 top_level = true
 zoom = Vector2(7, 7)
 
-[node name="Player" parent="." instance=ExtResource("1_wch8i")]
+[node name="Player" parent="." instance=ExtResource("2_osuf8")]
 z_index = -1
 position = Vector2(0, 40)
 
@@ -47,7 +47,7 @@ position = Vector2(-110, 40)
 shape = SubResource("RectangleShape2D_q50gy")
 
 [node name="Square" type="Sprite2D" parent="Walls/LeftWall"]
-texture = ExtResource("2_q1l4w")
+texture = ExtResource("3_2b8d1")
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2(110, 40)
@@ -56,9 +56,9 @@ position = Vector2(110, 40)
 shape = SubResource("RectangleShape2D_q50gy")
 
 [node name="Square" type="Sprite2D" parent="Walls/RightWall"]
-texture = ExtResource("2_q1l4w")
+texture = ExtResource("3_2b8d1")
 
-[node name="Ground" parent="." instance=ExtResource("3_pumi2")]
+[node name="Ground" parent="." instance=ExtResource("4_r3k7o")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -71,18 +71,18 @@ grow_vertical = 1
 mouse_filter = 2
 
 [node name="ArrowSpawner" type="Node" parent="."]
-script = ExtResource("4_bnrps")
-_objectPrefab = ExtResource("5_1rmxv")
+script = ExtResource("5_60tew")
+_objectPrefab = ExtResource("6_tljps")
 _minSpawnPos = Vector2(-100, -100)
 _maxSpawnPos = Vector2(100, -200)
 _spawnRate = 6.0
 _spawnRateIncreaceRate = 0.2
 
 [node name="ScoreManager" type="Node" parent="."]
-script = ExtResource("8_ltjsa")
+script = ExtResource("7_8uqkt")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_scoreLabel", "_healthBar")]
-script = ExtResource("7_dqd63")
+script = ExtResource("8_ly4vx")
 _scoreLabel = NodePath("ScoreLabel")
 _healthBar = NodePath("HealthBar")
 
@@ -109,7 +109,7 @@ max_value = 1.0
 step = 0.0
 value = 1.0
 nine_patch_stretch = true
-texture_under = ExtResource("2_q1l4w")
-texture_progress = ExtResource("2_q1l4w")
+texture_under = ExtResource("3_2b8d1")
+texture_progress = ExtResource("3_2b8d1")
 tint_under = Color(0.254902, 0.254902, 0.254902, 1)
 tint_progress = Color(0.952941, 0, 0.129412, 1)

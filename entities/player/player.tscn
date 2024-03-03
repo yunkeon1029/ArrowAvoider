@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://2tlnswc213ld"]
 
-[ext_resource type="Script" path="res://entities/player/PlayerController.cs" id="1_lu8uj"]
+[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_j8kwb"]
+[ext_resource type="Script" path="res://common/scripts/EffectReciever.cs" id="3_5hpmv"]
 [ext_resource type="Texture2D" uid="uid://6mtfclyplfjk" path="res://entities/player/player.png" id="3_f2mtj"]
-[ext_resource type="Script" path="res://components/HitboxComponent.cs" id="3_n3a64"]
 [ext_resource type="Script" path="res://components/HealthComponent.cs" id="4_1my6s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bu73"]
@@ -11,11 +11,11 @@ size = Vector2(8, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5opyf"]
 size = Vector2(8, 16)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthComponent", "HitboxComponent", "Collider")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthComponent", "EffectReciever", "Collider")]
 top_level = true
-script = ExtResource("1_lu8uj")
+script = ExtResource("1_j8kwb")
 HealthComponent = NodePath("HealthComponent")
-HitboxComponent = NodePath("HitboxComponent")
+EffectReciever = NodePath("EffectReciever")
 Collider = NodePath("Collider")
 _maxSpeed = 90.0
 _acceleration = 16.67
@@ -30,10 +30,10 @@ shape = SubResource("RectangleShape2D_5bu73")
 z_index = 1
 texture = ExtResource("3_f2mtj")
 
-[node name="HitboxComponent" type="Area2D" parent="."]
-script = ExtResource("3_n3a64")
+[node name="EffectReciever" type="Area2D" parent="."]
+script = ExtResource("3_5hpmv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectReciever"]
 shape = SubResource("RectangleShape2D_5opyf")
 
 [node name="HealthComponent" type="Node" parent="."]

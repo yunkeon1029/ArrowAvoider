@@ -3,7 +3,7 @@ using System;
 
 namespace ArrowAvoider;
 
-public partial class ArrowController : Node2D
+public partial class Arrow : Node2D
 {
 	[Export] 
 	private float _fallSpeed;
@@ -17,9 +17,15 @@ public partial class ArrowController : Node2D
 
     public void OnAreaEntered(Area2D area)
 	{
-		if (area is HitboxComponent hitbox)
+		if (area is EffectReciever effectReciever)
 		{
-			hitbox.NotifyHit(-_damage);
+            Effect effect = new()
+            {
+                Damage = _damage,
+				HealAmount = 0
+            };
+
+            effectReciever.ApplyEffect(effect);
 			QueueFree();
 		}
 

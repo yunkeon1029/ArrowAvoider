@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd8nyq6wxo4xx"]
 
-[ext_resource type="Script" path="res://screens/result_menu/ResultMenuManager.cs" id="1_scv2a"]
-[ext_resource type="Script" path="res://screens/result_menu/ResultMenuUI.cs" id="2_pngjb"]
+[ext_resource type="Script" path="res://screens/result_screen/ResultScreen.cs" id="1_50af2"]
+[ext_resource type="Script" path="res://screens/result_screen/ResultScreenUI.cs" id="2_uksue"]
 
 [node name="ResultScreen" type="Node" node_paths=PackedStringArray("_resultScreenUI")]
-script = ExtResource("1_scv2a")
+script = ExtResource("1_50af2")
 _resultScreenUI = NodePath("UI")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_scoreLabel")]
-script = ExtResource("2_pngjb")
+script = ExtResource("2_uksue")
 _scoreLabel = NodePath("ScoreLabel")
 
 [node name="GameOver" type="Label" parent="UI"]
