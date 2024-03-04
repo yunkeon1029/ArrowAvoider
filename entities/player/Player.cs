@@ -4,8 +4,6 @@ using System;
 public partial class Player : Node2D
 {
     [Export]
-    public HealthManager HealthManager { get; private set; }
-    [Export]
     public PhysicsBody2D Collider { get; private set; }
 
     [Export] 

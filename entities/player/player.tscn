@@ -7,9 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthManager", "Collider")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("Collider")]
 script = ExtResource("1_wkpjw")
-HealthManager = NodePath("HealthManager")
 Collider = NodePath("Collider")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
