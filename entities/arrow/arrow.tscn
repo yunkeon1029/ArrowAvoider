@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cv122lu7n8asn"]
+
+[node name="Arrow" type="Node2D"]
+
+[node name="HitArea" type="Area2D" parent="."]
