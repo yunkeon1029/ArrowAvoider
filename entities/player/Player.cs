@@ -23,8 +23,6 @@ public partial class Player : Node2D
 
 	public override void _Ready()
 	{
-		SceneTree tree = GetTree();
-
 		EffectReciever.Damaged += RecieveDamage;
 		EffectReciever.Healed += amount => HealthComponent.Health += amount;
 	}
