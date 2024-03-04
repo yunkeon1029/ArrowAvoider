@@ -1,9 +1,7 @@
 using Godot;
 
-namespace ArrowAvoider;
-
 [Tool]
-public partial class HealthComponent : Node
+public partial class HealthManager : Node
 {
     [Signal]
     public delegate void HealthChangedEventHandler(float delta);
@@ -29,8 +27,8 @@ public partial class HealthComponent : Node
     [Export]
     private bool _startAtMaxHealth = true;
 
-    private float _health = 0;
-    private float _maxHealth = 0;
+    private float _health;
+    private float _maxHealth;
 
     public override void _Ready()
     {
@@ -46,7 +44,7 @@ public partial class HealthComponent : Node
         _health = Mathf.Clamp(_health, 0, _maxHealth);
 
         if (previousHealth != _health)
-            EmitSignal(SignalName.HealthChanged, previousHealth - _health);
+            EmitSignal(SignalName.HealthChanged, _health - previousHealth);
 
         if (_health == 0 && previousHealth != 0)
             EmitSignal(SignalName.HealthDepleted);
@@ -54,21 +52,14 @@ public partial class HealthComponent : Node
 
     public void SetMaxHealth(float value)
     {
-        float previousHealth = _health;
         float previousMaxHealth = _maxHealth;
 
         _maxHealth = value;
         _maxHealth = Mathf.Max(value, 0);
 
-        _health = Mathf.Clamp(_health, 0, _maxHealth);
-
-        if (previousHealth != _health)
-            EmitSignal(SignalName.HealthChanged, previousHealth - _health);
+        Health = Mathf.Clamp(_health, 0, _maxHealth);
 
         if (previousMaxHealth != _maxHealth)
-            EmitSignal(SignalName.MaxHealthChanged, previousMaxHealth - _maxHealth);
-            
-        if (_health == 0 && previousHealth != 0)
-            EmitSignal(SignalName.HealthDepleted);
+            EmitSignal(SignalName.MaxHealthChanged, _maxHealth - previousMaxHealth);
     }
 }

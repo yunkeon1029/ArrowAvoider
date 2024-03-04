@@ -1,41 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://2tlnswc213ld"]
+[gd_scene load_steps=5 format=3 uid="uid://b3yilsht1xyk1"]
 
-[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_j8kwb"]
-[ext_resource type="Script" path="res://common/scripts/EffectReciever.cs" id="3_5hpmv"]
-[ext_resource type="Texture2D" uid="uid://6mtfclyplfjk" path="res://entities/player/player.png" id="3_f2mtj"]
-[ext_resource type="Script" path="res://components/HealthComponent.cs" id="4_1my6s"]
+[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_wkpjw"]
+[ext_resource type="Script" path="res://components/Hitbox.cs" id="2_coac5"]
+[ext_resource type="Script" path="res://components/HealthManager.cs" id="3_8ugtg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bu73"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5opyf"]
-size = Vector2(8, 16)
-
-[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthComponent", "EffectReciever", "Collider")]
-top_level = true
-script = ExtResource("1_j8kwb")
-HealthComponent = NodePath("HealthComponent")
-EffectReciever = NodePath("EffectReciever")
+[node name="Player" type="Node2D" node_paths=PackedStringArray("HealthManager", "Collider")]
+script = ExtResource("1_wkpjw")
+HealthManager = NodePath("HealthManager")
 Collider = NodePath("Collider")
 _maxSpeed = 90.0
-_acceleration = 16.67
-_invincibillityTime = 0.2
+_accelerationRate = 1000.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 0.5
+editor_only = false
 
 [node name="Collider" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
-shape = SubResource("RectangleShape2D_5bu73")
+shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-texture = ExtResource("3_f2mtj")
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
+visible = false
+script = ExtResource("2_coac5")
+HealthManager = NodePath("../HealthManager")
 
-[node name="EffectReciever" type="Area2D" parent="."]
-script = ExtResource("3_5hpmv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectReciever"]
-shape = SubResource("RectangleShape2D_5opyf")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("4_1my6s")
+[node name="HealthManager" type="Node" parent="."]
+script = ExtResource("3_8ugtg")
 MaxHealth = 3.0

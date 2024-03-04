@@ -1,41 +1,21 @@
 using Godot;
-
-namespace ArrowAvoider;
+using System;
 
 public partial class Player : Node2D
 {
-	[Export]
-	public HealthComponent HealthComponent { get; private set; }
-	[Export]
-	public EffectReciever EffectReciever { get; private set; }
-	[Export] 
+    [Export]
+    public HealthManager HealthManager { get; private set; }
+    [Export]
     public PhysicsBody2D Collider { get; private set; }
 
-	[Export] 
+    [Export] 
     private float _maxSpeed;
     [Export] 
-    private float _acceleration;
-    [Export]
-	private float _invincibillityTime;
+    private float _accelerationRate;
 
-	private Vector2 _velocity;
-	private float? _lastDamagedTime = null;
+    private Vector2 _velocity;
 
-	public override void _Ready()
-	{
-		EffectReciever.Damaged += RecieveDamage;
-		EffectReciever.Healed += amount => HealthComponent.Health += amount;
-	}
-	
-    public override void _PhysicsProcess(double elapsedTime)
-	{
-        if (_lastDamagedTime != null)
-		    _lastDamagedTime += (float)elapsedTime;
-
-		CalculateMovement(elapsedTime);
-	}
-	
-	public Vector2 GetMoveInput()
+	public static Vector2 GetMoveInput()
 	{
         Vector2 moveInput = new(0, 0);
 
@@ -51,29 +31,24 @@ public partial class Player : Node2D
         return moveInput;
 	}
 
-    public void CalculateMovement(double elapsedTime)
+    public override void _PhysicsProcess(double elapsedTime)
     {
 		Vector2 moveInput = GetMoveInput();
         Vector2 targetVelocity = moveInput * _maxSpeed;
 
-        _velocity = _velocity.MoveToward(targetVelocity, _acceleration);
+        _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
 
-        Vector2 targetMoveAmount = _velocity * (float)elapsedTime;
-        KinematicCollision2D collisionResult = Collider?.MoveAndCollide(targetMoveAmount, true, 0);
-        Vector2 moveAmount = collisionResult?.GetTravel() ?? targetMoveAmount;
+        Move(_velocity * (float)elapsedTime, () => _velocity = Vector2.Zero);
+    }
 
+    public void Move(Vector2 motion, Action onCollision)
+    {
+        KinematicCollision2D collisionResult = Collider?.MoveAndCollide(motion, true, 0);
+        Vector2 moveAmount = collisionResult?.GetTravel() ?? motion;
+        
         if (collisionResult != null)
-            _velocity = Vector2.Zero;
+            onCollision?.Invoke();
 
         Position += moveAmount;
     }
-
-	public void RecieveDamage(float amount)
-	{
-		if (_lastDamagedTime < _invincibillityTime)
-			return;
-		
-		_lastDamagedTime = 0;
-		HealthComponent.Health -= amount;
-	}
 }

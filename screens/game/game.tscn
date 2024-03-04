@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3fpb711kofpr"]
+
+[ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_dyega"]
+[ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_p18e6"]
+
+[node name="Game" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="Player" parent="." instance=ExtResource("1_dyega")]
+position = Vector2(0, 40)
+
+[node name="Wall" parent="." instance=ExtResource("2_p18e6")]
+position = Vector2(44, 40)

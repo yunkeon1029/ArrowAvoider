@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="ArrowAvoider"
-run/main_scene="res://screens/game/game_screen.tscn"
+run/main_scene="res://screens/game/game.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/icon="res://common/sprites/icon.svg"
 
 [display]
 
@@ -23,11 +24,3 @@ window/size/mode=2
 [dotnet]
 
 project/assembly_name="ArrowAvoider"
-
-[editor_plugins]
-
-enabled=PackedStringArray()
-
-[rendering]
-
-textures/canvas_textures/default_texture_filter=0
