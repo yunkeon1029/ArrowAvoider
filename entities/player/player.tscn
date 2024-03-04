@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b3yilsht1xyk1"]
 
 [ext_resource type="Script" path="res://entities/player/Player.cs" id="1_wkpjw"]
-[ext_resource type="Script" path="res://components/Hitbox.cs" id="2_coac5"]
+[ext_resource type="Script" path="res://components/HitReceiver.cs" id="2_fm72h"]
 [ext_resource type="Script" path="res://components/HealthManager.cs" id="3_8ugtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
@@ -14,7 +14,7 @@ Collider = NodePath("Collider")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,8 +26,7 @@ offset_right = 4.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-border_width = 0.5
-editor_only = false
+color = Color(0.415686, 0.560784, 0.611765, 1)
 
 [node name="Collider" type="StaticBody2D" parent="."]
 visible = false
@@ -35,12 +34,12 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
+[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
 visible = false
-script = ExtResource("2_coac5")
+script = ExtResource("2_fm72h")
 HealthManager = NodePath("../HealthManager")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitReciever"]
 shape = SubResource("RectangleShape2D_mme8o")
 
 [node name="HealthManager" type="Node" parent="."]

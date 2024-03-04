@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
-public partial class Hitbox : Area2D
+public partial class HitReceiver : Area2D
 {
 	[Signal]
 	public delegate void DamagedEventHandler(float damage);
