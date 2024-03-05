@@ -6,22 +6,19 @@ public partial class ArrowSpawner : ObjectSpawner
 	[Export]
 	private float _spawnRate;
 	[Export]
-	private float _spawnIncreaceRate;
+	private float _spawnRateIncreaceRate;
 
-	private float _lastSpawnedTime;
-
-    public override void _Ready()
-    {
-		ObjectSpawned += _ => _lastSpawnedTime = 0;
-    }
+	private float _lastSpawnTime;
 
     public override void _PhysicsProcess(double elapsedTime)
     {
-		_spawnRate += _spawnIncreaceRate * (float)elapsedTime;
+		_lastSpawnTime += (float)elapsedTime;
+		_spawnRate += _spawnRateIncreaceRate * (float)elapsedTime;
 
-		if (_lastSpawnedTime < _spawnRate)
+		if (_lastSpawnTime >= 1.0 / _spawnRate)
 		{
-			
+			SpawnObject();
+			_lastSpawnTime = 0;
 		}
     }
 }
