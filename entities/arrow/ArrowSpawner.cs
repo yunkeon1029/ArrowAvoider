@@ -1,15 +1,27 @@
 using Godot;
 using System;
 
-public partial class ArrowSpawner : Node
+public partial class ArrowSpawner : ObjectSpawner
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	[Export]
+	private float _spawnRate;
+	[Export]
+	private float _spawnIncreaceRate;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	private float _lastSpawnedTime;
+
+    public override void _Ready()
+    {
+		ObjectSpawned += _ => _lastSpawnedTime = 0;
+    }
+
+    public override void _PhysicsProcess(double elapsedTime)
+    {
+		_spawnRate += _spawnIncreaceRate * (float)elapsedTime;
+
+		if (_lastSpawnedTime < _spawnRate)
+		{
+			
+		}
+    }
 }
