@@ -33,7 +33,7 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
 shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
+[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager") groups=["Player"]]
 visible = false
 script = ExtResource("2_fm72h")
 HealthManager = NodePath("../HealthManager")

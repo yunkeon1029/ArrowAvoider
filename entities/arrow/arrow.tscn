@@ -1,5 +1,33 @@
-[gd_scene format=3 uid="uid://cv122lu7n8asn"]
+[gd_scene load_steps=3 format=3 uid="uid://cv122lu7n8asn"]
 
-[node name="Arrow" type="Node2D"]
+[ext_resource type="Script" path="res://entities/arrow/Arrow.cs" id="1_hskmb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om538"]
+size = Vector2(4, 4)
+
+[node name="Arrow" type="Node2D" node_paths=PackedStringArray("HitArea")]
+script = ExtResource("1_hskmb")
+HitArea = NodePath("HitArea")
+_fallRate = 70.0
+_damage = 1.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 0.4
+editor_only = false
 
 [node name="HitArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_om538")
