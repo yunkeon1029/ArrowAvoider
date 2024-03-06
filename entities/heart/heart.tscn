@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6esnuicj0rmp"]
+
+[ext_resource type="Script" path="res://entities/heart/Heart.cs" id="1_d5lpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ek641"]
+size = Vector2(4, 4)
+
+[node name="Heart" type="Node2D" node_paths=PackedStringArray("HitArea")]
+script = ExtResource("1_d5lpf")
+HitArea = NodePath("HitArea")
+_fallRate = 70.0
+_healing = 1.0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.172549, 0.643137, 0, 1)
+border_width = 0.4
+editor_only = false
+
+[node name="HitArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_ek641")
