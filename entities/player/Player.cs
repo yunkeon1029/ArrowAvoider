@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public partial class Player : Node2D
+public partial class Player : CharacterBody2D
 {
-    [Export]
-    public PhysicsBody2D Collider { get; private set; }
-
     [Export] 
     private float _maxSpeed;
     [Export] 
@@ -36,17 +33,9 @@ public partial class Player : Node2D
 
         _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
 
-        Move(_velocity * (float)elapsedTime, () => _velocity = Vector2.Zero);
-    }
+        var collisionResult = MoveAndCollide(_velocity * (float)elapsedTime, false, 0);
 
-    public void Move(Vector2 motion, Action onCollision)
-    {
-        KinematicCollision2D collisionResult = Collider?.MoveAndCollide(motion, true, 0);
-        Vector2 moveAmount = collisionResult?.GetTravel() ?? motion;
-        
         if (collisionResult != null)
-            onCollision?.Invoke();
-
-        Position += moveAmount;
+            _velocity = Vector2.Zero;
     }
 }

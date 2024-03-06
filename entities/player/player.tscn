@@ -7,9 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("Collider")]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_wkpjw")
-Collider = NodePath("Collider")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 
@@ -27,10 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.415686, 0.560784, 0.611765, 1)
 
-[node name="Collider" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+[node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mme8o")
 
 [node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager") groups=["Player"]]

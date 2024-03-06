@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8c6c"]
 size = Vector2(16, 16)
 
-[node name="Wall" type="Node2D"]
+[node name="Wall" type="StaticBody2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -19,8 +19,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.513726, 0.513726, 0.513726, 1)
 
-[node name="Collider" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+[node name="Bounds" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_e8c6c")
