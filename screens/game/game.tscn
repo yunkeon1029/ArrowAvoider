@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3fpb711kofpr"]
+[gd_scene load_steps=11 format=3 uid="uid://b3fpb711kofpr"]
 
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_dyega"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_1jfx3"]
-[ext_resource type="Script" path="res://entities/arrow/ArrowSpawner.cs" id="3_08hij"]
+[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_0gj1v"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
 [ext_resource type="Script" path="res://entities/heart/HeartSpawner.cs" id="5_0dymf"]
+[ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="6_b8ltw"]
 [ext_resource type="PackedScene" uid="uid://b6esnuicj0rmp" path="res://entities/heart/heart.tscn" id="6_wd4bw"]
+[ext_resource type="Script" path="res://screens/game/GameUI.cs" id="7_4ptys"]
+[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="7_xo3t6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -30,12 +33,30 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_kctsc")
 
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_healthLabel", "_scoreLabel")]
+script = ExtResource("7_4ptys")
+_healthLabel = NodePath("HealthLabel")
+_scoreLabel = NodePath("ScoreLabel")
+
+[node name="HealthLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -444.0
+offset_bottom = 174.0
+grow_horizontal = 0
+horizontal_alignment = 2
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_right = 400.0
+offset_bottom = 118.0
+
 [node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
-script = ExtResource("3_08hij")
-_spawnRate = 7.0
-_spawnRateIncreaceRate = 0.2
+script = ExtResource("4_0gj1v")
 _spawningObject = ExtResource("4_d0s8f")
 _spawnArea = NodePath("SpawnArea")
+_spawnRate = 10.0
+_spawnRateIncreaceRate = 0.17
 
 [node name="SpawnArea" type="ReferenceRect" parent="ArrowSpawner"]
 visible = false
@@ -51,9 +72,29 @@ offset_bottom = -633.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="GemSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
+script = ExtResource("4_0gj1v")
+_spawningObject = ExtResource("6_b8ltw")
+_spawnArea = NodePath("../ArrowSpawner/SpawnArea")
+_spawnRate = 0.7
+_spawnRateIncreaceRate = 0.007
+
+[node name="SpawnArea" type="ReferenceRect" parent="GemSpawner"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1060.0
+offset_top = -700.0
+offset_right = -860.0
+offset_bottom = -633.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="HeartSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("5_0dymf")
-_spawnRate = 0.5
 _spawningObject = ExtResource("6_wd4bw")
 _spawnArea = NodePath("SpawnArea")
 
@@ -70,3 +111,6 @@ offset_right = -860.0
 offset_bottom = -633.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ScoreManager" type="Node" parent="."]
+script = ExtResource("7_xo3t6")

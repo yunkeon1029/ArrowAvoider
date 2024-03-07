@@ -8,7 +8,7 @@ size = Vector2(4, 4)
 [node name="Arrow" type="Node2D" node_paths=PackedStringArray("HitArea")]
 script = ExtResource("1_hskmb")
 HitArea = NodePath("HitArea")
-_fallRate = 70.0
+_fallRate = 93.0
 _damage = 1.0
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]

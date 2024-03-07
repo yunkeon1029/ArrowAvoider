@@ -12,6 +12,12 @@ public partial class Player : CharacterBody2D
 
     private Vector2 _velocity;
 
+    public Player()
+    {
+        TreeEntered += () => GlobalInstances.AddInstance(this);
+        TreeExited += () => GlobalInstances.RemoveInstance(this);
+    }
+
 	public static Vector2 GetMoveInput()
 	{
         Vector2 moveInput = new(0, 0);
@@ -27,18 +33,6 @@ public partial class Player : CharacterBody2D
 
         return moveInput;
 	}
-
-    public override void _Ready()
-    {
-        PlayerInfo.UpdateHealth(HealthManager.Health);
-        PlayerInfo.UpdateMaxHealth(HealthManager.MaxHealth);
-
-        HealthManager.HealthChanged += _ => PlayerInfo.UpdateHealth(HealthManager.Health);
-        HealthManager.MaxHealthChanged += _ => PlayerInfo.UpdateMaxHealth(HealthManager.MaxHealth);
-
-        HealthManager.TreeExited += () => PlayerInfo.UpdateHealth(null);
-        HealthManager.TreeExited += () => PlayerInfo.UpdateMaxHealth(null);
-    }
 
     public override void _PhysicsProcess(double elapsedTime)
     {

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://6u28sxgues4h"]
+
+[ext_resource type="Script" path="res://entities/gem/Gem.cs" id="1_1yk3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okrc7"]
+size = Vector2(6, 6)
+
+[node name="Gem" type="Node2D" node_paths=PackedStringArray("HitArea")]
+script = ExtResource("1_1yk3c")
+HitArea = NodePath("HitArea")
+_fallRate = 80.0
+_score = 100
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_top = -3.0
+offset_right = 5.0
+offset_bottom = 2.0
+rotation = 0.785398
+border_color = Color(0.219608, 0.698039, 0, 1)
+editor_only = false
+
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 0.5)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_okrc7")

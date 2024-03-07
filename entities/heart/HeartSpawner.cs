@@ -3,22 +3,20 @@ using System;
 
 public partial class HeartSpawner : ObjectSpawner
 {
-	[Export]
-	private float _spawnRate;
+	private HealthManager playerHealthManager;
 
-	private float _lastSpawnTime;
-
-    public override void _Process(double elapsedTime)
+    public override void _Ready()
     {
-		_lastSpawnTime += (float)elapsedTime;
+		Player player = GlobalInstances.GetInstance<Player>();
+		playerHealthManager = player.HealthManager;
+    }
 
-		float? playerHealth = PlayerInfo.Health;
-		float? playerMaxHealth = PlayerInfo.MaxHealth;
+    protected override void SpawnObject()
+    {
+		float playerHealth = playerHealthManager.Health;
+		float playerMaxHealth = playerHealthManager.MaxHealth;
 
-		if (_lastSpawnTime >= 1.0f / _spawnRate && playerHealth < playerMaxHealth)
-		{
-			_lastSpawnTime = 0;
-			SpawnObject();
-		}
+		if (playerHealth < playerMaxHealth)
+        	base.SpawnObject();
     }
 }
