@@ -17,14 +17,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 2.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 border_color = Color(0.172549, 0.643137, 0, 1)
-border_width = 0.4
+editor_only = false
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.172549, 0.643137, 0, 1)
 editor_only = false
 
 [node name="HitArea" type="Area2D" parent="."]

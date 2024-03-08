@@ -6,6 +6,8 @@ public partial class GameUI : CanvasLayer
     private Label _healthLabel;
     [Export]
     private Label _scoreLabel;
+    [Export]
+    private Label _deadLabel;
 
     private HealthManager _playerHealthManager;
     private ScoreManager _scoreManager;
@@ -19,6 +21,8 @@ public partial class GameUI : CanvasLayer
 
         _scoreManager = GlobalInstances.GetInstance<ScoreManager>();
         _scoreManager.ScoreChanged += _ => UpdateScoreLabel();
+
+        _playerHealthManager.HealthDepleted += () => _deadLabel.Visible = true;
 
         UpdateHealthLabel();
         UpdateScoreLabel();

@@ -23,7 +23,7 @@ offset_right = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-border_width = 0.4
+border_color = Color(1, 0.313726, 0.247059, 1)
 editor_only = false
 
 [node name="HitArea" type="Area2D" parent="."]
