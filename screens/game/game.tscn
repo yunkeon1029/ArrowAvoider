@@ -18,6 +18,7 @@ zoom = Vector2(7, 7)
 
 [node name="Player" parent="." instance=ExtResource("1_dyega")]
 position = Vector2(0, 42)
+_invincibilityTime = 0.7
 
 [node name="LeftWall" parent="." instance=ExtResource("2_1jfx3")]
 position = Vector2(110, 42)
@@ -72,8 +73,8 @@ text = "You are dead"
 script = ExtResource("4_0gj1v")
 _spawningObject = ExtResource("4_d0s8f")
 _spawnArea = NodePath("SpawnArea")
-_spawnRate = 5.0
-_spawnRateIncreaceRate = 0.15
+_spawnRate = 3.2
+_spawnRateIncreaceRate = 0.07
 
 [node name="SpawnArea" type="ReferenceRect" parent="ArrowSpawner"]
 visible = false

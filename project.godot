@@ -24,3 +24,7 @@ window/size/mode=2
 [dotnet]
 
 project/assembly_name="ArrowAvoider"
+
+[layer_names]
+
+2d_physics/layer_1="Any"
