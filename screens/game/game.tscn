@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3fpb711kofpr"]
+[gd_scene load_steps=9 format=3 uid="uid://b3fpb711kofpr"]
 
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_dyega"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_1jfx3"]
 [ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_0gj1v"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
-[ext_resource type="Script" path="res://entities/heart/HeartSpawner.cs" id="5_0dymf"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="6_b8ltw"]
-[ext_resource type="PackedScene" uid="uid://b6esnuicj0rmp" path="res://entities/heart/heart.tscn" id="6_wd4bw"]
 [ext_resource type="Script" path="res://screens/game/GameUI.cs" id="7_4ptys"]
 [ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="7_xo3t6"]
 
@@ -99,26 +97,6 @@ _spawnRate = 0.7
 _spawnRateIncreaceRate = 0.007
 
 [node name="SpawnArea" type="ReferenceRect" parent="GemSpawner"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1060.0
-offset_top = -700.0
-offset_right = -860.0
-offset_bottom = -633.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HeartSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
-script = ExtResource("5_0dymf")
-_spawningObject = ExtResource("6_wd4bw")
-_spawnArea = NodePath("SpawnArea")
-_spawnRate = 0.4
-
-[node name="SpawnArea" type="ReferenceRect" parent="HeartSpawner"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5

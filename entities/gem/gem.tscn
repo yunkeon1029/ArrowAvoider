@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://entities/gem/Gem.cs" id="1_1yk3c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okrc7"]
-size = Vector2(6, 6)
+size = Vector2(7, 7)
 
 [node name="Gem" type="Node2D" node_paths=PackedStringArray("HitArea")]
 script = ExtResource("1_1yk3c")
 HitArea = NodePath("HitArea")
-_fallRate = 80.0
+_fallRate = 75.0
 _score = 100
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
