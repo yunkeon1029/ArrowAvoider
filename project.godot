@@ -27,4 +27,7 @@ project/assembly_name="ArrowAvoider"
 
 [layer_names]
 
-2d_physics/layer_1="Any"
+2d_physics/layer_1="Object"
+2d_physics/layer_2="WorldBorder"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Wall"

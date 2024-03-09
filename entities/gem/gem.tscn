@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okrc7"]
 size = Vector2(7, 7)
 
-[node name="Gem" type="Node2D" node_paths=PackedStringArray("HitArea")]
+[node name="Gem" type="AnimatableBody2D" node_paths=PackedStringArray("HitArea")]
 script = ExtResource("1_1yk3c")
 HitArea = NodePath("HitArea")
 _fallRate = 75.0
@@ -19,7 +19,14 @@ rotation = 0.785398
 border_color = Color(0.219608, 0.698039, 0, 1)
 editor_only = false
 
+[node name="Bounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_okrc7")
+
 [node name="HitArea" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2(0, 0.5)

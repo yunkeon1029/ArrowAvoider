@@ -7,10 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager")]
+collision_layer = 5
+collision_mask = 8
 script = ExtResource("1_wkpjw")
 HealthManager = NodePath("HealthManager")
-HitReceiver = NodePath("HitReciever")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 _invincibilityTime = 0.5

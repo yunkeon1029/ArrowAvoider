@@ -4,6 +4,7 @@
 size = Vector2(16, 16)
 
 [node name="Wall" type="StaticBody2D"]
+collision_layer = 9
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

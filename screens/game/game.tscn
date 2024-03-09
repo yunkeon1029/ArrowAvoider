@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3fpb711kofpr"]
+[gd_scene load_steps=10 format=3 uid="uid://b3fpb711kofpr"]
 
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_dyega"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_1jfx3"]
+[ext_resource type="Script" path="res://common/scripts/DespawnArea.cs" id="3_3mvjk"]
 [ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_0gj1v"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="6_b8ltw"]
@@ -26,10 +27,10 @@ position = Vector2(110, 42)
 [node name="RightWall" parent="." instance=ExtResource("2_1jfx3")]
 position = Vector2(-110, 42)
 
-[node name="WorldBorder" type="Area2D" parent="." groups=["WorldBorder"]]
-visible = false
+[node name="DespawnArea" type="Area2D" parent="."]
+script = ExtResource("3_3mvjk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 shape = SubResource("WorldBoundaryShape2D_kctsc")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_healthLabel", "_scoreLabel", "_deadLabel")]

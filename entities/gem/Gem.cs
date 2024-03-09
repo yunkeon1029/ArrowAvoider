@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Gem : Node2D
+public partial class Gem : AnimatableBody2D
 {
 	[Export]
 	public Area2D HitArea { get; private set; }
@@ -28,16 +28,22 @@ public partial class Gem : Node2D
 
     private void OnHit(Node2D hitObject)
 	{
-		if (hitObject.IsInGroup("Player"))
-			OnPlayerHit();
+		if (hitObject is not Player)
+			return;
 
-		if (hitObject.IsInGroup("WorldBorder"))
-			QueueFree();
-	}
-
-	private void OnPlayerHit()
-	{
 		_scoreManager.Score += _score;
 		QueueFree();
 	}
+}
+
+public partial class Gem : IDespawnable
+{
+    [Signal]
+	public delegate void DespawningEventHandler();
+
+	public void Despawn()
+    {
+        QueueFree();
+		EmitSignal(SignalName.Despawning);
+    }
 }
