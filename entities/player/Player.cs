@@ -5,6 +5,8 @@ public partial class Player : CharacterBody2D
 {
     [Export]
     public HealthManager HealthManager { get; private set; }
+    [Export]
+    public HitReceiver HitReceiver { get; private set; }
 
     [Export] 
     private float _maxSpeed;
@@ -17,7 +19,6 @@ public partial class Player : CharacterBody2D
     private Color _invincibillityMoudulate;
 
     private Vector2 _velocity;
-    private bool _isInvincible;
 
     public Player()
     {
@@ -41,6 +42,11 @@ public partial class Player : CharacterBody2D
         return moveInput;
 	}
 
+    public override void _Ready()
+    {
+        HitReceiver.Damaged += _ => StartInvincibillity();
+    }
+
     public override void _PhysicsProcess(double elapsedTime)
     {
 		Vector2 moveInput = GetMoveInput();
@@ -60,23 +66,14 @@ public partial class Player : CharacterBody2D
         SceneTreeTimer invincibillityTimer = tree.CreateTimer(_invincibilityTime);
 
         Color previousMoudulate = Modulate;
-        
-        invincibillityTimer.Timeout += () => _isInvincible = false;
+        uint previousHitLayer = HitReceiver.CollisionLayer;
+
         invincibillityTimer.Timeout += () => Modulate = previousMoudulate;
+        invincibillityTimer.Timeout += () => HitReceiver.ModifyDamage -= InvincibillityMod;
 
-        _isInvincible = true;
+        HitReceiver.ModifyDamage += InvincibillityMod;
         Modulate = _invincibillityMoudulate;
-    }
-}
 
-public partial class Player : IDamageable
-{
-    public void Damage(float damage)
-    {
-        if (_isInvincible == true)
-            return;
-        
-        HealthManager.Health -= damage;
-        StartInvincibillity();
+        static void InvincibillityMod(ref float damage) => damage = 0;
     }
 }

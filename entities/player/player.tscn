@@ -7,11 +7,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver")]
 collision_layer = 5
 collision_mask = 8
 script = ExtResource("1_wkpjw")
 HealthManager = NodePath("HealthManager")
+HitReceiver = NodePath("HitReciever")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 _invincibilityTime = 0.5
@@ -34,8 +35,9 @@ color = Color(0.415686, 0.560784, 0.611765, 1)
 [node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager") groups=["Player"]]
+[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
 visible = false
+collision_layer = 5
 script = ExtResource("2_fm72h")
 HealthManager = NodePath("../HealthManager")
 

@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class Gem : AnimatableBody2D
+public partial class Gem : AnimatableBody2D, IDespawnable
 {
-	[Export]
-	public Area2D HitArea { get; private set; }
+    [Signal]
+	public delegate void DespawningEventHandler();
 
 	[Export]
-	private float _fallRate;
+	private Area2D _hitArea;
 	[Export]
 	private int _score;
 
@@ -15,15 +15,16 @@ public partial class Gem : AnimatableBody2D
 
     public override void _Ready()
     {
-		HitArea.AreaEntered += OnHit;
-		HitArea.BodyEntered += OnHit;
+		_hitArea.AreaEntered += OnHit;
+		_hitArea.BodyEntered += OnHit;
 
 		_scoreManager = GlobalInstances.GetInstance<ScoreManager>();
     }
 
-    public override void _PhysicsProcess(double elapsedTime)
+	public void Despawn()
     {
-		Position += Vector2.Down * _fallRate * (float)elapsedTime;
+        QueueFree();
+		EmitSignal(SignalName.Despawning);
     }
 
     private void OnHit(Node2D hitObject)
@@ -34,16 +35,4 @@ public partial class Gem : AnimatableBody2D
 		_scoreManager.Score += _score;
 		QueueFree();
 	}
-}
-
-public partial class Gem : IDespawnable
-{
-    [Signal]
-	public delegate void DespawningEventHandler();
-
-	public void Despawn()
-    {
-        QueueFree();
-		EmitSignal(SignalName.Despawning);
-    }
 }

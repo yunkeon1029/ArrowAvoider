@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b57rs0kw3jpgy"]
-
-[node name="Player" type="ReferenceRect"]
-custom_minimum_size = Vector2(16, 16)
-offset_right = 16.0
-offset_bottom = 16.0

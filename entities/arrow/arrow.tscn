@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv122lu7n8asn"]
+[gd_scene load_steps=5 format=3 uid="uid://cv122lu7n8asn"]
 
 [ext_resource type="Script" path="res://entities/arrow/Arrow.cs" id="1_hskmb"]
+[ext_resource type="Script" path="res://common/scripts/FallingObject.cs" id="2_8hv0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqydm"]
 size = Vector2(5, 5)
@@ -8,10 +9,9 @@ size = Vector2(5, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om538"]
 size = Vector2(4, 4)
 
-[node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("HitArea")]
+[node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 script = ExtResource("1_hskmb")
-HitArea = NodePath("HitArea")
-_fallRate = 93.0
+_hitArea = NodePath("HitArea")
 _damage = 1.0
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
@@ -38,3 +38,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("RectangleShape2D_om538")
+
+[node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]
+script = ExtResource("2_8hv0p")
+_movingObject = NodePath("..")
+_fallRate = 93.0

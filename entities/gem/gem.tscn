@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://6u28sxgues4h"]
+[gd_scene load_steps=4 format=3 uid="uid://6u28sxgues4h"]
 
 [ext_resource type="Script" path="res://entities/gem/Gem.cs" id="1_1yk3c"]
+[ext_resource type="Script" path="res://common/scripts/FallingObject.cs" id="2_fcp5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okrc7"]
 size = Vector2(7, 7)
 
-[node name="Gem" type="AnimatableBody2D" node_paths=PackedStringArray("HitArea")]
+[node name="Gem" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 script = ExtResource("1_1yk3c")
-HitArea = NodePath("HitArea")
-_fallRate = 75.0
+_hitArea = NodePath("HitArea")
 _score = 100
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
@@ -22,7 +22,6 @@ editor_only = false
 [node name="Bounds" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_okrc7")
 
 [node name="HitArea" type="Area2D" parent="."]
@@ -32,3 +31,8 @@ collision_mask = 4
 position = Vector2(0, 0.5)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_okrc7")
+
+[node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]
+script = ExtResource("2_fcp5p")
+_movingObject = NodePath("..")
+_fallRate = 75.0

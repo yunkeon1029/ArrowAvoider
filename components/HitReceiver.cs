@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HitReceiver : Area2D
+public partial class HitReceiver : Area2D, IDamageable, IHealable
 {
 	[Signal]
 	public delegate void DamagedEventHandler(float damage);
@@ -16,7 +16,7 @@ public partial class HitReceiver : Area2D
     public event ModifyHealthEventHandler ModifyHealth;
     public event ModifyDamageEventHandler ModifyDamage;
 
-    public void ApplyDamage(float damage)
+    public void Damage(float damage)
     {
         ModifyDamage?.Invoke(ref damage);
         HealthManager.Health -= damage;
@@ -25,7 +25,7 @@ public partial class HitReceiver : Area2D
             EmitSignal(SignalName.Damaged, damage);
     }
 
-    public void ApplyHealing(float healing)
+    public void Heal(float healing)
     {
         ModifyHealth?.Invoke(ref healing);
         HealthManager.Health += healing;

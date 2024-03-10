@@ -1,25 +1,26 @@
 using Godot;
 using System;
 
-public partial class Arrow : StaticBody2D
+public partial class Arrow : AnimatableBody2D, IDespawnable
 {
-	[Export]
-	public Area2D HitArea { get; private set; }
+	[Signal]
+	public delegate void DespawningEventHandler();
 
 	[Export]
-	private float _fallRate;
+	private Area2D _hitArea;
 	[Export]
 	private float _damage;
 
     public override void _Ready()
 	{
-		HitArea.BodyEntered += OnHit;
-		HitArea.AreaEntered += OnHit;
+		_hitArea.BodyEntered += OnHit;
+		_hitArea.AreaEntered += OnHit;
 	}
 
-    public override void _PhysicsProcess(double elapsedTime)
+	public void Despawn()
     {
-		Position += Vector2.Down * _fallRate * (float)elapsedTime;
+        QueueFree();
+		EmitSignal(SignalName.Despawning);
     }
 
     private void OnHit(Node2D hitObject)
@@ -30,16 +31,4 @@ public partial class Arrow : StaticBody2D
 		damageable.Damage(_damage);
 		QueueFree();
 	}
-}
-
-public partial class Arrow : IDespawnable
-{
-    [Signal]
-	public delegate void DespawningEventHandler();
-
-	public void Despawn()
-    {
-        QueueFree();
-		EmitSignal(SignalName.Despawning);
-    }
 }

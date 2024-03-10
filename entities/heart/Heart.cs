@@ -1,41 +1,33 @@
 using Godot;
 
-public partial class Heart : Node2D
+public partial class Heart : Node2D, IDespawnable
 {
-	[Export]
-	public Area2D HitArea { get; private set; }
+    [Signal]
+	public delegate void DespawningEventHandler();
 
 	[Export]
-	private float _fallRate;
+	private Area2D _hitArea;
 	[Export]
 	private float _healing;
 
     public override void _Ready()
     {
-		HitArea.AreaEntered += OnHit;
-		HitArea.BodyEntered += OnHit;
+		_hitArea.AreaEntered += OnHit;
+		_hitArea.BodyEntered += OnHit;
     }
 
-    public override void _PhysicsProcess(double elapsedTime)
+	public void Despawn()
     {
-		Position += Vector2.Down * _fallRate * (float)elapsedTime;
+        QueueFree();
+		EmitSignal(SignalName.Despawning);
     }
 
     private void OnHit(Node2D hitObject)
 	{
-		if (hitObject.IsInGroup("Player"))
-			OnPlayerHit(hitObject);
-
-		if (hitObject.IsInGroup("WorldBorder"))
-			QueueFree();
-	}
-
-	private void OnPlayerHit(Node2D hitObject)
-	{
-		if (hitObject is not HitReceiver hitReceiver)
+		if (hitObject is not IHealable healable)
 			return;
 
-		hitReceiver.ApplyHealing(_healing);
+		healable.Heal(_healing);
 		QueueFree();
 	}
 }

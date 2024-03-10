@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6esnuicj0rmp"]
+[gd_scene load_steps=4 format=3 uid="uid://b6esnuicj0rmp"]
 
 [ext_resource type="Script" path="res://entities/heart/Heart.cs" id="1_d5lpf"]
+[ext_resource type="Script" path="res://common/scripts/FallingObject.cs" id="2_qyvf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek641"]
 size = Vector2(4, 4)
 
-[node name="Heart" type="Node2D" node_paths=PackedStringArray("HitArea")]
+[node name="Heart" type="Node2D" node_paths=PackedStringArray("_hitArea")]
 script = ExtResource("1_d5lpf")
-HitArea = NodePath("HitArea")
-_fallRate = 70.0
+_hitArea = NodePath("HitArea")
 _healing = 1.0
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
@@ -46,3 +46,8 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 shape = SubResource("RectangleShape2D_ek641")
+
+[node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]
+script = ExtResource("2_qyvf8")
+_movingObject = NodePath("..")
+_fallRate = 75.0
