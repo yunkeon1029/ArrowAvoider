@@ -31,3 +31,7 @@ project/assembly_name="ArrowAvoider"
 2d_physics/layer_2="WorldBorder"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Wall"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
