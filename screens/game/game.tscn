@@ -15,7 +15,7 @@ distance = -100.0
 [node name="Game" type="Node"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(7, 7)
+zoom = Vector2(4, 4)
 
 [node name="Player" parent="." instance=ExtResource("1_dyega")]
 position = Vector2(0, 42)
@@ -79,17 +79,10 @@ _spawnRateIncreaceRate = 0.07
 
 [node name="SpawnArea" type="ReferenceRect" parent="ArrowSpawner"]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1060.0
-offset_top = -700.0
-offset_right = -860.0
-offset_bottom = -633.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -100.0
+offset_top = -170.0
+offset_right = 100.0
+offset_bottom = -103.0
 
 [node name="GemSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("4_0gj1v")
