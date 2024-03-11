@@ -9,7 +9,7 @@ size = Vector2(7, 7)
 [node name="Gem" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 script = ExtResource("1_1yk3c")
 _hitArea = NodePath("HitArea")
-_score = 100
+_score = 200
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
 offset_top = -3.0
