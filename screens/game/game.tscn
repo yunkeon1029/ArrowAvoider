@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3fpb711kofpr"]
+[gd_scene load_steps=12 format=3 uid="uid://cmkf06ec5suu4"]
 
-[ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_dyega"]
+[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="1_dyega"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_1jfx3"]
 [ext_resource type="Script" path="res://common/scripts/DespawnArea.cs" id="3_3mvjk"]
 [ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_0gj1v"]
-[ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
+[ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="6_b8ltw"]
 [ext_resource type="Script" path="res://screens/game/GameUI.cs" id="7_4ptys"]
 [ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="7_xo3t6"]
