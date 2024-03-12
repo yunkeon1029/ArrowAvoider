@@ -30,7 +30,7 @@ public static class GlobalInstances
         var instancesOfType = _instances.OfType<T>();
 
         if (!instancesOfType.Any())
-            throw new Exception($"there was no instance such as {nameof(T)}");
+            throw new Exception($"there was no instance such as {typeof(T).Name}");
 
         return instancesOfType.First();
     }
@@ -40,7 +40,7 @@ public static class GlobalInstances
         var instancesOfType = _instances.OfType<T>();
 
         if (!instancesOfType.Any())
-            throw new Exception($"there was no instance such as {nameof(T)}");
+            throw new Exception($"there was no instance such as {typeof(T).Name}");
 
         return instancesOfType.ToArray();
     }
