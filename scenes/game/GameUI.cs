@@ -26,6 +26,8 @@ public partial class GameUI : CanvasLayer
 
         UpdateHealthLabel();
         UpdateScoreLabel();
+    
+        RequestReady();
     }
 
     public void UpdateHealthLabel()

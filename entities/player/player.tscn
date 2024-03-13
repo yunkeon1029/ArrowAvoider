@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3yilsht1xyk1"]
+[gd_scene load_steps=6 format=3 uid="uid://b3yilsht1xyk1"]
 
 [ext_resource type="Script" path="res://entities/player/Player.cs" id="1_wkpjw"]
 [ext_resource type="Script" path="res://components/HitReceiver.cs" id="2_fm72h"]
 [ext_resource type="Script" path="res://components/HealthManager.cs" id="3_8ugtg"]
+[ext_resource type="Script" path="res://entities/player/PlayerMovement.cs" id="4_rj8yv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver", "PlayerMovement")]
 collision_layer = 5
 collision_mask = 8
 script = ExtResource("1_wkpjw")
 HealthManager = NodePath("HealthManager")
 HitReceiver = NodePath("HitReciever")
-_maxSpeed = 90.0
-_accelerationRate = 1000.0
+PlayerMovement = NodePath("PlayerMovement")
 _invincibilityTime = 0.5
 _invincibillityMoudulate = Color(1, 1, 1, 0.631373)
 
@@ -47,3 +47,9 @@ shape = SubResource("RectangleShape2D_mme8o")
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_8ugtg")
 MaxHealth = 3.0
+
+[node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("_player")]
+script = ExtResource("4_rj8yv")
+_player = NodePath("..")
+_maxSpeed = 90.0
+_accelerationRate = 1000.0

@@ -30,7 +30,7 @@ public partial class HealthManager : Node
     private float _health;
     private float _maxHealth;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
         if (_startAtMaxHealth && !Engine.IsEditorHint())
             Health = MaxHealth;

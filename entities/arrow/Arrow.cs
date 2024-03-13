@@ -15,6 +15,8 @@ public partial class Arrow : AnimatableBody2D, IDespawnable
 	{
 		_hitArea.BodyEntered += OnHit;
 		_hitArea.AreaEntered += OnHit;
+
+		RequestReady();
 	}
 
 	public void Despawn()

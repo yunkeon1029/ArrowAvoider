@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://cmkf06ec5suu4"]
 
-[ext_resource type="PackedScene" uid="uid://2tlnswc213ld" path="res://entities/player/player.tscn" id="1_dyega"]
-[ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_1jfx3"]
-[ext_resource type="Script" path="res://common/scripts/DespawnArea.cs" id="3_3mvjk"]
-[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="4_0gj1v"]
-[ext_resource type="PackedScene" uid="uid://bjfu6uixh31o2" path="res://entities/arrow/arrow.tscn" id="4_d0s8f"]
-[ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="6_b8ltw"]
-[ext_resource type="Script" path="res://screens/game/GameUI.cs" id="7_4ptys"]
-[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="7_xo3t6"]
+[ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_xvoc0"]
+[ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_0p778"]
+[ext_resource type="Script" path="res://common/scripts/DespawnArea.cs" id="3_hqt2k"]
+[ext_resource type="Script" path="res://scenes/game/GameUI.cs" id="4_ym6yo"]
+[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="5_18brx"]
+[ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="6_h8wil"]
+[ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="7_q6j3h"]
+[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="8_c37p6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -24,24 +24,24 @@ font_size = 40
 scale = Vector2(0.992946, 1)
 zoom = Vector2(4, 4)
 
-[node name="Player" parent="." instance=ExtResource("1_dyega")]
+[node name="Player" parent="." instance=ExtResource("1_xvoc0")]
 position = Vector2(0, 42)
 _invincibilityTime = 0.7
 
-[node name="LeftWall" parent="." instance=ExtResource("2_1jfx3")]
+[node name="LeftWall" parent="." instance=ExtResource("2_0p778")]
 position = Vector2(110, 42)
 
-[node name="RightWall" parent="." instance=ExtResource("2_1jfx3")]
+[node name="RightWall" parent="." instance=ExtResource("2_0p778")]
 position = Vector2(-110, 42)
 
 [node name="DespawnArea" type="Area2D" parent="."]
-script = ExtResource("3_3mvjk")
+script = ExtResource("3_hqt2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 shape = SubResource("WorldBoundaryShape2D_kctsc")
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_healthLabel", "_scoreLabel", "_deadLabel")]
-script = ExtResource("7_4ptys")
+script = ExtResource("4_ym6yo")
 _healthLabel = NodePath("HealthLabel")
 _scoreLabel = NodePath("ScoreLabel")
 _deadLabel = NodePath("DeadLabel")
@@ -81,8 +81,8 @@ text = "You are dead"
 label_settings = SubResource("LabelSettings_qkei4")
 
 [node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
-script = ExtResource("4_0gj1v")
-_spawningObject = ExtResource("4_d0s8f")
+script = ExtResource("5_18brx")
+_spawningObject = ExtResource("6_h8wil")
 _spawnArea = NodePath("SpawnArea")
 _spawnRate = 3.2
 _spawnRateIncreaceRate = 0.07
@@ -95,8 +95,8 @@ offset_right = 100.0
 offset_bottom = -103.0
 
 [node name="GemSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
-script = ExtResource("4_0gj1v")
-_spawningObject = ExtResource("6_b8ltw")
+script = ExtResource("5_18brx")
+_spawningObject = ExtResource("7_q6j3h")
 _spawnArea = NodePath("../ArrowSpawner/SpawnArea")
 _spawnRate = 0.7
 _spawnRateIncreaceRate = 0.007
@@ -116,4 +116,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScoreManager" type="Node" parent="."]
-script = ExtResource("7_xo3t6")
+script = ExtResource("8_c37p6")

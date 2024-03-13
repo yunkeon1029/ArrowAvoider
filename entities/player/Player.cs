@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -7,18 +8,13 @@ public partial class Player : CharacterBody2D
     public HealthManager HealthManager { get; private set; }
     [Export]
     public HitReceiver HitReceiver { get; private set; }
-
-    [Export] 
-    private float _maxSpeed;
-    [Export] 
-    private float _accelerationRate;
+    [Export]
+    public PlayerMovement PlayerMovement { get; private set; }
 
     [Export]
     private float _invincibilityTime;
     [Export]
     private Color _invincibillityMoudulate;
-
-    private Vector2 _velocity;
 
     public Player()
     {
@@ -26,38 +22,23 @@ public partial class Player : CharacterBody2D
         TreeExited += () => GlobalInstances.RemoveInstance(this);
     }
 
-	public static Vector2 GetMoveDir()
-	{
-        Vector2 moveDir = new(0, 0);
-
-        if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left)) 
-            moveDir.X -= 1;
-
-        if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right)) 
-            moveDir.X += 1;
-
-        if (moveDir != Vector2.Zero)
-            moveDir = moveDir.Normalized();
-
-        return moveDir;
-	}
-
     public override void _Ready()
     {
         HitReceiver.Damaged += _ => StartInvincibillity();
+        RequestReady();
     }
 
     public override void _PhysicsProcess(double elapsedTime)
     {
-		Vector2 moveDir = GetMoveDir();
-        Vector2 targetVelocity = moveDir * _maxSpeed;
+        Vector2 moveInput = new(0, 0);
 
-        _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
+        if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left)) 
+            moveInput.X -= 1;
 
-        var collisionResult = MoveAndCollide(_velocity * (float)elapsedTime, false, 0);
+        if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right)) 
+            moveInput.X += 1;
 
-        if (collisionResult != null)
-            _velocity = Vector2.Zero;
+        PlayerMovement.ProcessMovement(moveInput, elapsedTime);
     }
 
     private void StartInvincibillity()

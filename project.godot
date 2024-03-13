@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="ArrowAvoider"
-run/main_scene="res://screens/game/game.tscn"
+run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://common/sprites/icon.svg"
+
+[autoload]
+
+SceneManager="*res://autoloads/scene_manager/scene_manager.tscn"
 
 [display]
 

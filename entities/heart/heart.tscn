@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6esnuicj0rmp"]
 
 [ext_resource type="Script" path="res://entities/heart/Heart.cs" id="1_d5lpf"]
-[ext_resource type="Script" path="res://common/scripts/FallingObject.cs" id="2_qyvf8"]
+[ext_resource type="Script" path="res://components/FallingObject.cs" id="2_qyvf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek641"]
 size = Vector2(4, 4)
