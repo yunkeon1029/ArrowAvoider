@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class PlayerMovement : Node
+internal partial class PlayerMovement : Node
 {
 	[Export]
 	private Player _player;

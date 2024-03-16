@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://6u28sxgues4h"]
 
-[ext_resource type="Script" path="res://entities/gem/Gem.cs" id="1_1yk3c"]
-[ext_resource type="Script" path="res://components/FallingObject.cs" id="2_fcp5p"]
+[ext_resource type="Script" path="res://prefabs/gem/Gem.cs" id="1_xpjo4"]
+[ext_resource type="Script" path="res://components/FallingObject.cs" id="2_xwhsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okrc7"]
 size = Vector2(7, 7)
 
 [node name="Gem" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
-script = ExtResource("1_1yk3c")
+script = ExtResource("1_xpjo4")
 _hitArea = NodePath("HitArea")
 _score = 200
 
@@ -33,6 +33,6 @@ rotation = 0.785398
 shape = SubResource("RectangleShape2D_okrc7")
 
 [node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]
-script = ExtResource("2_fcp5p")
+script = ExtResource("2_xwhsb")
 _movingObject = NodePath("..")
 _fallRate = 75.0

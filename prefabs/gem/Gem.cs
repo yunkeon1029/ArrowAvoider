@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public partial class Gem : AnimatableBody2D, IDespawnable
+internal partial class Gem : AnimatableBody2D, IDespawnable
 {
-    [Signal]
-	public delegate void DespawningEventHandler();
-
 	[Export]
 	private Area2D _hitArea;
 	[Export]
@@ -18,13 +15,9 @@ public partial class Gem : AnimatableBody2D, IDespawnable
 		_hitArea.AreaEntered += OnHit;
 		_hitArea.BodyEntered += OnHit;
 
-		_scoreManager = GlobalInstances.GetInstance<ScoreManager>();
-    }
+		_scoreManager = Singletons.GetInstance<ScoreManager>();
 
-	public void Despawn()
-    {
-        QueueFree();
-		EmitSignal(SignalName.Despawning);
+		RequestReady();
     }
 
     private void OnHit(Node2D hitObject)

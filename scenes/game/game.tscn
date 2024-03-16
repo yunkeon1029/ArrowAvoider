@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://cmkf06ec5suu4"]
 
-[ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://entities/player/player.tscn" id="1_xvoc0"]
-[ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://entities/wall/wall.tscn" id="2_0p778"]
-[ext_resource type="Script" path="res://common/scripts/DespawnArea.cs" id="3_hqt2k"]
+[ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
+[ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://prefabs/wall.tscn" id="2_0p778"]
+[ext_resource type="Script" path="res://prefabs/DespawnArea.cs" id="3_hqt2k"]
 [ext_resource type="Script" path="res://scenes/game/GameUI.cs" id="4_ym6yo"]
-[ext_resource type="Script" path="res://common/scripts/ObjectSpawner.cs" id="5_18brx"]
-[ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://entities/arrow/arrow.tscn" id="6_h8wil"]
-[ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://entities/gem/gem.tscn" id="7_q6j3h"]
-[ext_resource type="Script" path="res://common/scripts/ScoreManager.cs" id="8_c37p6"]
+[ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="5_18brx"]
+[ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="6_h8wil"]
+[ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://prefabs/gem/gem.tscn" id="7_q6j3h"]
+[ext_resource type="Script" path="res://prefabs/ScoreManager.cs" id="8_c37p6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -80,12 +80,13 @@ grow_vertical = 2
 text = "You are dead"
 label_settings = SubResource("LabelSettings_qkei4")
 
-[node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
+[node name="ArrowSpawner" type="Node" parent="."]
 script = ExtResource("5_18brx")
 _spawningObject = ExtResource("6_h8wil")
-_spawnArea = NodePath("SpawnArea")
 _spawnRate = 3.2
 _spawnRateIncreaceRate = 0.07
+_spawnArea = Object(ReferenceRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":-100.0,"offset_top":-170.0,"offset_right":100.0,"offset_bottom":-103.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","border_color":Color(1, 0, 0, 1),"border_width":1.0,"editor_only":true,"script":null)
+
 
 [node name="SpawnArea" type="ReferenceRect" parent="ArrowSpawner"]
 visible = false
@@ -94,12 +95,13 @@ offset_top = -170.0
 offset_right = 100.0
 offset_bottom = -103.0
 
-[node name="GemSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
+[node name="GemSpawner" type="Node" parent="."]
 script = ExtResource("5_18brx")
 _spawningObject = ExtResource("7_q6j3h")
-_spawnArea = NodePath("../ArrowSpawner/SpawnArea")
 _spawnRate = 0.7
 _spawnRateIncreaceRate = 0.007
+_spawnArea = Object(ReferenceRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":false,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":0,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":0.0,"anchor_bottom":0.0,"offset_left":-100.0,"offset_top":-170.0,"offset_right":100.0,"offset_bottom":-103.0,"grow_horizontal":1,"grow_vertical":1,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","border_color":Color(1, 0, 0, 1),"border_width":1.0,"editor_only":true,"script":null)
+
 
 [node name="SpawnArea" type="ReferenceRect" parent="GemSpawner"]
 visible = false

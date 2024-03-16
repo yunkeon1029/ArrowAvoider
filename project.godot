@@ -17,7 +17,7 @@ config/icon="res://common/sprites/icon.svg"
 
 [autoload]
 
-SceneManager="*res://autoloads/scene_manager/scene_manager.tscn"
+SceneManager="*res://autoloads/SceneManager.cs"
 
 [display]
 

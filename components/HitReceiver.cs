@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HitReceiver : Area2D, IDamageable, IHealable
+internal partial class HitReceiver : Area2D, IDamageable, IHealable
 {
 	[Signal]
 	public delegate void DamagedEventHandler(float damage);

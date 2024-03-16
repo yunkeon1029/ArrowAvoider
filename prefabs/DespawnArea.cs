@@ -1,8 +1,6 @@
 using Godot;
-using System;
-using System.Linq;
 
-public partial class DespawnArea : Area2D
+internal partial class DespawnArea : Area2D
 {
 	[Signal]
 	public delegate void DespawnedNodeEventHandler(Node2D despawnedNode);
@@ -15,10 +13,13 @@ public partial class DespawnArea : Area2D
 
     private void OnDectection(Node2D dectectedNode)
 	{
-		if (dectectedNode is not IDespawnable despawnable)
+		if (dectectedNode is not IDespawnable)
 			return;
 
-		despawnable.Despawn();
+		dectectedNode.QueueFree();
 		EmitSignal(SignalName.DespawnedNode, dectectedNode);
 	}
+	
 }
+
+internal interface IDespawnable { }

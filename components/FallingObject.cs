@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class FallingObject : Node
+internal partial class FallingObject : Node
 {
 	[Export]
 	private CanvasItem _movingObject;

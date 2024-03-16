@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SceneManager : Node
+internal partial class SceneManager : Node, ISingleton
 {
 	[Signal]
 	public delegate void SceneLoadedEventHandler(Node loadedScene);

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3yilsht1xyk1"]
 
-[ext_resource type="Script" path="res://entities/player/Player.cs" id="1_wkpjw"]
-[ext_resource type="Script" path="res://components/HitReceiver.cs" id="2_fm72h"]
-[ext_resource type="Script" path="res://components/HealthManager.cs" id="3_8ugtg"]
-[ext_resource type="Script" path="res://entities/player/PlayerMovement.cs" id="4_rj8yv"]
+[ext_resource type="Script" path="res://prefabs/player/Player.cs" id="1_hy6gv"]
+[ext_resource type="Script" path="res://components/HitReceiver.cs" id="2_kxrre"]
+[ext_resource type="Script" path="res://components/HealthManager.cs" id="3_xmlqw"]
+[ext_resource type="Script" path="res://prefabs/player/PlayerMovement.cs" id="4_rflie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
@@ -11,7 +11,7 @@ size = Vector2(8, 16)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver", "PlayerMovement")]
 collision_layer = 5
 collision_mask = 8
-script = ExtResource("1_wkpjw")
+script = ExtResource("1_hy6gv")
 HealthManager = NodePath("HealthManager")
 HitReceiver = NodePath("HitReciever")
 PlayerMovement = NodePath("PlayerMovement")
@@ -35,21 +35,18 @@ color = Color(0.415686, 0.560784, 0.611765, 1)
 [node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mme8o")
 
-[node name="HitReciever" type="Area2D" parent="." node_paths=PackedStringArray("HealthManager")]
-visible = false
-collision_layer = 5
-script = ExtResource("2_fm72h")
-HealthManager = NodePath("../HealthManager")
+[node name="HitReciever" type="Area2D" parent="."]
+script = ExtResource("2_kxrre")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitReciever"]
 shape = SubResource("RectangleShape2D_mme8o")
 
 [node name="HealthManager" type="Node" parent="."]
-script = ExtResource("3_8ugtg")
+script = ExtResource("3_xmlqw")
 MaxHealth = 3.0
 
 [node name="PlayerMovement" type="Node" parent="." node_paths=PackedStringArray("_player")]
-script = ExtResource("4_rj8yv")
+script = ExtResource("4_rflie")
 _player = NodePath("..")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0

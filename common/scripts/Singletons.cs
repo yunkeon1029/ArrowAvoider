@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-public static class Singletons
+internal static class Singletons
 {
     private static readonly Dictionary<Type, object> _instancesByType = new();
 
-	public static void AddInstance(object instance)
+	public static void AddInstance(ISingleton instance)
 	{
         if (instance == null)
             throw new ArgumentNullException(nameof(instance));
@@ -13,7 +13,7 @@ public static class Singletons
 		_instancesByType.Add(instance.GetType(), instance);
 	}
 
-	public static void RemoveInstance(object instance)
+	public static void RemoveInstance(ISingleton instance)
 	{
         if (instance == null)
             throw new ArgumentNullException(nameof(instance));
@@ -21,7 +21,7 @@ public static class Singletons
         _instancesByType.Remove(instance.GetType());
 	}
 
-	public static T GetInstance<T>()
+	public static T GetInstance<T>() where T : ISingleton
 	{
 		Type instanceType = typeof(T);
 

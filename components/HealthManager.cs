@@ -1,7 +1,7 @@
 using Godot;
 
 [Tool]
-public partial class HealthManager : Node
+internal partial class HealthManager : Node
 {
     [Signal]
     public delegate void HealthChangedEventHandler(float delta);

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ObjectSpawner : Node
+internal partial class ObjectSpawner : Node
 {
 	[Signal]
 	public delegate void ObjectSpawnedEventHandler(Node spawnedObject);

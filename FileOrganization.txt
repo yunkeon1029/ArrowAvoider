@@ -1,0 +1,9 @@
+components make prefabs
+prefabs make scenes
+
+components can refrence components
+prefabs can refrence prefabs and components
+scenes can refrence prefabs and scenes
+
+a folder with only 1 content and 
+directly describes that content should be simplified

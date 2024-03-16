@@ -1,6 +1,7 @@
+using System;
 using Godot;
 
-public partial class ScoreManager : Node
+internal partial class ScoreManager : Node, ISingleton
 {
     [Signal]
     public delegate void ScoreChangedEventHandler(float delta);
@@ -15,8 +16,8 @@ public partial class ScoreManager : Node
 
     public ScoreManager()
     {
-        TreeEntered += () => GlobalInstances.AddInstance(this);
-        TreeExited += () => GlobalInstances.RemoveInstance(this);
+        TreeEntered += () => Singletons.AddInstance(this);
+        TreeExited += () => Singletons.RemoveInstance(this);
     }
 
     public void SetScore(int score)

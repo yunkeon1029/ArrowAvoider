@@ -1,11 +1,8 @@
 using Godot;
 using System;
 
-public partial class Arrow : AnimatableBody2D, IDespawnable
+internal partial class Arrow : AnimatableBody2D, IDespawnable
 {
-	[Signal]
-	public delegate void DespawningEventHandler();
-
 	[Export]
 	private Area2D _hitArea;
 	[Export]
@@ -18,13 +15,7 @@ public partial class Arrow : AnimatableBody2D, IDespawnable
 
 		RequestReady();
 	}
-
-	public void Despawn()
-    {
-        QueueFree();
-		EmitSignal(SignalName.Despawning);
-    }
-
+	
     private void OnHit(Node2D hitObject)
 	{
 		if (hitObject is not IDamageable damageable)
