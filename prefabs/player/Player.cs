@@ -1,25 +1,79 @@
 using Godot;
+using System;
 
-// think of a way to notify health & max health without showing HealthManager
 internal partial class Player : CharacterBody2D
 {
+    [Signal]
+    public delegate void InvincibillityStartedEventHandler();
+    [Signal]
+    public delegate void InvincibillityEndedEventHandler();
+    
     [Export]
-    private HealthManager _healthManager;
+    public HealthManager HealthManager { get; private set; }
     [Export]
-    private HitReceiver _hitReciever;
+    public PlayerMovement PlayerMovement { get; private set; }
+
     [Export]
-    private PlayerMovement _playerMovement;
+    private float _invincibillityTime;
+    [Export]
+    private Color _invincibillityModulate;
+
+    private float _leftInvincibillityTime;
 
     public override void _PhysicsProcess(double elapsedTime)
     {
-        Vector2 moveInput = new(0, 0);
+        CalculateMovement(elapsedTime);
+        CalculateInvincibillity(elapsedTime);
+    }
 
-        if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left)) 
-            moveInput.X -= 1;
+    public void ApplyDamage(float amount)
+    {
+        if (_leftInvincibillityTime > 0 || amount <= 0)
+            return;
 
-        if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right)) 
-            moveInput.X += 1;
+        HealthManager.Health -= amount;
+        StartInvincibillity();
+    }
 
-        _playerMovement.ProcessMovement(moveInput, elapsedTime);
+    private void CalculateMovement(double elapsedTime)
+    {
+        Vector2 moveInput = new();
+
+        if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left))
+            moveInput += Vector2.Left;
+
+        if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right))
+            moveInput += Vector2.Right;
+
+        PlayerMovement.CalculateMovement(moveInput, elapsedTime);
+    }
+
+    private void CalculateInvincibillity(double elapsedTime)
+    {
+        if (_leftInvincibillityTime <= 0)
+            return;
+
+        _leftInvincibillityTime -= (float)elapsedTime;
+        _leftInvincibillityTime = Mathf.Max(0, _leftInvincibillityTime);
+
+        if (_leftInvincibillityTime <= 0)
+            EndInvincibillity();
+    }
+
+    private void StartInvincibillity()
+    {
+        if (_invincibillityTime <= 0)
+            return;
+
+        _leftInvincibillityTime = _invincibillityTime;
+        Modulate = _invincibillityModulate;
+
+        EmitSignal(SignalName.InvincibillityStarted);
+    }
+
+    private void EndInvincibillity()
+    {
+        Modulate = new Color(1, 1, 1, 1);
+        EmitSignal(SignalName.InvincibillityEnded);
     }
 }

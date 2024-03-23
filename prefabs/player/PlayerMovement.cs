@@ -12,7 +12,7 @@ internal partial class PlayerMovement : Node
 
 	private Vector2 _velocity;
 
-	public void ProcessMovement(Vector2 moveInput, double elapsedTime)
+	public void CalculateMovement(Vector2 moveInput, double elapsedTime)
 	{
         Vector2 targetVelocity = Vector2.Zero;
 

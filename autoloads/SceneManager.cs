@@ -20,7 +20,7 @@ internal partial class SceneManager : Node, ISingleton
 		Node previousScene = tree.CurrentScene;
         Node sceneInstance = loadingScene.Instantiate();
 
-		sceneLoaded?.Invoke(previousScene);
+		sceneLoaded?.Invoke(sceneInstance);
 		EmitSignal(SignalName.SceneLoaded, sceneInstance);
 
 		previousScene.TreeExited += () => root.AddChild(sceneInstance);

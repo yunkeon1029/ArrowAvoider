@@ -18,10 +18,10 @@ internal partial class Arrow : AnimatableBody2D, IDespawnable
 	
     private void OnHit(Node2D hitObject)
 	{
-		if (hitObject is not IDamageable damageable)
+		if (hitObject is not Player player)
 			return;
 
-		damageable.Damage(_damage);
+		player.ApplyDamage(_damage);
 		QueueFree();
 	}
 }

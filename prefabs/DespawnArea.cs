@@ -19,7 +19,4 @@ internal partial class DespawnArea : Area2D
 		dectectedNode.QueueFree();
 		EmitSignal(SignalName.DespawnedNode, dectectedNode);
 	}
-	
 }
-
-internal interface IDespawnable { }

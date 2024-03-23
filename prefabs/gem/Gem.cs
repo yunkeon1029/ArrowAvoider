@@ -12,10 +12,12 @@ internal partial class Gem : AnimatableBody2D, IDespawnable
 
     public override void _Ready()
     {
+		Game game = Singletons.GetInstance<Game>();
+
 		_hitArea.AreaEntered += OnHit;
 		_hitArea.BodyEntered += OnHit;
 
-		_scoreManager = Singletons.GetInstance<ScoreManager>();
+		_scoreManager = game.ScoreManager;
 
 		RequestReady();
     }

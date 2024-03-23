@@ -8,4 +8,15 @@ internal partial class GameUI : CanvasLayer
     private Label _scoreLabel;
     [Export]
     private Label _deadLabel;
+
+    public void UpdateHealthLabel(float maxHealth, float health)
+    {
+        _healthLabel.Text = $"max health: {maxHealth} \n" + 
+                            $"health: {health}";
+    }
+
+    public void UpdateScoreLabel(float score)
+    {
+        _scoreLabel.Text = $"score: {score}";
+    }
 }

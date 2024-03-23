@@ -1,22 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3yilsht1xyk1"]
+[gd_scene load_steps=5 format=3 uid="uid://b3yilsht1xyk1"]
 
 [ext_resource type="Script" path="res://prefabs/player/Player.cs" id="1_hy6gv"]
-[ext_resource type="Script" path="res://components/HitReceiver.cs" id="2_kxrre"]
 [ext_resource type="Script" path="res://components/HealthManager.cs" id="3_xmlqw"]
 [ext_resource type="Script" path="res://prefabs/player/PlayerMovement.cs" id="4_rflie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
 size = Vector2(8, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "HitReceiver", "PlayerMovement")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "PlayerMovement")]
 collision_layer = 5
 collision_mask = 8
 script = ExtResource("1_hy6gv")
 HealthManager = NodePath("HealthManager")
-HitReceiver = NodePath("HitReciever")
 PlayerMovement = NodePath("PlayerMovement")
-_invincibilityTime = 0.5
-_invincibillityMoudulate = Color(1, 1, 1, 0.631373)
+_invincibillityTime = 0.7
+_invincibillityModulate = Color(1, 1, 1, 0.501961)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -33,12 +31,6 @@ grow_vertical = 2
 color = Color(0.415686, 0.560784, 0.611765, 1)
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mme8o")
-
-[node name="HitReciever" type="Area2D" parent="."]
-script = ExtResource("2_kxrre")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitReciever"]
 shape = SubResource("RectangleShape2D_mme8o")
 
 [node name="HealthManager" type="Node" parent="."]
