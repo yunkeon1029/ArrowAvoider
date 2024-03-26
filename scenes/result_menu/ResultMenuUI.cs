@@ -8,9 +8,15 @@ internal partial class ResultMenuUI : CanvasLayer
 	[Export]
 	public Label ScoreLabel { get; private set; }
 
-	public void UpdateScoreLabel(int score, int highScore)
+	public void NotifyScore(int score, int highScore)
 	{
 		ScoreLabel.Text = $"Score: {score} \n" +
-						  $"High Score: {highScore}";		
+						  $"High Score: {highScore}";
+	}
+
+	public void NotifyNewHighScore(int highScore, int previousHighScore)
+	{
+		ScoreLabel.Text = $"High Score: {highScore} \n" +
+						  $"Previous Score: {previousHighScore}";
 	}
 }
