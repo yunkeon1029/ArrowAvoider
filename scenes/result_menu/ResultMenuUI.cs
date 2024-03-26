@@ -10,7 +10,7 @@ internal partial class ResultMenuUI : CanvasLayer
 
 	public void UpdateScoreLabel(int score, int highScore)
 	{
-		ScoreLabel.Text = $"score: {score} \n" +
-						  $"highScore: {highScore}";
+		ScoreLabel.Text = $"Score: {score} \n" +
+						  $"High Score: {highScore}";		
 	}
 }

@@ -1,20 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi2nqmdmj6s7o"]
-
-[ext_resource type="Script" path="res://scenes/result_menu/ResultMenu.cs" id="1_w7yo6"]
-[ext_resource type="Script" path="res://scenes/result_menu/ResultMenuUI.cs" id="2_fhfip"]
+[gd_scene load_steps=2 format=3 uid="uid://bi2nqmdmj6s7o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5r2qe"]
-font_size = 45
+font_size = 47
 
-[node name="ResultMenu" type="Node" node_paths=PackedStringArray("ResultMenuUI")]
-script = ExtResource("1_w7yo6")
-ResultMenuUI = NodePath("UI")
-_gameScenePath = "res://scenes/game/game.tscn"
+[node name="ResultMenu" type="Node"]
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("RestartButton", "ScoreLabel")]
-script = ExtResource("2_fhfip")
-RestartButton = NodePath("RestartButton")
-ScoreLabel = NodePath("ScoreLabel")
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -160.0
+offset_right = 321.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score: 12500
+High Score: 31000"
+label_settings = SubResource("LabelSettings_5r2qe")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="UI"]
 anchors_preset = 8
@@ -22,18 +31,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -217.0
-offset_top = 109.0
-offset_right = 218.0
-offset_bottom = 201.0
+offset_left = 19.0
+offset_top = 54.0
+offset_right = 269.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Restart"
 
-[node name="ScoreLabel" type="Label" parent="UI"]
-offset_left = 301.0
-offset_top = 212.0
-offset_right = 833.0
-offset_bottom = 365.0
-label_settings = SubResource("LabelSettings_5r2qe")
+[node name="MenuButton" type="Button" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = 54.0
+offset_right = -17.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Menu
+"
