@@ -51,6 +51,7 @@ internal partial class Game : Node, ISingleton
         if (loadedScene is not ResultMenu resultMenu)
             return;
 
-        resultMenu.NotifyScore(ScoreManager.Score);
+        int score = ScoreManager.Score;
+        resultMenu.Ready += () => resultMenu.NotifyScore(score);
     }
 }
