@@ -8,37 +8,29 @@ internal partial class ResultMenu : Node
 	
 	[Export(PropertyHint.File, "*.tscn")]
     private string _gameScenePath;
+
+	private SceneManager _sceneManager;
+	private SaveManager _saveManager;
 	
 	public override void _Ready()
     {
-		var sceneManager = Singletons.GetInstance<SceneManager>();
+		_sceneManager = Singletons.GetInstance<SceneManager>();
+		_saveManager = Singletons.GetInstance<SaveManager>();
+
 		var restartButton = ResultMenuUI.RestartButton;
-
-		restartButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
+		restartButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
     }
-
-	public int GetHighScore()
-	{
-		return 0;
-		throw new NotImplementedException();
-	}
-
-	public void SetHighScore(int value)
-	{
-		return;
-		throw new NotImplementedException();
-	}
 
 	public void NotifyScore(int score)
 	{
-		int highScore = GetHighScore();
+		int highScore = (int?)_saveManager.GetData("HighScore") ?? 0;
 
 		if (score <= highScore)
 			ResultMenuUI.UpdateScoreLabel(score, highScore);
 
 		if (score > highScore)
 		{
-			SetHighScore(score);
+			_saveManager.SetData("HighScore", score);
 			ResultMenuUI.UpdateScoreLabel(score);
 		}
 	}
