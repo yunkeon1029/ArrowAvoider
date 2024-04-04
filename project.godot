@@ -19,6 +19,7 @@ config/icon="res://common/sprites/icon.svg"
 
 SceneManager="res://autoloads/SceneManager.cs"
 SaveManager="res://autoloads/SaveManager.cs"
+AudioManager="res://autoloads/AudioManager.cs"
 
 [display]
 
