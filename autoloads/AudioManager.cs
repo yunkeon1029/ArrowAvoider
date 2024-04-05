@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AudioManager : Node, ISingleton
+internal partial class AudioManager : Node, ISingleton
 {
     public AudioManager()
     {
