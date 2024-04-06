@@ -4,9 +4,9 @@ using System;
 internal partial class Player : CharacterBody2D
 {
     [Signal]
-    public delegate void InvincibillityStartedEventHandler();
+    public delegate void InvincibilityStartedEventHandler();
     [Signal]
-    public delegate void InvincibillityEndedEventHandler();
+    public delegate void InvincibilityEndedEventHandler();
     
     [Export]
     public HealthManager HealthManager { get; private set; }
@@ -14,25 +14,47 @@ internal partial class Player : CharacterBody2D
     public PlayerMovement PlayerMovement { get; private set; }
 
     [Export]
-    private float _invincibillityTime;
+    private AudioStream _hitSound;
     [Export]
-    private Color _invincibillityModulate;
+    private AudioStream _hitBlockedSound;
 
-    private float _leftInvincibillityTime;
+    [Export]
+    private float _invincibilityTime;
+    [Export]
+    private Color _invincibilityModulate;
+
+    private float _leftInvincibilityTime;
 
     public override void _PhysicsProcess(double elapsedTime)
     {
         CalculateMovement(elapsedTime);
-        CalculateInvincibillity(elapsedTime);
+        CalculateInvincibility(elapsedTime);
     }
 
-    public void ApplyDamage(float amount)
+    public void ApplyHit(float damage)
     {
-        if (_leftInvincibillityTime > 0 || amount <= 0)
-            return;
+        CalculateHitSound();
+        CalculateHitDamage(damage);
+    }
 
-        HealthManager.Health -= amount;
-        StartInvincibillity();
+    private void CalculateHitSound()
+    {
+        AudioManager audioManager = Singletons.GetInstance<AudioManager>();
+
+        if (_leftInvincibilityTime > 0)
+            audioManager.PlayAudio(_hitBlockedSound);
+
+        if (_leftInvincibilityTime <= 0)
+            audioManager.PlayAudio(_hitSound);
+    }
+
+    private void CalculateHitDamage(float damage)
+    {
+        if (_leftInvincibilityTime > 0 || damage <= 0)
+                return;
+
+        HealthManager.Health -= damage;
+        StartInvincibility();
     }
 
     private void CalculateMovement(double elapsedTime)
@@ -48,32 +70,32 @@ internal partial class Player : CharacterBody2D
         PlayerMovement.CalculateMovement(moveInput, elapsedTime);
     }
 
-    private void CalculateInvincibillity(double elapsedTime)
+    private void CalculateInvincibility(double elapsedTime)
     {
-        if (_leftInvincibillityTime <= 0)
+        if (_leftInvincibilityTime <= 0)
             return;
 
-        _leftInvincibillityTime -= (float)elapsedTime;
-        _leftInvincibillityTime = Mathf.Max(0, _leftInvincibillityTime);
+        _leftInvincibilityTime -= (float)elapsedTime;
+        _leftInvincibilityTime = Mathf.Max(0, _leftInvincibilityTime);
 
-        if (_leftInvincibillityTime <= 0)
-            EndInvincibillity();
+        if (_leftInvincibilityTime <= 0)
+            EndInvincibility();
     }
 
-    private void StartInvincibillity()
+    private void StartInvincibility()
     {
-        if (_invincibillityTime <= 0)
+        if (_invincibilityTime <= 0)
             return;
 
-        _leftInvincibillityTime = _invincibillityTime;
-        Modulate = _invincibillityModulate;
+        _leftInvincibilityTime = _invincibilityTime;
+        Modulate = _invincibilityModulate;
 
-        EmitSignal(SignalName.InvincibillityStarted);
+        EmitSignal(SignalName.InvincibilityStarted);
     }
 
-    private void EndInvincibillity()
+    private void EndInvincibility()
     {
         Modulate = new Color(1, 1, 1, 1);
-        EmitSignal(SignalName.InvincibillityEnded);
+        EmitSignal(SignalName.InvincibilityEnded);
     }
 }

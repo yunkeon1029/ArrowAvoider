@@ -21,7 +21,7 @@ internal partial class Arrow : AnimatableBody2D, IDespawnable
 		if (hitObject is not Player player)
 			return;
 
-		player.ApplyDamage(_damage);
+		player.ApplyHit(_damage);
 		QueueFree();
 	}
 }
