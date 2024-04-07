@@ -1,11 +1,12 @@
 using Godot;
-using System;
 
 internal partial class ResultMenu : Node
 {
 	[Export]
 	public ResultMenuUI ResultMenuUI { get; private set; }
 	
+	[Export(PropertyHint.File, "*.tscn")]
+    private string _mainMenuScenePath;
 	[Export(PropertyHint.File, "*.tscn")]
     private string _gameScenePath;
 
@@ -17,8 +18,11 @@ internal partial class ResultMenu : Node
 		_sceneManager = Singletons.GetInstance<SceneManager>();
 		_saveManager = Singletons.GetInstance<SaveManager>();
 
-		var restartButton = ResultMenuUI.RestartButton;
-		restartButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
+		var retryButton = ResultMenuUI.RetryButton;
+		var menuButton = ResultMenuUI.MenuButton;
+
+		retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
+		menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
     }
 
 	public void NotifyScore(int score)

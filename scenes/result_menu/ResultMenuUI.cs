@@ -1,10 +1,11 @@
 using Godot;
-using System;
 
 internal partial class ResultMenuUI : CanvasLayer
 {
 	[Export]
-	public BaseButton RestartButton { get; private set; }
+	public BaseButton MenuButton { get; private set; }
+	[Export]
+	public BaseButton RetryButton { get; private set; }
 	[Export]
 	public Label ScoreLabel { get; private set; }
 
