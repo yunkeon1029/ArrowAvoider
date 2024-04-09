@@ -8,10 +8,12 @@ internal partial class Game : Node, ISingleton
     [Export]
     public GameUI GameUI { get; private set; }
     [Export]
+    public GamePauseWindow PauseWindow { get; private set; }
+    [Export]
     public ScoreManager ScoreManager { get; private set; }
 
     [Export(PropertyHint.File, "*.tscn")]
-    private string _resultScenePath;
+    private string _resultMenuScenePath;
 
     public Game()
     {
@@ -26,7 +28,7 @@ internal partial class Game : Node, ISingleton
 
         healthManager.HealthChanged += _ => UpdateHealthLabel();
         healthManager.MaxHealthChanged += _ => UpdateHealthLabel();
-        healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultScenePath, OnSceneLoaded);
+        healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultMenuScenePath, OnSceneLoaded);
 
         ScoreManager.ScoreChanged += _ => GameUI.UpdateScoreLabel(ScoreManager.Score);
 
@@ -36,7 +38,7 @@ internal partial class Game : Node, ISingleton
 		RequestReady();
     }
 
-	private void UpdateHealthLabel()
+    private void UpdateHealthLabel()
 	{
         var healthManager = Player.HealthManager;
 

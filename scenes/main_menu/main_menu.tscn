@@ -4,16 +4,18 @@
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenuUI.cs" id="2_4cstn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ly4uh"]
-font_size = 47
+font_size = 65
 
 [node name="MainMenu" type="Node" node_paths=PackedStringArray("MainMenuUI")]
 script = ExtResource("1_62vya")
 MainMenuUI = NodePath("UI")
 _gameScenePath = "res://scenes/game/game.tscn"
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("StartButton")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("StartButton", "SettingsButton", "ExitButton")]
 script = ExtResource("2_4cstn")
 StartButton = NodePath("StartButton")
+SettingsButton = NodePath("SettingsButton")
+ExitButton = NodePath("ExitButton")
 
 [node name="Title" type="Label" parent="UI"]
 anchors_preset = 8
@@ -22,12 +24,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -320.5
-offset_top = -168.5
+offset_top = -242.5
 offset_right = 320.5
-offset_bottom = 36.5
+offset_bottom = -83.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "ArrowAvoider"
+text = "Arrow Avoider"
 label_settings = SubResource("LabelSettings_ly4uh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -39,10 +41,42 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -175.0
-offset_top = 22.5
+offset_top = -42.0
 offset_right = 175.0
-offset_bottom = 95.5
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 37
 text = "Start"
+
+[node name="SettingsButton" type="Button" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = 52.0
+offset_right = 175.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = 150.0
+offset_right = 175.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "Exit"
+
+[node name="SettingsWindow" type="CanvasLayer" parent="."]

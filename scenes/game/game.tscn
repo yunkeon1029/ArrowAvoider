@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmkf06ec5suu4"]
+[gd_scene load_steps=14 format=3 uid="uid://cmkf06ec5suu4"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://prefabs/DespawnArea.cs" id="3_hqt2k"]
 [ext_resource type="Script" path="res://scenes/game/GameUI.cs" id="4_ym6yo"]
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="5_18brx"]
+[ext_resource type="Script" path="res://scenes/game/GamePauseWindow.cs" id="6_0h5c8"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="6_h8wil"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://prefabs/gem/gem.tscn" id="7_q6j3h"]
 [ext_resource type="Script" path="res://prefabs/ScoreManager.cs" id="8_c37p6"]
@@ -19,12 +20,13 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_qkei4"]
 font_size = 40
 
-[node name="Game" type="Node" node_paths=PackedStringArray("Player", "GameUI", "ScoreManager")]
+[node name="Game" type="Node" node_paths=PackedStringArray("Player", "GameUI", "PauseWindow", "ScoreManager")]
 script = ExtResource("1_g7nvj")
 Player = NodePath("Player")
 GameUI = NodePath("UI")
+PauseWindow = NodePath("PauseWindow")
 ScoreManager = NodePath("ScoreManager")
-_resultScenePath = "res://scenes/result_menu/result_menu.tscn"
+_resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.992946, 1)
@@ -86,6 +88,9 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "You are dead"
 label_settings = SubResource("LabelSettings_qkei4")
+
+[node name="PauseWindow" type="CanvasLayer" parent="."]
+script = ExtResource("6_0h5c8")
 
 [node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("5_18brx")
