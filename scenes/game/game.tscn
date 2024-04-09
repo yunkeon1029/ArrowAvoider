@@ -114,10 +114,9 @@ _spawnRate = 0.7
 _spawnRateIncreaceRate = 0.007
 
 [node name="SpawnArea" type="ReferenceRect" parent="GemSpawner"]
-visible = false
-offset_left = -100.0
+offset_left = -97.5
 offset_top = -170.0
-offset_right = 100.0
+offset_right = 97.5
 offset_bottom = -103.0
 
 [node name="ScoreManager" type="Node" parent="."]

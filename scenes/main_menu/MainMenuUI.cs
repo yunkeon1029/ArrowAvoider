@@ -8,6 +8,4 @@ internal partial class MainMenuUI : CanvasLayer
 	public BaseButton SettingsButton { get; private set; }
 	[Export]
 	public BaseButton ExitButton { get; private set; }
-
-	// add SeeScoreButton?
 }
