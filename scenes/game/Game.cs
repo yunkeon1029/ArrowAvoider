@@ -6,11 +6,9 @@ internal partial class Game : Node, ISingleton
     [Export]
     public Player Player { get; private set; }
     [Export]
-    public GameUI GameUI { get; private set; }
-    [Export]
-    public GamePauseWindow PauseWindow { get; private set; }
-    [Export]
     public ScoreManager ScoreManager { get; private set; }
+    [Export]
+    public GameUI GameUI { get; private set; }
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuScenePath;

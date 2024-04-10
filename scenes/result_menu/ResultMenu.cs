@@ -1,9 +1,13 @@
 using Godot;
 
-internal partial class ResultMenu : Node
+internal partial class ResultMenu : CanvasLayer
 {
 	[Export]
-	public ResultMenuUI ResultMenuUI { get; private set; }
+	private Label _scoreLabel;
+	[Export]
+	private BaseButton _menuButton;
+	[Export]
+	private BaseButton _retryButton;
 	
 	[Export(PropertyHint.File, "*.tscn")]
     private string _mainMenuScenePath;
@@ -18,24 +22,21 @@ internal partial class ResultMenu : Node
 		_sceneManager = Singletons.GetInstance<SceneManager>();
 		_saveManager = Singletons.GetInstance<SaveManager>();
 
-		var retryButton = ResultMenuUI.RetryButton;
-		var menuButton = ResultMenuUI.MenuButton;
-
-		retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
-		menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
+		_menuButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
+		_retryButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
     }
 
 	public void NotifyScore(int score)
 	{
 		int highScore = (int?)_saveManager.GetData("HighScore") ?? 0;
 
-		if (score <= highScore)
-			ResultMenuUI.UpdateScoreLabel(score, highScore);
+		_scoreLabel.Text = $"Score: {score} \n" +
+						   $"High Score: {highScore}";
 
 		if (score > highScore)
 		{
 			_saveManager.SetData("HighScore", score);
-			ResultMenuUI.UpdateScoreLabel(score);
+			_scoreLabel.Text = $"High Score: {score}";
 		}
 	}
 }

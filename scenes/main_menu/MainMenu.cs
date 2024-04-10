@@ -1,9 +1,13 @@
 using Godot;
 
-internal partial class MainMenu : Node
+internal partial class MainMenu : CanvasLayer
 {
 	[Export]
-	public MainMenuUI MainMenuUI { get; private set; }
+	private BaseButton _startButton;
+	[Export]
+	private BaseButton _settingsButton;
+	[Export]
+	private BaseButton _exitButton;
 	[Export]
 	private PackedScene _settingsWindow;
 
@@ -14,13 +18,9 @@ internal partial class MainMenu : Node
     {
 		var sceneManager = Singletons.GetInstance<SceneManager>();
 
-		var startButton = MainMenuUI.StartButton;
-		var settingsButton = MainMenuUI.SettingsButton;
-		var exitButton = MainMenuUI.ExitButton;
-
-		startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
-		settingsButton.Pressed += OpenSettingsWindow;
-		exitButton.Pressed += () => GetTree().Quit();
+		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
+		_settingsButton.Pressed += OpenSettingsWindow;
+		_exitButton.Pressed += () => GetTree().Quit();
     }
 
 	private void OpenSettingsWindow()

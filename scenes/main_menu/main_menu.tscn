@@ -1,25 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx22g8eyujq1a"]
+[gd_scene load_steps=4 format=3 uid="uid://cx22g8eyujq1a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenu.cs" id="1_62vya"]
-[ext_resource type="Script" path="res://scenes/main_menu/MainMenuUI.cs" id="2_4cstn"]
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://prefabs/settings_window/settings_window.tscn" id="3_f0e4t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ly4uh"]
 font_size = 65
 
-[node name="MainMenu" type="Node" node_paths=PackedStringArray("MainMenuUI")]
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("_startButton", "_settingsButton", "_exitButton")]
 script = ExtResource("1_62vya")
-MainMenuUI = NodePath("UI")
+_startButton = NodePath("StartButton")
+_settingsButton = NodePath("SettingsButton")
+_exitButton = NodePath("ExitButton")
 _settingsWindow = ExtResource("3_f0e4t")
 _gameScenePath = "res://scenes/game/game.tscn"
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("StartButton", "SettingsButton", "ExitButton")]
-script = ExtResource("2_4cstn")
-StartButton = NodePath("StartButton")
-SettingsButton = NodePath("SettingsButton")
-ExitButton = NodePath("ExitButton")
-
-[node name="Title" type="Label" parent="UI"]
+[node name="Title" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -36,7 +31,7 @@ label_settings = SubResource("LabelSettings_ly4uh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="UI"]
+[node name="StartButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +46,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 37
 text = "Start"
 
-[node name="SettingsButton" type="Button" parent="UI"]
+[node name="SettingsButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -66,7 +61,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 37
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="UI"]
+[node name="ExitButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

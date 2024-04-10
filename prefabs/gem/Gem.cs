@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 internal partial class Gem : AnimatableBody2D, IDespawnable
 {
