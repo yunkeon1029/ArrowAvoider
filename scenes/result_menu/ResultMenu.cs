@@ -22,8 +22,8 @@ internal partial class ResultMenu : CanvasLayer
 		_sceneManager = Singletons.GetInstance<SceneManager>();
 		_saveManager = Singletons.GetInstance<SaveManager>();
 
-		_menuButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
-		_retryButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
+		_menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
+		_retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
     }
 
 	public void NotifyScore(int score)
