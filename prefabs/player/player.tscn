@@ -10,6 +10,7 @@
 size = Vector2(8, 16)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "PlayerMovement")]
+z_index = 1
 collision_layer = 5
 collision_mask = 8
 script = ExtResource("1_hy6gv")
@@ -17,6 +18,7 @@ HealthManager = NodePath("HealthManager")
 PlayerMovement = NodePath("PlayerMovement")
 _hitSound = ExtResource("2_p0w8g")
 _hitBlockedSound = ExtResource("3_fk1pv")
+_invincibilityTime = 0.7
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -34,6 +36,7 @@ color = Color(0.415686, 0.560784, 0.611765, 1)
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mme8o")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="HealthManager" type="Node" parent="."]
 script = ExtResource("3_xmlqw")

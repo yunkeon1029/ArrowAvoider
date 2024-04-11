@@ -1,42 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv122lu7n8asn"]
+[gd_scene load_steps=6 format=3 uid="uid://cv122lu7n8asn"]
 
 [ext_resource type="Script" path="res://prefabs/arrow/Arrow.cs" id="1_l0266"]
 [ext_resource type="Script" path="res://components/FallingObject.cs" id="2_vqlev"]
+[ext_resource type="Texture2D" path="res://prefabs/arrow/arrow.png" id="3_f8n0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqydm"]
-size = Vector2(5, 5)
+size = Vector2(5, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om538"]
-size = Vector2(4, 4)
+size = Vector2(3, 4)
 
 [node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 script = ExtResource("1_l0266")
 _hitArea = NodePath("HitArea")
 _damage = 1.0
 
-[node name="ReferenceRect" type="ReferenceRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-border_color = Color(1, 0.313726, 0.247059, 1)
-editor_only = false
+[node name="Arrow" type="Sprite2D" parent="."]
+texture = ExtResource("3_f8n0u")
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xqydm")
 
 [node name="HitArea" type="Area2D" parent="."]
-visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_om538")
 
 [node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]

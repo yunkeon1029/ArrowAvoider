@@ -6,8 +6,6 @@ internal partial class GameUI : CanvasLayer
     private Label _healthLabel;
     [Export]
     private Label _scoreLabel;
-    [Export]
-    private Label _deadLabel;
 
     public void UpdateHealthLabel(float maxHealth, float health)
     {
