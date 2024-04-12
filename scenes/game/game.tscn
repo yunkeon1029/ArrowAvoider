@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmkf06ec5suu4"]
+[gd_scene load_steps=13 format=3 uid="uid://cmkf06ec5suu4"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="6_h8wil"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://prefabs/gem/gem.tscn" id="7_q6j3h"]
 [ext_resource type="Script" path="res://prefabs/ScoreManager.cs" id="8_c37p6"]
+[ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="10_rgddn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -23,13 +24,6 @@ Player = NodePath("Player")
 ScoreManager = NodePath("ScoreManager")
 GameUI = NodePath("UI")
 _resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
-
-[node name="Background" type="ColorRect" parent="."]
-offset_left = -180.0
-offset_top = -110.0
-offset_right = 180.0
-offset_bottom = 110.0
-color = Color(0.811765, 0.933333, 0.933333, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.992946, 1)
@@ -104,3 +98,7 @@ offset_bottom = -103.0
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("8_c37p6")
+
+[node name="ClearColorOverrider" type="Node" parent="."]
+script = ExtResource("10_rgddn")
+_clearColor = Color(0.808594, 0.929688, 0.929688, 1)
