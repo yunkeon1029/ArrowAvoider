@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="6_h8wil"]
 [ext_resource type="PackedScene" uid="uid://6u28sxgues4h" path="res://prefabs/gem/gem.tscn" id="7_q6j3h"]
 [ext_resource type="Script" path="res://prefabs/ScoreManager.cs" id="8_c37p6"]
-[ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="10_rgddn"]
+[ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="10_a3qia"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -100,5 +100,5 @@ offset_bottom = -103.0
 script = ExtResource("8_c37p6")
 
 [node name="ClearColorOverrider" type="Node" parent="."]
-script = ExtResource("10_rgddn")
-_clearColor = Color(0.808594, 0.929688, 0.929688, 1)
+script = ExtResource("10_a3qia")
+ClearColor = Color(0.81, 0.93, 0.93, 1)
