@@ -21,21 +21,6 @@ _hitSound = ExtResource("2_p0w8g")
 _hitBlockedSound = ExtResource("3_fk1pv")
 _invincibilityTime = 0.7
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.415686, 0.560784, 0.611765, 1)
-
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("4_k5jyt")
 
