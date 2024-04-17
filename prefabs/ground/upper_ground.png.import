@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvg6p03ohk8sa"
-path="res://.godot/imported/wall.png-0e47c58579f549670c5524a943696915.ctex"
+uid="uid://clt7o7l1vblp3"
+path="res://.godot/imported/upper_ground.png-7fc2bb5a8ff889ed3253b616c2ae68de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/wall/wall.png"
-dest_files=["res://.godot/imported/wall.png-0e47c58579f549670c5524a943696915.ctex"]
+source_file="res://prefabs/ground/upper_ground.png"
+dest_files=["res://.godot/imported/upper_ground.png-7fc2bb5a8ff889ed3253b616c2ae68de.ctex"]
 
 [params]
 

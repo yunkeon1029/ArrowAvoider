@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdavjmnq6i73"]
+
+[ext_resource type="Texture2D" uid="uid://b3jlk6hpmvytv" path="res://prefabs/ground/lower_ground.png" id="1_mhr1e"]
+[ext_resource type="Texture2D" uid="uid://clt7o7l1vblp3" path="res://prefabs/ground/upper_ground.png" id="2_jqvph"]
+
+[node name="Ground" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 18.0
+offset_bottom = 18.0
+
+[node name="LowerGround" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mhr1e")
+stretch_mode = 1
+
+[node name="UpperGround" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+texture = ExtResource("2_jqvph")
+stretch_mode = 1

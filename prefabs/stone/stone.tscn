@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clavx2kj7q8xx"]
 
-[ext_resource type="Texture2D" uid="uid://dvg6p03ohk8sa" path="res://prefabs/wall/wall.png" id="1_yj6pw"]
+[ext_resource type="Texture2D" uid="uid://dvg6p03ohk8sa" path="res://prefabs/stone/stone.png" id="1_ff1te"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8c6c"]
 size = Vector2(16, 16)
@@ -9,7 +9,7 @@ size = Vector2(16, 16)
 collision_layer = 9
 
 [node name="Wall" type="Sprite2D" parent="."]
-texture = ExtResource("1_yj6pw")
+texture = ExtResource("1_ff1te")
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e8c6c")

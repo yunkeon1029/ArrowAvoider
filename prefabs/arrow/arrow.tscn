@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv122lu7n8asn"]
+[gd_scene load_steps=7 format=3 uid="uid://cv122lu7n8asn"]
 
 [ext_resource type="Script" path="res://prefabs/arrow/Arrow.cs" id="1_l0266"]
 [ext_resource type="Script" path="res://components/FallingObject.cs" id="2_vqlev"]
@@ -7,8 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqydm"]
 size = Vector2(5, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_om538"]
-size = Vector2(3, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6cj"]
+size = Vector2(3, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjjsi"]
+size = Vector2(1, 2)
 
 [node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 z_index = -1
@@ -25,9 +28,13 @@ shape = SubResource("RectangleShape2D_xqydm")
 [node name="HitArea" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_om538")
+[node name="UpperShape" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_3t6cj")
+
+[node name="LowerShape" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_sjjsi")
 
 [node name="FallingObject" type="Node" parent="." node_paths=PackedStringArray("_movingObject")]
 script = ExtResource("2_vqlev")
