@@ -15,6 +15,7 @@ size = Vector2(1, 2)
 
 [node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
 z_index = -1
+z_as_relative = false
 script = ExtResource("1_l0266")
 _hitArea = NodePath("HitArea")
 _damage = 1.0
