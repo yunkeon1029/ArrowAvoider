@@ -16,6 +16,7 @@ internal partial class AudioManager : Node, ISingleton
         int bgmBusIndex = AudioServer.GetBusIndex("BGM");
         int sfxBusIndex = AudioServer.GetBusIndex("SFX");
 
+
         float bgmVolume = (float?)saveManager.GetData("BgmVolume") ?? 0.5f;
         float sfxVolume = (float?)saveManager.GetData("SfxVolume") ?? 0.5f;
 
