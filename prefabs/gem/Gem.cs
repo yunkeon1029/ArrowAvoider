@@ -37,7 +37,7 @@ internal partial class Gem : AnimatableBody2D, IDespawnable
 			return;
 
 		_scoreManager.Score += _score;
-		_audioManager.PlayAudio(_collectedSound, RandomizePitch);
+		_audioManager.PlaySFX(_collectedSound, RandomizePitch);
 
 		QueueFree();
 	}

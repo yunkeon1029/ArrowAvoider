@@ -41,10 +41,10 @@ internal partial class Player : CharacterBody2D
         AudioManager audioManager = Singletons.GetInstance<AudioManager>();
 
         if (_leftInvincibilityTime > 0)
-            audioManager.PlayAudio(_hitBlockedSound);
+            audioManager.PlaySFX(_hitBlockedSound);
 
         if (_leftInvincibilityTime <= 0)
-            audioManager.PlayAudio(_hitSound);
+            audioManager.PlaySFX(_hitSound);
     }
 
     private void CalculateHitDamage(float damage)

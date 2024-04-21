@@ -9,12 +9,27 @@ internal partial class AudioManager : Node, ISingleton
         TreeExited += () => Singletons.RemoveInstance(this);
     }
 
-    public void PlayAudio(AudioStream audioStream, Action<AudioStreamPlayer> modifySound = null)
+    public override void _Process(double delta)
+    {
+        var saveManager = Singletons.GetInstance<SaveManager>();
+
+        int bgmBusIndex = AudioServer.GetBusIndex("BGM");
+        int sfxBusIndex = AudioServer.GetBusIndex("SFX");
+
+        float bgmVolume = (float?)saveManager.GetData("BGMVolume") ?? 0.5f;
+        float sfxVolume = (float?)saveManager.GetData("SFXVolume") ?? 0.5f;
+
+        AudioServer.SetBusVolumeDb(bgmBusIndex, Mathf.LinearToDb(bgmVolume));
+        AudioServer.SetBusVolumeDb(sfxBusIndex, Mathf.LinearToDb(sfxVolume));
+    }
+
+    public void PlaySFX(AudioStream audioStream, Action<AudioStreamPlayer> modifySound = null)
     {
         AudioStreamPlayer instance = new();
         AddChild(instance);
 
         instance.Stream = audioStream;
+        instance.Bus = "SFX";
         instance.Play();
 
         modifySound?.Invoke(instance);

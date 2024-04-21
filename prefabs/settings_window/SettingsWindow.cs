@@ -1,25 +1,24 @@
 using Godot;
-using System;
 
 internal partial class SettingsWindow : CanvasLayer
 {
+    [Export]
+    private Slider _bgmVolumeSlider;
+    [Export]
+    private Slider _sfxVolumeSlider;
 	[Export]
-    public BaseButton BackButton { get; private set; }
-    [Export]
-    public Slider BGMSizeSlider { get; private set; }
-    [Export]
-    public Slider SFXSizeSlider { get; private set; }
+    private BaseButton _backButton;
 
     public override void _Ready()
     {
         var saveManager = Singletons.GetInstance<SaveManager>();
 
-        BGMSizeSlider.Value = (double?)saveManager.GetData("BGMSize") ?? 50f;
-        SFXSizeSlider.Value = (double?)saveManager.GetData("SFXSize") ?? 50f;
+        _bgmVolumeSlider.Value = (double?)saveManager.GetData("BGMVolume") ?? 0.5f;
+        _sfxVolumeSlider.Value = (double?)saveManager.GetData("SFXVolume") ?? 0.5f;
 
-        BGMSizeSlider.ValueChanged += value => saveManager.SetData("BGMSize", value);
-        SFXSizeSlider.ValueChanged += value => saveManager.SetData("SFXSize", value);
+        _bgmVolumeSlider.ValueChanged += value => saveManager.SetData("BGMVolume", value);
+        _sfxVolumeSlider.ValueChanged += value => saveManager.SetData("SFXVolume", value);
 
-        BackButton.Pressed += QueueFree;
+        _backButton.Pressed += QueueFree;
     }
 }
