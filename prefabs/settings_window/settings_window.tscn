@@ -8,8 +8,8 @@ font_size = 36
 [node name="SettingsWindow" type="CanvasLayer" node_paths=PackedStringArray("_bgmVolumeSlider", "_sfxVolumeSlider", "_backButton")]
 process_mode = 3
 script = ExtResource("1_2n7pr")
-_bgmVolumeSlider = NodePath("BGMVolumeSlider")
-_sfxVolumeSlider = NodePath("SFXSVolumeSlider")
+_bgmVolumeSlider = NodePath("BgmVolumeSlider")
+_sfxVolumeSlider = NodePath("SfxVolumeSlider")
 _backButton = NodePath("BackButton")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.654902, 0.654902, 0.654902, 1)
 
-[node name="BGM" type="Label" parent="."]
+[node name="BgmLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFX" type="Label" parent="."]
+[node name="SfxLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -62,7 +62,7 @@ label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BGMVolumeSlider" type="HSlider" parent="."]
+[node name="BgmVolumeSlider" type="HSlider" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -78,7 +78,7 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="SFXSVolumeSlider" type="HSlider" parent="."]
+[node name="SfxVolumeSlider" type="HSlider" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
