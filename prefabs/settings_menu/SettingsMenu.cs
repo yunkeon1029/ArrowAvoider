@@ -1,6 +1,6 @@
 using Godot;
 
-internal partial class SettingsWindow : CanvasLayer
+internal partial class SettingsMenu : CanvasLayer
 {
     [Export]
     private Slider _bgmVolumeSlider;

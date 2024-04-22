@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cx22g8eyujq1a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenu.cs" id="1_62vya"]
-[ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://prefabs/settings_window/settings_window.tscn" id="3_f0e4t"]
+[ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://prefabs/settings_menu/settings_menu.tscn" id="2_a5uyi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ly4uh"]
 font_size = 65
@@ -11,7 +11,7 @@ script = ExtResource("1_62vya")
 _startButton = NodePath("StartButton")
 _settingsButton = NodePath("SettingsButton")
 _exitButton = NodePath("ExitButton")
-_settingsWindow = ExtResource("3_f0e4t")
+_settingsMenu = ExtResource("2_a5uyi")
 _gameScenePath = "res://scenes/game/game.tscn"
 
 [node name="Title" type="Label" parent="."]

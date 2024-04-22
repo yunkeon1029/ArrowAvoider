@@ -12,6 +12,8 @@ internal partial class Game : Node, ISingleton
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuScenePath;
+    [Export]
+    private PackedScene _pauseMenu;
 
     public Game()
     {
@@ -36,6 +38,14 @@ internal partial class Game : Node, ISingleton
 		RequestReady();
     }
 
+    public override void _Process(double elapsedTime)
+    {
+		if (!Input.IsActionJustPressed("Pause"))
+			return;
+
+		OpenPauseMenu();
+    }
+
     private void UpdateHealthLabel()
 	{
         var healthManager = Player.HealthManager;
@@ -53,5 +63,15 @@ internal partial class Game : Node, ISingleton
 
         int score = ScoreManager.Score;
         resultMenu.Ready += () => resultMenu.NotifyScore(score);
+    }
+
+    private void OpenPauseMenu()
+    {
+		var settingsMenu = _pauseMenu.Instantiate();
+
+        settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
+        settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+
+        AddChild(settingsMenu);
     }
 }

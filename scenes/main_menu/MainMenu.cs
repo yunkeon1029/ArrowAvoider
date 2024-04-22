@@ -9,7 +9,7 @@ internal partial class MainMenu : CanvasLayer
 	[Export]
 	private BaseButton _exitButton;
 	[Export]
-	private PackedScene _settingsWindow;
+	private PackedScene _settingsMenu;
 
 	[Export(PropertyHint.File, "*.tscn")]
 	private string _gameScenePath;
@@ -19,17 +19,17 @@ internal partial class MainMenu : CanvasLayer
 		var sceneManager = Singletons.GetInstance<SceneManager>();
 
 		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
-		_settingsButton.Pressed += OpenSettingsWindow;
+		_settingsButton.Pressed += OpenSettingsMenu;
 		_exitButton.Pressed += () => GetTree().Quit();
     }
 
-	private void OpenSettingsWindow()
+	private void OpenSettingsMenu()
 	{
-		var settingsWindow = _settingsWindow.Instantiate<SettingsWindow>();
+		var settingsMenu = _settingsMenu.Instantiate();
 
-        settingsWindow.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
-        settingsWindow.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+        settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
+        settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
 
-        AddChild(settingsWindow);
+        AddChild(settingsMenu);
 	}
 }

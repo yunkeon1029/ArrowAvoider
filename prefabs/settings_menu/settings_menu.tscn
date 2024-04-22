@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cevdfe0yjneat"]
 
-[ext_resource type="Script" path="res://prefabs/settings_window/SettingsWindow.cs" id="1_2n7pr"]
+[ext_resource type="Script" path="res://prefabs/settings_menu/SettingsMenu.cs" id="1_j6pfu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
 
-[node name="SettingsWindow" type="CanvasLayer" node_paths=PackedStringArray("_bgmVolumeSlider", "_sfxVolumeSlider", "_backButton")]
+[node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_bgmVolumeSlider", "_sfxVolumeSlider", "_backButton")]
 process_mode = 3
-script = ExtResource("1_2n7pr")
+script = ExtResource("1_j6pfu")
 _bgmVolumeSlider = NodePath("BgmVolumeSlider")
 _sfxVolumeSlider = NodePath("SfxVolumeSlider")
 _backButton = NodePath("BackButton")
