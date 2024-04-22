@@ -40,7 +40,7 @@ internal partial class Game : Node, ISingleton
 
     public override void _Process(double elapsedTime)
     {
-		if (!Input.IsActionJustPressed("Pause"))
+		if (!Input.IsActionJustPressed(ActionNames.Pause))
 			return;
 
 		OpenPauseMenu();

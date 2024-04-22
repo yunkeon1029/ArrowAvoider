@@ -5,7 +5,7 @@ internal partial class PauseMenu : Node
 {
 	public override void _Process(double elapsedTime)
 	{
-		if (!Input.IsActionJustPressed("Pause"))
+		if (!Input.IsActionJustPressed(ActionNames.Pause))
 			return;
 
 		QueueFree();

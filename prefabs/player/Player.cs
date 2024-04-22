@@ -60,10 +60,10 @@ internal partial class Player : CharacterBody2D
     {
         Vector2 moveInput = new();
 
-        if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left))
+        if (Input.IsActionPressed(ActionNames.MoveLeft))
             moveInput += Vector2.Left;
 
-        if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right))
+        if (Input.IsActionPressed(ActionNames.MoveRight))
             moveInput += Vector2.Right;
 
         PlayerMovement.CalculateMovement(moveInput, elapsedTime);
