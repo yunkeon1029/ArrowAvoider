@@ -13,12 +13,13 @@ internal partial class ClearColorOverrider : Node
 
 	private Color _clearColor;
 
-	public ClearColorOverrider()
+    public ClearColorOverrider()
 	{
 		if (Engine.IsEditorHint())
 			return;
 
-		Color defaultColor = RenderingServer.GetDefaultClearColor();
+		string defaultColorSettingsPath = "rendering/environment/defaults/default_clear_color";
+		var defaultColor = (Color)ProjectSettings.GetSetting(defaultColorSettingsPath);
 
 		TreeEntered += () => RenderingServer.SetDefaultClearColor(_clearColor);
 		TreeExited += () => RenderingServer.SetDefaultClearColor(defaultColor);
