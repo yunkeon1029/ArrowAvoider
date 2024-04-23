@@ -12,6 +12,8 @@ internal partial class Game : Node, ISingleton
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuScenePath;
+    [Export(PropertyHint.File, "*.tscn")]
+    private string _gameScenePath;
     [Export]
     private PackedScene _pauseMenu;
 
@@ -40,7 +42,7 @@ internal partial class Game : Node, ISingleton
 
     public override void _Process(double elapsedTime)
     {
-		if (!Input.IsActionJustPressed(ActionNames.Pause))
+		if (!Input.IsActionJustPressed(ActionName.Pause))
 			return;
 
 		OpenPauseMenu();
@@ -67,11 +69,13 @@ internal partial class Game : Node, ISingleton
 
     private void OpenPauseMenu()
     {
-		var settingsMenu = _pauseMenu.Instantiate();
+        var sceneManager = Singletons.GetInstance<SceneManager>();
+		var pauseMenu = _pauseMenu.Instantiate<PauseMenu>();
 
-        settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
-        settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+        pauseMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
+        pauseMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+        pauseMenu.RequestedRestart += () => sceneManager.ChangeScene(_gameScenePath);
 
-        AddChild(settingsMenu);
+        AddChild(pauseMenu);
     }
 }

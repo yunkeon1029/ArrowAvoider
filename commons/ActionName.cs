@@ -1,6 +1,7 @@
 using Godot;
+using System;
 
-internal static class ActionNames
+internal static class ActionName
 {
     public static string MoveLeft => "move_left";
     public static string MoveRight => "move_right";

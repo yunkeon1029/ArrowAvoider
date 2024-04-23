@@ -7,6 +7,7 @@ font_size = 36
 
 [node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_bgmVolumeSlider", "_sfxVolumeSlider", "_backButton")]
 process_mode = 3
+layer = 2
 script = ExtResource("1_j6pfu")
 _bgmVolumeSlider = NodePath("BgmVolumeSlider")
 _sfxVolumeSlider = NodePath("SfxVolumeSlider")

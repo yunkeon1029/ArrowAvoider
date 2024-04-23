@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmkf06ec5suu4"]
+[gd_scene load_steps=15 format=3 uid="uid://bved8q3s0620x"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
@@ -26,6 +26,7 @@ Player = NodePath("Player")
 ScoreManager = NodePath("ScoreManager")
 GameUI = NodePath("UI")
 _resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
+_gameScenePath = "res://scenes/game/game.tscn"
 _pauseMenu = ExtResource("2_3dkyh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
