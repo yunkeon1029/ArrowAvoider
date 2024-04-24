@@ -12,8 +12,6 @@ internal partial class Game : Node, ISingleton
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuScenePath;
-    [Export(PropertyHint.File, "*.tscn")]
-    private string _gameScenePath;
     [Export]
     private PackedScene _pauseMenu;
 
@@ -74,8 +72,6 @@ internal partial class Game : Node, ISingleton
 
         pauseMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
         pauseMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
-        pauseMenu.RequestedRestart += () => ProcessMode = ProcessModeEnum.Always;
-        pauseMenu.RequestedRestart += () => sceneManager.ChangeScene(_gameScenePath);
 
         AddChild(pauseMenu);
     }

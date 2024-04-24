@@ -26,7 +26,6 @@ Player = NodePath("Player")
 ScoreManager = NodePath("ScoreManager")
 GameUI = NodePath("UI")
 _resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
-_gameScenePath = "res://scenes/game/game.tscn"
 _pauseMenu = ExtResource("2_3dkyh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
