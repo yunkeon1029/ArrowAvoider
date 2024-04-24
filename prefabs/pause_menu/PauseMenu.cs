@@ -8,8 +8,6 @@ internal partial class PauseMenu : CanvasLayer
 	[Export]
 	private BaseButton _settingsButton;
 	[Export]
-	private BaseButton _giveUpButton;
-	[Export]
 	private BaseButton _restartButton;
 	[Export]
 	private BaseButton _menuButton;
@@ -18,8 +16,6 @@ internal partial class PauseMenu : CanvasLayer
 	private string _gameScenePath;
     [Export(PropertyHint.File, "*.tscn")]
 	private string _mainMenuScenePath;
-    [Export(PropertyHint.File, "*.tscn")]
-	private string _resultMenuScenePath;
 	
 	[Export]
 	private PackedScene _settingsMenu;
@@ -34,7 +30,6 @@ internal partial class PauseMenu : CanvasLayer
 
 		_restartButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
 		_menuButton.Pressed += () => sceneManager.ChangeScene(_mainMenuScenePath);
-		_giveUpButton.Pressed += () => sceneManager.ChangeScene(_resultMenuScenePath);
     }
 
     public override void _Process(double elapsedTime)

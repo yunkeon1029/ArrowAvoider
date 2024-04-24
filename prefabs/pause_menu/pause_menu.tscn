@@ -3,17 +3,15 @@
 [ext_resource type="Script" path="res://prefabs/pause_menu/PauseMenu.cs" id="1_bfdrd"]
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://prefabs/settings_menu/settings_menu.tscn" id="2_6v85l"]
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_continueButton", "_settingsButton", "_giveUpButton", "_restartButton", "_menuButton")]
+[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_continueButton", "_settingsButton", "_restartButton", "_menuButton")]
 process_mode = 3
 script = ExtResource("1_bfdrd")
 _continueButton = NodePath("ContinueButton")
 _settingsButton = NodePath("SettingsButton")
-_giveUpButton = NodePath("GiveUpButton")
 _restartButton = NodePath("RestartButton")
 _menuButton = NodePath("MenuButton")
 _gameScenePath = "res://scenes/game/game.tscn"
 _mainMenuScenePath = "res://scenes/main_menu/main_menu.tscn"
-_resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
 _settingsMenu = ExtResource("2_6v85l")
 
 [node name="Backgrund" type="ColorRect" parent="."]
@@ -30,9 +28,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -143.0
+offset_left = -154.0
 offset_top = -232.0
-offset_right = 142.0
+offset_right = 158.0
 offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -45,9 +43,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -125.0
-offset_top = -535.0
+offset_top = -527.0
 offset_right = 121.0
-offset_bottom = -462.0
+offset_bottom = -454.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 37
@@ -60,28 +58,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -124.0
-offset_top = -449.0
+offset_top = -306.0
 offset_right = 122.0
-offset_bottom = -376.0
+offset_bottom = -233.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 37
 text = "Settings"
-
-[node name="GiveUpButton" type="Button" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -354.0
-offset_right = 123.0
-offset_bottom = -281.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 37
-text = "Give up"
 
 [node name="RestartButton" type="Button" parent="."]
 anchors_preset = 7
@@ -89,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -266.0
-offset_right = 128.0
-offset_bottom = -193.0
+offset_left = -124.0
+offset_top = -417.0
+offset_right = 122.0
+offset_bottom = -344.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 37
@@ -104,10 +87,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -181.0
-offset_right = 125.0
-offset_bottom = -108.0
+offset_left = -122.0
+offset_top = -198.0
+offset_right = 124.0
+offset_bottom = -125.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 37

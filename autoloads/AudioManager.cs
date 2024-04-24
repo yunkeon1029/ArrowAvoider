@@ -7,9 +7,11 @@ internal partial class AudioManager : Node, ISingleton
     {
         TreeEntered += () => Singletons.AddInstance(this);
         TreeExited += () => Singletons.RemoveInstance(this);
+
+        Ready += UpdateVolume;
     }
 
-    public override void _Process(double delta)
+    public void UpdateVolume()
     {
         var saveManager = Singletons.GetInstance<SaveManager>();
 
