@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1cnfxl00k3qb"]
 
-[ext_resource type="Script" path="res://prefabs/pause_menu/PauseMenu.cs" id="1_bfdrd"]
-[ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://prefabs/settings_menu/settings_menu.tscn" id="2_6v85l"]
+[ext_resource type="Script" path="res://ui/pause_menu/PauseMenu.cs" id="1_bfdrd"]
+[ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_6v85l"]
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_continueButton", "_settingsButton", "_restartButton", "_menuButton")]
 process_mode = 3
