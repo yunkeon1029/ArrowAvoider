@@ -13,7 +13,7 @@ config_version=5
 config/name="ArrowAvoider"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
-config/icon="res://commons/icon.svg"
+config/icon="res://commons/icon.png"
 
 [audio]
 
