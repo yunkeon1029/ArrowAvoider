@@ -5,11 +5,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
 
-[node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_bgmVolumeSlider", "_sfxVolumeSlider", "_backButton")]
+[node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_musicVolumeSlider", "_sfxVolumeSlider", "_backButton")]
 process_mode = 3
 layer = 2
 script = ExtResource("1_j6pfu")
-_bgmVolumeSlider = NodePath("BgmVolumeSlider")
+_musicVolumeSlider = NodePath("MusicVolumeSlider")
 _sfxVolumeSlider = NodePath("SfxVolumeSlider")
 _backButton = NodePath("BackButton")
 
@@ -28,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.654902, 0.654902, 0.654902, 1)
 
-[node name="BgmLabel" type="Label" parent="."]
+[node name="MusicLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,7 +40,7 @@ offset_right = -255.0
 offset_bottom = -149.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "BGM"
+text = "Music"
 label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -63,7 +63,7 @@ label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BgmVolumeSlider" type="HSlider" parent="."]
+[node name="MusicVolumeSlider" type="HSlider" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

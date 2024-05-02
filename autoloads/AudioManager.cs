@@ -15,13 +15,13 @@ internal partial class AudioManager : Node, ISingleton
     {
         var saveManager = Singletons.GetInstance<SaveManager>();
 
-        int bgmBusIndex = AudioServer.GetBusIndex("BGM");
+        int bgmBusIndex = AudioServer.GetBusIndex("Music");
         int sfxBusIndex = AudioServer.GetBusIndex("SFX");
 
-        float bgmVolume = (float?)saveManager.GetData("BgmVolume") ?? 0.5f;
+        float musicVolume = (float?)saveManager.GetData("MusicVolume") ?? 0.5f;
         float sfxVolume = (float?)saveManager.GetData("SfxVolume") ?? 0.5f;
 
-        AudioServer.SetBusVolumeDb(bgmBusIndex, Mathf.LinearToDb(bgmVolume));
+        AudioServer.SetBusVolumeDb(bgmBusIndex, Mathf.LinearToDb(musicVolume));
         AudioServer.SetBusVolumeDb(sfxBusIndex, Mathf.LinearToDb(sfxVolume));
     }
 
