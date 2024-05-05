@@ -3,6 +3,8 @@ using System;
 
 internal partial class AudioManager : Node, ISingleton
 {
+    public AudioStreamPlayer MusicPlayer { get; private set; }
+
     public AudioManager()
     {
         TreeEntered += () => Singletons.AddInstance(this);
@@ -25,7 +27,22 @@ internal partial class AudioManager : Node, ISingleton
         AudioServer.SetBusVolumeDb(sfxBusIndex, Mathf.LinearToDb(sfxVolume));
     }
 
-    public void PlaySFX(AudioStream audioStream, Action<AudioStreamPlayer> modifySound = null)
+    public void PlayMusic(AudioStream audioStream, Action<AudioStreamPlayer> modifyMusic = null)
+    {
+		MusicPlayer?.QueueFree();
+		MusicPlayer = new();
+
+        AddChild(MusicPlayer);
+
+        MusicPlayer.Stream = audioStream;
+        MusicPlayer.Bus = "Music";
+        MusicPlayer.Play();
+
+        modifyMusic?.Invoke(MusicPlayer);
+        MusicPlayer.Finished += () => MusicPlayer.Play();
+    }
+
+    public void PlaySFX(AudioStream audioStream, Action<AudioStreamPlayer> modifySFX = null)
     {
         AudioStreamPlayer instance = new();
         AddChild(instance);
@@ -34,7 +51,7 @@ internal partial class AudioManager : Node, ISingleton
         instance.Bus = "SFX";
         instance.Play();
 
-        modifySound?.Invoke(instance);
+        modifySFX?.Invoke(instance);
         instance.Finished += () => instance.QueueFree();
     }
 }
