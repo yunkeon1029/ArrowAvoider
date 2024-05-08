@@ -13,20 +13,13 @@ _musicVolumeSlider = NodePath("MusicVolumeSlider")
 _sfxVolumeSlider = NodePath("SfxVolumeSlider")
 _backButton = NodePath("BackButton")
 
-[node name="Background" type="ColorRect" parent="."]
-process_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -394.0
-offset_top = -254.0
-offset_right = 394.0
-offset_bottom = 254.0
+[node name="Backgrund" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.654902, 0.654902, 0.654902, 1)
+color = Color(0.262745, 0.262745, 0.262745, 0.533333)
 
 [node name="MusicLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -107,5 +100,6 @@ offset_right = 123.0
 offset_bottom = -119.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_mode = 0
 theme_override_font_sizes/font_size = 37
 text = "Back"

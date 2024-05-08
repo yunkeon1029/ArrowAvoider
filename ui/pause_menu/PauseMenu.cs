@@ -47,6 +47,9 @@ internal partial class PauseMenu : CanvasLayer
         settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
         settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Always;
 
-        AddChild(settingsMenu);
+        settingsMenu.TreeEntered += () => Visible = false;
+        settingsMenu.TreeExited += () => Visible = true;
+
+        AddSibling(settingsMenu);
 	}
 }
