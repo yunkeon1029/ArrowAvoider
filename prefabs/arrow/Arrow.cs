@@ -1,8 +1,6 @@
 using Godot;
-using System;
-using System.Linq;
 
-internal partial class Arrow : AnimatableBody2D, IDespawnable
+internal partial class Arrow : AnimatableBody2D
 {
 	[Export]
 	private Area2D _hitArea;

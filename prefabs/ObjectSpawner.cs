@@ -40,7 +40,7 @@ internal partial class ObjectSpawner : Node
 		if (obj is Control control)
 			control.Position = spawnPos;
 
-		AddChild(obj);
+		AddChild(obj, true);
 		EmitSignal(SignalName.ObjectSpawned, obj);
 	}
 

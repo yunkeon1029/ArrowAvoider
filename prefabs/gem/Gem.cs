@@ -1,6 +1,6 @@
 using Godot;
 
-internal partial class Gem : AnimatableBody2D, IDespawnable
+internal partial class Gem : AnimatableBody2D
 {
 	[Export]
 	private Area2D _hitArea;

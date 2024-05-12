@@ -13,7 +13,7 @@ internal partial class DespawnArea : Area2D
 
     private void OnDectection(Node2D dectectedNode)
 	{
-		if (dectectedNode is not IDespawnable)
+		if (!dectectedNode.IsInGroup("Despawnable"))
 			return;
 
 		dectectedNode.QueueFree();

@@ -13,7 +13,7 @@ size = Vector2(3, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjjsi"]
 size = Vector2(1, 2)
 
-[node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea")]
+[node name="Arrow" type="AnimatableBody2D" node_paths=PackedStringArray("_hitArea") groups=["Despawnable"]]
 z_index = -1
 z_as_relative = false
 script = ExtResource("1_l0266")
