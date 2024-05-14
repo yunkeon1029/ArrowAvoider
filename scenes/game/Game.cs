@@ -7,8 +7,11 @@ internal partial class Game : Node, ISingleton
     public Player Player { get; private set; }
     [Export]
     public ScoreManager ScoreManager { get; private set; }
+
     [Export]
-    public GameUI GameUI { get; private set; }
+    private HeartContainer _heartContainer;
+    [Export]
+    private Label _scoreLabel;
 
     [Export(PropertyHint.File, "*.tscn")]
     private string _resultMenuScenePath;
@@ -30,10 +33,10 @@ internal partial class Game : Node, ISingleton
         healthManager.MaxHealthChanged += _ => UpdateHeartContainer();
         healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultMenuScenePath, OnSceneLoaded);
 
-        ScoreManager.ScoreChanged += _ => GameUI.UpdateScoreLabel(ScoreManager.Score);
+        ScoreManager.ScoreChanged += _ => UpdateScoreLabel(ScoreManager.Score);
 
-		GameUI.UpdateHeartContainer((int)healthManager.MaxHealth, (int)healthManager.Health);
-		GameUI.UpdateScoreLabel(ScoreManager.Score);
+		UpdateHeartContainer();
+		UpdateScoreLabel(ScoreManager.Score);
 
 		RequestReady();
     }
@@ -50,11 +53,16 @@ internal partial class Game : Node, ISingleton
 	{
         var healthManager = Player.HealthManager;
 
-		int maxHealth = (int)healthManager.MaxHealth;
-		int health = (int)healthManager.Health;
+		float maxHealth = healthManager.MaxHealth;
+		float health = healthManager.Health;
 
-		GameUI.UpdateHeartContainer(maxHealth, health);
+		_heartContainer.Update(maxHealth, health);
 	}
+
+    private void UpdateScoreLabel(float score)
+    {
+        _scoreLabel.Text = $"score: {score}";
+    }
 
     private void OnSceneLoaded(Node loadedScene)
     {

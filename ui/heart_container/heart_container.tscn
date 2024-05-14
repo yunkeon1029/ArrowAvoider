@@ -1,21 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwpiq4ml881o"]
 
 [ext_resource type="Script" path="res://ui/heart_container/HeartContainer.cs" id="1_ti0hj"]
-[ext_resource type="PackedScene" uid="uid://bdaqr7mq8ae1e" path="res://ui/heart/heart.tscn" id="2_n8toa"]
+[ext_resource type="PackedScene" uid="uid://bdaqr7mq8ae1e" path="res://ui/heart_bar/heart_bar.tscn" id="2_n8toa"]
 
-[node name="HealthBar" type="HBoxContainer"]
+[node name="HeartContainer" type="HBoxContainer"]
 offset_right = 27.0
 offset_bottom = 8.0
 theme_override_constants/separation = 1
 alignment = 2
 script = ExtResource("1_ti0hj")
-_heart = ExtResource("2_n8toa")
+_heartBar = ExtResource("2_n8toa")
 
-[node name="Heart" parent="." instance=ExtResource("2_n8toa")]
+[node name="HeartBar" parent="." instance=ExtResource("2_n8toa")]
 layout_mode = 2
 
-[node name="Heart2" parent="." instance=ExtResource("2_n8toa")]
+[node name="HeartBar2" parent="." instance=ExtResource("2_n8toa")]
 layout_mode = 2
 
-[node name="Heart3" parent="." instance=ExtResource("2_n8toa")]
+[node name="HeartBar3" parent="." instance=ExtResource("2_n8toa")]
 layout_mode = 2

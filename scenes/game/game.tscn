@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bved8q3s0620x"]
+[gd_scene load_steps=15 format=3 uid="uid://bved8q3s0620x"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://prefabs/stone/stone.tscn" id="2_0p778"]
 [ext_resource type="PackedScene" uid="uid://c1cnfxl00k3qb" path="res://ui/pause_menu/pause_menu.tscn" id="2_hlqfn"]
 [ext_resource type="Script" path="res://prefabs/DespawnArea.cs" id="3_hqt2k"]
-[ext_resource type="Script" path="res://scenes/game/GameUI.cs" id="4_ym6yo"]
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="5_18brx"]
 [ext_resource type="PackedScene" uid="uid://djdavjmnq6i73" path="res://prefabs/ground/ground.tscn" id="5_ary6p"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="6_h8wil"]
@@ -21,11 +20,12 @@ distance = -100.0
 font_size = 24
 font_color = Color(0.176471, 0.176471, 0.176471, 1)
 
-[node name="Game" type="Node" node_paths=PackedStringArray("Player", "ScoreManager", "GameUI")]
+[node name="Game" type="Node" node_paths=PackedStringArray("Player", "ScoreManager", "_heartContainer", "_scoreLabel")]
 script = ExtResource("1_g7nvj")
 Player = NodePath("Player")
 ScoreManager = NodePath("ScoreManager")
-GameUI = NodePath("UI")
+_heartContainer = NodePath("UI/HealthBar")
+_scoreLabel = NodePath("UI/ScoreLabel")
 _resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
 _pauseMenu = ExtResource("2_hlqfn")
 
@@ -55,10 +55,7 @@ offset_top = 50.0
 offset_right = 182.0
 offset_bottom = 90.0
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("_heartContainer", "_scoreLabel")]
-script = ExtResource("4_ym6yo")
-_heartContainer = NodePath("HealthBar")
-_scoreLabel = NodePath("ScoreLabel")
+[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="UI"]
 texture_filter = 1
@@ -71,12 +68,12 @@ label_settings = SubResource("LabelSettings_i103w")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -116.0
-offset_top = 1.0
-offset_right = -87.0
-offset_bottom = 9.0
+offset_left = -121.0
+offset_top = 7.0
+offset_right = -92.0002
+offset_bottom = 15.0
 grow_horizontal = 0
-scale = Vector2(4, 4)
+scale = Vector2(3.9, 3.9)
 
 [node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("5_18brx")
