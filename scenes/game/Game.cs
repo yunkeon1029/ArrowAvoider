@@ -26,13 +26,13 @@ internal partial class Game : Node, ISingleton
         var sceneManager = Singletons.GetInstance<SceneManager>();
         var healthManager = Player.HealthManager;
 
-        healthManager.HealthChanged += _ => UpdateHealthLabel();
-        healthManager.MaxHealthChanged += _ => UpdateHealthLabel();
+        healthManager.HealthChanged += _ => UpdateHeartContainer();
+        healthManager.MaxHealthChanged += _ => UpdateHeartContainer();
         healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultMenuScenePath, OnSceneLoaded);
 
         ScoreManager.ScoreChanged += _ => GameUI.UpdateScoreLabel(ScoreManager.Score);
 
-		GameUI.UpdateHealthLabel(healthManager.MaxHealth, healthManager.Health);
+		GameUI.UpdateHeartContainer((int)healthManager.MaxHealth, (int)healthManager.Health);
 		GameUI.UpdateScoreLabel(ScoreManager.Score);
 
 		RequestReady();
@@ -46,14 +46,14 @@ internal partial class Game : Node, ISingleton
 		OpenPauseMenu();
     }
 
-    private void UpdateHealthLabel()
+    private void UpdateHeartContainer()
 	{
         var healthManager = Player.HealthManager;
 
-		float maxHealth = healthManager.MaxHealth;
-		float health = healthManager.Health;
+		int maxHealth = (int)healthManager.MaxHealth;
+		int health = (int)healthManager.Health;
 
-		GameUI.UpdateHealthLabel(maxHealth, health);
+		GameUI.UpdateHeartContainer(maxHealth, health);
 	}
 
     private void OnSceneLoaded(Node loadedScene)

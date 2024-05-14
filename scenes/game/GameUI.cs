@@ -3,14 +3,13 @@ using Godot;
 internal partial class GameUI : CanvasLayer
 {
     [Export]
-    private Label _healthLabel;
+    private HeartContainer _heartContainer;
     [Export]
     private Label _scoreLabel;
 
-    public void UpdateHealthLabel(float maxHealth, float health)
+    public void UpdateHeartContainer(int maxHealth, int health)
     {
-        _healthLabel.Text = $"max health: {maxHealth} \n" + 
-                            $"health: {health}";
+        _heartContainer.Update(maxHealth, health);
     }
 
     public void UpdateScoreLabel(float score)
