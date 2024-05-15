@@ -5,12 +5,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
 
-[node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_musicVolumeSlider", "_sfxVolumeSlider", "_backButton")]
+[node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_musicVolumeSlider", "_sfxVolumeSlider", "_fullScreenCheckBox", "_backButton")]
 process_mode = 3
 layer = 2
 script = ExtResource("1_j6pfu")
 _musicVolumeSlider = NodePath("MusicVolumeSlider")
 _sfxVolumeSlider = NodePath("SfxVolumeSlider")
+_fullScreenCheckBox = NodePath("FullScreenCheckBox")
 _backButton = NodePath("BackButton")
 
 [node name="Backgrund" type="ColorRect" parent="."]
@@ -56,6 +57,23 @@ label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FullScreenLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.0
+offset_top = -64.0
+offset_right = -218.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Full Screen"
+label_settings = SubResource("LabelSettings_5op6f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MusicVolumeSlider" type="HSlider" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,6 +105,22 @@ grow_vertical = 2
 max_value = 1.0
 step = 0.01
 value = 0.5
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -43.0
+offset_right = -131.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+focus_mode = 0
+icon_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
 anchors_preset = 7

@@ -24,6 +24,7 @@ buses/default_bus_layout="res://commons/bus_layout.tres"
 SceneManager="res://autoloads/SceneManager.cs"
 SaveManager="res://autoloads/SaveManager.cs"
 AudioManager="res://autoloads/AudioManager.cs"
+WindowManager="res://autoloads/WindowManager.cs"
 
 [display]
 

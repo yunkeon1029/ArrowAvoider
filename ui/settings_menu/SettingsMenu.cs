@@ -7,22 +7,37 @@ internal partial class SettingsMenu : CanvasLayer
     [Export]
     private Slider _sfxVolumeSlider;
     [Export]
+    private CheckBox _fullScreenCheckBox;
+    [Export]
     private BaseButton _backButton;
+
+    private SaveManager _saveManager;
+    private AudioManager _audioManager;
+    private WindowManager _windowManager;
 
     public override void _Ready()
     {
-        var saveManager = Singletons.GetInstance<SaveManager>();
-        var audioManager = Singletons.GetInstance<AudioManager>();
+        _saveManager = Singletons.GetInstance<SaveManager>();
+        _audioManager = Singletons.GetInstance<AudioManager>();
+        _windowManager = Singletons.GetInstance<WindowManager>();
 
-        _musicVolumeSlider.Value = (double?)saveManager.GetData("MusicVolume") ?? 0.5f;
-        _sfxVolumeSlider.Value = (double?)saveManager.GetData("SfxVolume") ?? 0.5f;
+        _musicVolumeSlider.Value = (double?)_saveManager.GetData("MusicVolume") ?? 0.5f;
+        _sfxVolumeSlider.Value = (double?)_saveManager.GetData("SfxVolume") ?? 0.5f;
+        _fullScreenCheckBox.ButtonPressed = (bool?)_saveManager.GetData("FullScreen") ?? true;
 
-        _musicVolumeSlider.ValueChanged += value => saveManager.SetData("MusicVolume", value);
-        _sfxVolumeSlider.ValueChanged += value => saveManager.SetData("SfxVolume", value);
-        
-        _musicVolumeSlider.ValueChanged += _ => audioManager.UpdateVolume();
-        _sfxVolumeSlider.ValueChanged += _ => audioManager.UpdateVolume();
+        _musicVolumeSlider.ValueChanged += value => _saveManager.SetData("MusicVolume", value);
+        _sfxVolumeSlider.ValueChanged += value => _saveManager.SetData("SfxVolume", value);
 
+        _musicVolumeSlider.ValueChanged += _ => _audioManager.UpdateVolume();
+        _sfxVolumeSlider.ValueChanged += _ => _audioManager.UpdateVolume();
+
+        _fullScreenCheckBox.Toggled += FullScreenCheckBoxToggled;
         _backButton.Pressed += QueueFree;
+    }
+
+    private void FullScreenCheckBoxToggled(bool value)
+    {
+        _saveManager.SetData("FullScreen", value);
+        _windowManager.UpdateWindow();
     }
 }
