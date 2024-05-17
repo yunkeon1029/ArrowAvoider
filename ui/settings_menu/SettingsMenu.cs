@@ -38,6 +38,6 @@ internal partial class SettingsMenu : CanvasLayer
     private void FullScreenCheckBoxToggled(bool value)
     {
         _saveManager.SetData("FullScreen", value);
-        _windowManager.UpdateWindow();
+        _windowManager.UpdateWindowMode();
     }
 }
