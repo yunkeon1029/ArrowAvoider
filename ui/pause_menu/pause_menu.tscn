@@ -26,7 +26,7 @@ _mainMenuScenePath = "res://scenes/main_menu/main_menu.tscn"
 _settingsMenu = ExtResource("2_6v85l")
 metadata/_edit_horizontal_guides_ = []
 
-[node name="Backgrund" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
