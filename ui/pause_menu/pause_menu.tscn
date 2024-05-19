@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_6v85l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh2iw"]
+bg_color = Color(0.8, 0.827451, 0.870588, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.300781, 0.300781, 0.300781, 1)
+border_color = Color(0.301961, 0.301961, 0.301961, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8

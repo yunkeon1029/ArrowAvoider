@@ -35,6 +35,12 @@ internal partial class SettingsMenu : CanvasLayer
         _backButton.Pressed += QueueFree;
     }
 
+    public override void _Process(double elapsedTime)
+	{
+		if (Input.IsActionJustPressed(ActionName.Escape))
+            QueueFree();
+	}
+
     private void FullScreenCheckBoxToggled(bool value)
     {
         _saveManager.SetData("FullScreen", value);

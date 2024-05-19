@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b7q185vhbfpg4" path="res://ui/custom_slider/custom_slider.tscn" id="2_20mo4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20vyy"]
+bg_color = Color(0.8, 0.827451, 0.870588, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -16,6 +17,7 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
+font_color = Color(0.285156, 0.273438, 0.246094, 1)
 
 [node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_musicVolumeSlider", "_sfxVolumeSlider", "_fullScreenCheckBox", "_backButton")]
 process_mode = 3
@@ -101,16 +103,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicVolumeSlider" parent="." instance=ExtResource("2_20mo4")]
-offset_left = 474.0
-offset_top = 126.0
-offset_right = 929.0
-offset_bottom = 152.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -194.0
+offset_right = 342.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SFXVolumeSlider" parent="." instance=ExtResource("2_20mo4")]
-offset_left = 477.0
-offset_top = 205.0
-offset_right = 924.0
-offset_bottom = 231.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -117.0
+offset_right = 341.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="FullScreenCheckBox" type="CheckBox" parent="."]
 anchors_preset = 8
