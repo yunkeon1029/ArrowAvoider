@@ -10,7 +10,7 @@ internal partial class Player : CharacterBody2D
     [Export]
     public HealthManager HealthManager { get; private set; }
     [Export]
-    public PlayerMovement PlayerMovement { get; private set; }
+    public Sprite2D Sprite { get; private set; }
 
     [Export]
     private AudioStream _hitSound;
@@ -18,22 +18,42 @@ internal partial class Player : CharacterBody2D
     private AudioStream _hitBlockedSound;
 
     [Export]
+	private float _maxSpeed; // 90
+	[Export]
+	private float _accelerationRate; // 1000
+
+    [Export]
     private float _invincibilityTime;
     [Export]
     private Color _invincibilityModulate;
 
+    private Vector2 _velocity;
     private float _leftInvincibilityTime;
 
     public override void _PhysicsProcess(double elapsedTime)
     {
         CalculateMovement(elapsedTime);
         CalculateInvincibility(elapsedTime);
+        UpdateLookDir();
     }
 
     public void ApplyHit(float damage)
     {
         CalculateHitSound();
         CalculateHitDamage(damage);
+    }
+
+    private Vector2 GetMoveInput()
+    {
+        Vector2 moveInput = new();
+
+        if (Input.IsActionPressed(ActionName.MoveLeft))
+            moveInput += Vector2.Left;
+
+        if (Input.IsActionPressed(ActionName.MoveRight))
+            moveInput += Vector2.Right;
+
+        return moveInput;
     }
 
     private void CalculateHitSound()
@@ -56,18 +76,21 @@ internal partial class Player : CharacterBody2D
         StartInvincibility();
     }
 
-    private void CalculateMovement(double elapsedTime)
-    {
-        Vector2 moveInput = new();
+	public void CalculateMovement(double elapsedTime)
+	{
+        Vector2 moveInput = GetMoveInput();
+        Vector2 targetVelocity = Vector2.Zero;
 
-        if (Input.IsActionPressed(ActionName.MoveLeft))
-            moveInput += Vector2.Left;
+		if (moveInput != Vector2.Zero)
+			targetVelocity = moveInput.Normalized() * _maxSpeed;
 
-        if (Input.IsActionPressed(ActionName.MoveRight))
-            moveInput += Vector2.Right;
+        _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
 
-        PlayerMovement.CalculateMovement(moveInput, elapsedTime);
-    }
+        var collisionResult = MoveAndCollide(_velocity * (float)elapsedTime, false, 0);
+
+        if (collisionResult != null)
+            _velocity = Vector2.Zero;
+	}
 
     private void CalculateInvincibility(double elapsedTime)
     {
@@ -96,5 +119,16 @@ internal partial class Player : CharacterBody2D
     {
         Modulate = new Color(1, 1, 1, 1);
         EmitSignal(SignalName.InvincibilityEnded);
+    }
+
+    private void UpdateLookDir()
+    {
+        Vector2 moveInput = GetMoveInput();
+
+        if (moveInput == Vector2.Right)
+            Sprite.FlipH = false;
+
+        if (moveInput == Vector2.Left)
+            Sprite.FlipH = true;
     }
 }
