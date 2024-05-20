@@ -81,6 +81,7 @@ _spawningObject = ExtResource("6_h8wil")
 _spawnArea = NodePath("SpawnArea")
 _spawnRate = 3.2
 _spawnRateIncreaceRate = 0.09
+_maxSpawnRate = 60.0
 
 [node name="SpawnArea" type="ReferenceRect" parent="ArrowSpawner"]
 visible = false
@@ -95,6 +96,7 @@ _spawningObject = ExtResource("7_q6j3h")
 _spawnArea = NodePath("SpawnArea")
 _spawnRate = 0.7
 _spawnRateIncreaceRate = 0.007
+_maxSpawnRate = 1.35
 
 [node name="SpawnArea" type="ReferenceRect" parent="GemSpawner"]
 visible = false

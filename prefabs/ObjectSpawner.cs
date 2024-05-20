@@ -14,6 +14,8 @@ internal partial class ObjectSpawner : Node
 	private float _spawnRate;
 	[Export]
 	private float _spawnRateIncreaceRate;
+	[Export]
+	private float _maxSpawnRate;
 
 	private float _lastSpawnTime;
 
@@ -21,6 +23,7 @@ internal partial class ObjectSpawner : Node
     {
 		_lastSpawnTime += (float)elapsedTime;
 		_spawnRate += _spawnRateIncreaceRate * (float)elapsedTime;
+		_spawnRate = Mathf.Min(_spawnRate, _maxSpawnRate);
 
 		if (_lastSpawnTime >= 1.0 / _spawnRate)
 		{
