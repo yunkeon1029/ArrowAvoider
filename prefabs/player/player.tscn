@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3yilsht1xyk1"]
+[gd_scene load_steps=8 format=3 uid="uid://b3yilsht1xyk1"]
 
 [ext_resource type="Script" path="res://prefabs/player/Player.cs" id="1_hy6gv"]
 [ext_resource type="AudioStream" uid="uid://byvivygnqlbdr" path="res://prefabs/player/PlayerHit.wav" id="2_p0w8g"]
 [ext_resource type="AudioStream" uid="uid://bej6a2ukvili0" path="res://prefabs/player/PlayerHitBlocked.wav" id="3_fk1pv"]
 [ext_resource type="Script" path="res://components/HealthManager.cs" id="3_xmlqw"]
-[ext_resource type="Texture2D" uid="uid://w1h1i658gqdm" path="res://prefabs/player/player.png" id="4_k5jyt"]
+[ext_resource type="Texture2D" uid="uid://cknm7x1qwdyym" path="res://prefabs/player/player_right.png" id="4_wnw0l"]
+[ext_resource type="Texture2D" uid="uid://djoaywhq5egfj" path="res://prefabs/player/player_left.png" id="5_txhgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
-size = Vector2(8, 16)
+size = Vector2(9, 15)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "Sprite")]
 collision_layer = 5
@@ -17,14 +18,17 @@ HealthManager = NodePath("HealthManager")
 Sprite = NodePath("Player")
 _hitSound = ExtResource("2_p0w8g")
 _hitBlockedSound = ExtResource("3_fk1pv")
+PlayerRightTexture = ExtResource("4_wnw0l")
+PlayerLeftTexture = ExtResource("5_txhgn")
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 _invincibilityTime = 0.7
 
 [node name="Player" type="Sprite2D" parent="."]
-texture = ExtResource("4_k5jyt")
+texture = ExtResource("4_wnw0l")
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mme8o")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 

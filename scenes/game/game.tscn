@@ -50,7 +50,6 @@ script = ExtResource("3_hqt2k")
 shape = SubResource("WorldBoundaryShape2D_kctsc")
 
 [node name="Ground" parent="." instance=ExtResource("5_ary6p")]
-visible = false
 offset_left = -182.0
 offset_top = 50.0
 offset_right = 182.0
