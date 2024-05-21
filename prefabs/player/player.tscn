@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://djoaywhq5egfj" path="res://prefabs/player/player_left.png" id="5_txhgn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mme8o"]
-size = Vector2(9, 15)
+size = Vector2(11, 16)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "Sprite")]
 collision_layer = 5
@@ -28,7 +28,6 @@ _invincibilityTime = 0.7
 texture = ExtResource("4_wnw0l")
 
 [node name="Bounds" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mme8o")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
