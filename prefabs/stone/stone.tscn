@@ -5,10 +5,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8c6c"]
 size = Vector2(16, 16)
 
-[node name="Wall" type="StaticBody2D"]
+[node name="Stone" type="StaticBody2D"]
 collision_layer = 9
 
-[node name="Wall" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_ff1te")
 
 [node name="Bounds" type="CollisionShape2D" parent="."]

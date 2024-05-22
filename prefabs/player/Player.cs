@@ -10,7 +10,10 @@ internal partial class Player : CharacterBody2D
     [Export]
     public HealthManager HealthManager { get; private set; }
     [Export]
-    public Sprite2D Sprite { get; private set; }
+    public StaticBody2D Collider { get; private set; }
+
+    [Export]
+    private Sprite2D _sprite;
 
     [Export]
     private AudioStream _hitSound;
@@ -91,7 +94,10 @@ internal partial class Player : CharacterBody2D
 
         _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
 
-        var collisionResult = MoveAndCollide(_velocity * (float)elapsedTime, false, 0);
+        var moveAmount = _velocity * (float)elapsedTime;
+        var collisionResult = Collider.MoveAndCollide(moveAmount, true, 0);
+
+        Translate(collisionResult?.GetTravel() ?? moveAmount);
 
         if (collisionResult != null)
             _velocity = Vector2.Zero;
@@ -131,9 +137,9 @@ internal partial class Player : CharacterBody2D
         Vector2 moveInput = GetMoveInput();
 
         if (moveInput == Vector2.Right)
-            Sprite.Texture = PlayerRightTexture;
+            _sprite.Texture = PlayerRightTexture;
 
         if (moveInput == Vector2.Left)
-            Sprite.Texture = PlayerLeftTexture;
+            _sprite.Texture = PlayerLeftTexture;
     }
 }
