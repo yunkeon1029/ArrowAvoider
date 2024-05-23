@@ -5,6 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ly4uh"]
 font_size = 65
+font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
 [node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("_startButton", "_settingsButton", "_exitButton")]
 script = ExtResource("1_62vya")
@@ -13,6 +14,14 @@ _settingsButton = NodePath("SettingsButton")
 _exitButton = NodePath("ExitButton")
 _settingsMenu = ExtResource("2_a5uyi")
 _gameScenePath = "res://scenes/game/game.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.968627, 0.988235, 0.988235, 1)
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 8

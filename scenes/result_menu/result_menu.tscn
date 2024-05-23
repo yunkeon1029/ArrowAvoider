@@ -4,6 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_5r2qe"]
 font_size = 47
+font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
 [node name="ResultMenu" type="CanvasLayer" node_paths=PackedStringArray("_scoreLabel", "_menuButton", "_retryButton")]
 script = ExtResource("1_xkuv4")
@@ -12,6 +13,14 @@ _menuButton = NodePath("MenuButton")
 _retryButton = NodePath("RetryButton")
 _mainMenuScenePath = "res://scenes/main_menu/main_menu.tscn"
 _gameScenePath = "res://scenes/game/game.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.968627, 0.988235, 0.988235, 1)
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 8

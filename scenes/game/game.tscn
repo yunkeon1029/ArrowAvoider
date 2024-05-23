@@ -18,7 +18,7 @@ distance = -100.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_i103w"]
 font_size = 24
-font_color = Color(0.176471, 0.176471, 0.176471, 1)
+font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
 [node name="Game" type="Node" node_paths=PackedStringArray("Player", "ScoreManager", "_heartContainer", "_scoreLabel")]
 script = ExtResource("1_g7nvj")
@@ -59,18 +59,18 @@ offset_bottom = 90.0
 
 [node name="ScoreLabel" type="Label" parent="UI"]
 texture_filter = 1
-offset_left = 0.2
-offset_right = 100.2
-offset_bottom = 50.0
+offset_left = 7.0
+offset_right = 186.0
+offset_bottom = 38.0
 label_settings = SubResource("LabelSettings_i103w")
 
 [node name="HealthBar" parent="UI" instance=ExtResource("8_25pmh")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -121.0
+offset_left = -120.0
 offset_top = 7.0
-offset_right = -92.0002
+offset_right = -91.0
 offset_bottom = 15.0
 grow_horizontal = 0
 scale = Vector2(3.9, 3.9)
@@ -110,4 +110,4 @@ script = ExtResource("8_c37p6")
 
 [node name="ClearColorOverrider" type="Node" parent="."]
 script = ExtResource("10_a3qia")
-ClearColor = Color(0.81, 0.93, 0.93, 1)
+ClearColor = Color(0.811765, 0.929412, 0.929412, 1)
