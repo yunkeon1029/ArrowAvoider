@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cevdfe0yjneat"]
+[gd_scene load_steps=7 format=3 uid="uid://cevdfe0yjneat"]
 
 [ext_resource type="Script" path="res://ui/settings_menu/SettingsMenu.cs" id="1_j6pfu"]
 [ext_resource type="PackedScene" uid="uid://b7q185vhbfpg4" path="res://ui/custom_slider/custom_slider.tscn" id="2_20mo4"]
+[ext_resource type="Texture2D" uid="uid://dtnknk4unujg1" path="res://ui/check_box/checked.svg" id="3_oj2vq"]
+[ext_resource type="Texture2D" uid="uid://ba7eowwrsp4q2" path="res://ui/check_box/unchecked.svg" id="4_moflo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20vyy"]
 bg_color = Color(0.8, 0.827451, 0.870588, 1)
@@ -17,7 +19,7 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
-font_color = Color(0.285156, 0.273438, 0.246094, 1)
+font_color = Color(0.286275, 0.27451, 0.247059, 1)
 
 [node name="SettingsMenu" type="CanvasLayer" node_paths=PackedStringArray("_musicVolumeSlider", "_sfxVolumeSlider", "_fullScreenCheckBox", "_backButton")]
 process_mode = 3
@@ -73,9 +75,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -291.0
+offset_left = -292.0
 offset_top = -138.0
-offset_right = -180.0
+offset_right = -181.0
 offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -129,19 +131,22 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FullScreenCheckBox" type="CheckBox" parent="."]
+texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -50.0
-offset_right = -73.0
-offset_bottom = -26.0
+offset_left = -91.9999
+offset_top = -49.9999
+offset_right = 172.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
+scale = Vector2(0.165, 0.165)
 focus_mode = 0
+theme_override_icons/checked = ExtResource("3_oj2vq")
+theme_override_icons/unchecked = ExtResource("4_moflo")
 icon_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]

@@ -10,16 +10,31 @@ internal partial class WindowManager : Node, ISingleton
         Ready += UpdateWindowMode;
     }
 
-	public void UpdateWindowMode()
+    public override void _Process(double delta)
+    {
+		if (!Input.IsActionJustPressed(ActionName.ToggleFullscreen))
+			return;
+
+		bool fullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
+
+		if (fullScreen == true)
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
+
+		if (fullScreen == false)
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+    }
+
+    public void UpdateWindowMode()
 	{
 		var saveManager = Singletons.GetInstance<SaveManager>();
 
 		bool fullScreen = (bool?)saveManager.GetData("FullScreen") ?? true;
+		bool currentFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
 
-		if (fullScreen == true)
+		if (fullScreen == true && currentFullScreen == false)
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
 
-		if (fullScreen == false)
+		if (fullScreen == false && currentFullScreen == true)
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
 	}
 }
