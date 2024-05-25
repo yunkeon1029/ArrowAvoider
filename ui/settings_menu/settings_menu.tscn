@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cevdfe0yjneat"]
+[gd_scene load_steps=8 format=3 uid="uid://cevdfe0yjneat"]
 
 [ext_resource type="Script" path="res://ui/settings_menu/SettingsMenu.cs" id="1_j6pfu"]
 [ext_resource type="PackedScene" uid="uid://b7q185vhbfpg4" path="res://ui/custom_slider/custom_slider.tscn" id="2_20mo4"]
@@ -16,6 +16,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_2peq6"]
+font_size = 48
+font_color = Color(0.286275, 0.27451, 0.247059, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5op6f"]
 font_size = 36
@@ -52,16 +56,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_20vyy")
 
+[node name="SettingsLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -279.0
+offset_top = -212.5
+offset_right = 265.0
+offset_bottom = -142.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_2peq6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MusicLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -291.0
-offset_top = -216.0
-offset_right = -180.0
-offset_bottom = -149.0
+offset_left = -321.0
+offset_top = -127.0
+offset_right = -138.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Music"
@@ -75,10 +96,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -292.0
-offset_top = -138.0
-offset_right = -181.0
-offset_bottom = -71.0
+offset_left = -325.0
+offset_top = -49.0
+offset_right = -138.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "SFX
@@ -94,14 +115,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -328.0
-offset_top = -62.0
+offset_top = 33.0
 offset_right = -138.0
-offset_bottom = 5.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Full Screen"
 label_settings = SubResource("LabelSettings_5op6f")
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MusicVolumeSlider" parent="." instance=ExtResource("2_20mo4")]
@@ -111,9 +132,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -87.0
-offset_top = -194.0
+offset_top = -105.0
 offset_right = 342.0
-offset_bottom = -168.0
+offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -124,9 +145,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -89.0
-offset_top = -117.0
+offset_top = -28.0
 offset_right = 341.0
-offset_bottom = -91.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -138,9 +159,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -91.9999
-offset_top = -49.9999
+offset_top = 45.0
 offset_right = 172.0
-offset_bottom = 214.0
+offset_bottom = 309.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.165, 0.165)
