@@ -79,7 +79,7 @@ internal partial class Game : Node, ISingleton
 		var pauseMenu = _pauseMenu.Instantiate<PauseMenu>();
 
         pauseMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
-        pauseMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+        pauseMenu.TreeExiting += () => ProcessMode = ProcessModeEnum.Always;
 
         AddChild(pauseMenu);
     }
