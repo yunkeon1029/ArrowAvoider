@@ -34,10 +34,8 @@ internal partial class PauseMenu : CanvasLayer
 
     public override void _Process(double elapsedTime)
 	{
-		if (!Input.IsActionJustPressed(ActionName.Escape))
-			return;
-
-		QueueFree();
+		if (Input.IsActionJustPressed(ActionName.Escape))
+			QueueFree();
 	}
 
 	private void OpenSettingsMenu()

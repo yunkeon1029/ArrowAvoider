@@ -43,10 +43,8 @@ internal partial class Game : Node, ISingleton
 
     public override void _Process(double elapsedTime)
     {
-		if (!Input.IsActionJustPressed(ActionName.Escape))
-			return;
-
-		OpenPauseMenu();
+		if (Input.IsActionJustPressed(ActionName.Escape))
+			OpenPauseMenu();
     }
 
     private void UpdateHeartContainer()
@@ -75,7 +73,6 @@ internal partial class Game : Node, ISingleton
 
     private void OpenPauseMenu()
     {
-        var sceneManager = Singletons.GetInstance<SceneManager>();
 		var pauseMenu = _pauseMenu.Instantiate<PauseMenu>();
 
         pauseMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
