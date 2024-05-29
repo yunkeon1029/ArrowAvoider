@@ -29,9 +29,9 @@ font_color = Color(0.286275, 0.27451, 0.247059, 1)
 process_mode = 3
 layer = 2
 script = ExtResource("1_j6pfu")
-_musicVolumeSlider = NodePath("MusicVolumeSlider")
-_sfxVolumeSlider = NodePath("SFXVolumeSlider")
-_fullScreenCheckBox = NodePath("FullScreenCheckBox")
+_musicVolumeSlider = NodePath("SettingsOptions/MusicOption/VolumeSlider")
+_sfxVolumeSlider = NodePath("SettingsOptions/SfxOption/VolumeSlider")
+_fullScreenCheckBox = NodePath("SettingsOptions/FullScreenOption/CheckBox")
 _backButton = NodePath("BackButton")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -73,34 +73,51 @@ label_settings = SubResource("LabelSettings_2peq6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicLabel" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -321.0
-offset_top = -127.0
-offset_right = -138.0
-offset_bottom = -60.0
-grow_horizontal = 2
+[node name="SettingsOptions" type="VBoxContainer" parent="."]
+offset_left = 231.0
+offset_top = 199.0
+offset_right = 918.0
+offset_bottom = 426.0
+theme_override_constants/separation = 13
+
+[node name="MusicOption" type="Control" parent="SettingsOptions"]
+custom_minimum_size = Vector2(0, 67)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsOptions/MusicOption"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 229.0
 grow_vertical = 2
 text = "Music"
 label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SfxLabel" type="Label" parent="."]
+[node name="VolumeSlider" parent="SettingsOptions/MusicOption" instance=ExtResource("2_20mo4")]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -325.0
-offset_top = -49.0
-offset_right = -138.0
-offset_bottom = 18.0
+offset_left = -85.5
+offset_top = -11.5
+offset_right = 343.5
+offset_bottom = 14.5
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SfxOption" type="Control" parent="SettingsOptions"]
+custom_minimum_size = Vector2(0, 67)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsOptions/SfxOption"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 223.0
 grow_vertical = 2
 text = "SFX
 "
@@ -108,66 +125,55 @@ label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FullScreenLabel" type="Label" parent="."]
+[node name="VolumeSlider" parent="SettingsOptions/SfxOption" instance=ExtResource("2_20mo4")]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -328.0
-offset_top = 33.0
-offset_right = -138.0
-offset_bottom = 100.0
+offset_left = -87.5
+offset_top = -14.5
+offset_right = 342.5
+offset_bottom = 11.5
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FullScreenOption" type="Control" parent="SettingsOptions"]
+custom_minimum_size = Vector2(0, 67)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsOptions/FullScreenOption"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 234.0
 grow_vertical = 2
 text = "Full Screen"
 label_settings = SubResource("LabelSettings_5op6f")
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicVolumeSlider" parent="." instance=ExtResource("2_20mo4")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -105.0
-offset_right = 342.0
-offset_bottom = -79.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SFXVolumeSlider" parent="." instance=ExtResource("2_20mo4")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.0
-offset_top = -28.0
-offset_right = 341.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FullScreenCheckBox" type="CheckBox" parent="."]
+[node name="CheckBox" type="CheckBox" parent="SettingsOptions/FullScreenOption"]
 texture_filter = 2
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -91.9999
-offset_top = 45.0
-offset_right = 172.0
-offset_bottom = 309.0
+offset_left = -85.5
+offset_top = -22.5
+offset_right = 178.5
+offset_bottom = 241.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.165, 0.165)
 focus_mode = 0
 theme_override_icons/checked = ExtResource("3_oj2vq")
+theme_override_icons/checked_disabled = ExtResource("3_oj2vq")
 theme_override_icons/unchecked = ExtResource("4_moflo")
+theme_override_icons/unchecked_disabled = ExtResource("4_moflo")
 icon_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
