@@ -9,9 +9,9 @@ font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
 [node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("_startButton", "_settingsButton", "_exitButton")]
 script = ExtResource("1_62vya")
-_startButton = NodePath("StartButton")
-_settingsButton = NodePath("SettingsButton")
-_exitButton = NodePath("ExitButton")
+_startButton = NodePath("Buttons/StartButton")
+_settingsButton = NodePath("Buttons/SettingsButton")
+_exitButton = NodePath("Buttons/ExitButton")
 _settingsMenu = ExtResource("2_a5uyi")
 _gameScenePath = "res://scenes/game/game.tscn"
 
@@ -40,7 +40,7 @@ label_settings = SubResource("LabelSettings_ly4uh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -49,38 +49,25 @@ anchor_bottom = 0.5
 offset_left = -175.0
 offset_top = -47.0
 offset_right = 175.0
-offset_bottom = 26.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="StartButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
 theme_override_font_sizes/font_size = 37
 text = "Start"
 
-[node name="SettingsButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = 47.0
-offset_right = 175.0
-offset_bottom = 120.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SettingsButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
 theme_override_font_sizes/font_size = 37
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = 145.0
-offset_right = 175.0
-offset_bottom = 218.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ExitButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(0, 73)
+layout_mode = 2
 theme_override_font_sizes/font_size = 37
 text = "Exit"
