@@ -4,6 +4,8 @@
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mcs3s"]
 color = Color(0.968627, 0.988235, 0.988235, 1)
+grow_begin = 0.0
+grow_end = 0.0
 thickness = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fha32"]
