@@ -74,10 +74,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsOptions" type="VBoxContainer" parent="."]
-offset_left = 231.0
-offset_top = 199.0
-offset_right = 918.0
-offset_bottom = 426.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.5
+offset_top = -119.5
+offset_right = 343.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 13
 
 [node name="MusicOption" type="Control" parent="SettingsOptions"]
@@ -132,7 +139,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
+offset_left = -84.5
 offset_top = -14.5
 offset_right = 342.5
 offset_bottom = 11.5

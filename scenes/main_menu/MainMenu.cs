@@ -1,6 +1,6 @@
 using Godot;
 
-internal partial class MainMenu : CanvasLayer
+internal partial class MainMenu : Node
 {
 	[Export]
 	private BaseButton _startButton;
@@ -26,10 +26,6 @@ internal partial class MainMenu : CanvasLayer
 	private void OpenSettingsMenu()
 	{
 		var settingsMenu = _settingsMenu.Instantiate();
-
-        settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
-        settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
-
         AddChild(settingsMenu);
 	}
 }
