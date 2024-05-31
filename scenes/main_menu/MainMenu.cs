@@ -26,6 +26,10 @@ internal partial class MainMenu : Node
 	private void OpenSettingsMenu()
 	{
 		var settingsMenu = _settingsMenu.Instantiate();
+
+		settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
+		settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
+
         AddChild(settingsMenu);
 	}
 }

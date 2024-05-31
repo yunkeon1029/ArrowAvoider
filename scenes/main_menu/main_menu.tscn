@@ -138,6 +138,7 @@ _spawnRate = 4.0
 _maxSpawnRate = 60.0
 
 [node name="SpawnArea" type="ReferenceRect" parent="LeftArrowSpawner"]
+visible = false
 offset_left = -248.0
 offset_top = -169.0
 offset_right = -70.0
@@ -151,6 +152,7 @@ _spawnRate = 4.0
 _maxSpawnRate = 60.0
 
 [node name="SpawnArea" type="ReferenceRect" parent="RightArrowSpawner"]
+visible = false
 offset_left = 70.0
 offset_top = -169.0
 offset_right = 248.0
