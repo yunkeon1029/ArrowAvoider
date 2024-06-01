@@ -12,13 +12,13 @@ internal partial class SceneManager : Node, ISingleton
 		TreeExited += () => Singletons.RemoveInstance(this);
 	}
 
-	public void ChangeScene(PackedScene loadingScene, Action<Node> sceneLoaded = null)
+	public void ChangeScene(PackedScene scene, Action<Node> sceneLoaded = null)
 	{
 		SceneTree tree = GetTree();
         Window root = tree.Root;
 
 		Node previousScene = tree.CurrentScene;
-        Node sceneInstance = loadingScene.Instantiate();
+        Node sceneInstance = scene.Instantiate();
 
 		sceneLoaded?.Invoke(sceneInstance);
 		EmitSignal(SignalName.SceneLoaded, sceneInstance);
@@ -29,9 +29,31 @@ internal partial class SceneManager : Node, ISingleton
 		previousScene.QueueFree();
 	}
 
-	public void ChangeScene(string loadingScenePath, Action<Node> sceneLoaded = null)
+	public void ChangeScene(PackedScene scene, PackedScene transition, Action<Node> sceneLoaded = null)
 	{
-		PackedScene loadingScene = GD.Load<PackedScene>(loadingScenePath);
+		TransitionAnimation transitionInstance = transition.Instantiate<TransitionAnimation>();
+
+		Action fadeInEnded = delegate { };
+		Action fadeOutEnded = delegate { };
+
+		sceneLoaded += _ => transitionInstance.PlayFadeOutAnimation(fadeOutEnded);
+
+		fadeInEnded += () => ChangeScene(scene, sceneLoaded);
+		fadeOutEnded += () => transitionInstance.QueueFree();
+
+		transitionInstance.PlayFadeInAnimation(fadeInEnded);
+		AddSibling(transitionInstance);
+	}
+
+	public void ChangeScene(string scenePath, Action<Node> sceneLoaded = null)
+	{
+		PackedScene loadingScene = GD.Load<PackedScene>(scenePath);
 		ChangeScene(loadingScene, sceneLoaded);
+	}
+
+	public void ChangeScene(string scenePath, PackedScene transition, Action<Node> sceneLoaded = null)
+	{
+		PackedScene loadingScene = GD.Load<PackedScene>(scenePath);
+		ChangeScene(loadingScene, transition, sceneLoaded);
 	}
 }

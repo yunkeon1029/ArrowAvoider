@@ -8,8 +8,11 @@ internal partial class MainMenu : Node
 	private BaseButton _settingsButton;
 	[Export]
 	private BaseButton _exitButton;
+
 	[Export]
 	private PackedScene _settingsMenu;
+	[Export]
+	private PackedScene _blackOutTransition;
 
 	[Export(PropertyHint.File, "*.tscn")]
 	private string _gameScenePath;
@@ -18,7 +21,7 @@ internal partial class MainMenu : Node
     {
 		var sceneManager = Singletons.GetInstance<SceneManager>();
 
-		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
+		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath, _blackOutTransition);
 		_settingsButton.Pressed += OpenSettingsMenu;
 		_exitButton.Pressed += () => GetTree().Quit();
     }
