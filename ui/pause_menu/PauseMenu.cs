@@ -16,10 +16,13 @@ internal partial class PauseMenu : CanvasLayer
 	private string _gameScenePath;
     [Export(PropertyHint.File, "*.tscn")]
 	private string _mainMenuScenePath;
-	
+
 	[Export]
 	private PackedScene _settingsMenu;
-
+	[Export]
+	private PackedScene _sweepUpTransition;
+	[Export]
+	private PackedScene _blackOutTransition;
 
     public override void _Ready()
     {
@@ -28,8 +31,11 @@ internal partial class PauseMenu : CanvasLayer
 		_continueButton.Pressed += QueueFree;
 		_settingsButton.Pressed += OpenSettingsMenu;
 
-		_restartButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath);
-		_menuButton.Pressed += () => sceneManager.ChangeScene(_mainMenuScenePath);
+		_restartButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath, _sweepUpTransition);
+		_menuButton.Pressed += () => sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition);
+
+		_restartButton.Pressed += () => ProcessMode = ProcessModeEnum.Disabled;
+		_menuButton.Pressed += () => ProcessMode = ProcessModeEnum.Disabled;
     }
 
     public override void _Process(double elapsedTime)

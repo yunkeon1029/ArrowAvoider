@@ -13,10 +13,13 @@ internal partial class Game : Node, ISingleton
     [Export]
     private Label _scoreLabel;
 
-    [Export(PropertyHint.File, "*.tscn")]
-    private string _resultMenuScenePath;
     [Export]
     private PackedScene _pauseMenu;
+    [Export]
+    private PackedScene _sweepUpTransition;
+
+    [Export(PropertyHint.File, "*.tscn")]
+    private string _resultMenuScenePath;
 
     public Game()
     {
@@ -31,7 +34,7 @@ internal partial class Game : Node, ISingleton
 
         healthManager.HealthChanged += _ => UpdateHeartContainer();
         healthManager.MaxHealthChanged += _ => UpdateHeartContainer();
-        healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultMenuScenePath, OnSceneLoaded);
+        healthManager.HealthDepleted += () => sceneManager.ChangeScene(_resultMenuScenePath, _sweepUpTransition, OnSceneLoaded);
 
         ScoreManager.ScoreChanged += _ => UpdateScoreLabel(ScoreManager.Score);
 

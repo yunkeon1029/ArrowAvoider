@@ -8,6 +8,9 @@ internal partial class ResultMenu : CanvasLayer
 	private BaseButton _menuButton;
 	[Export]
 	private BaseButton _retryButton;
+
+	[Export]
+	private PackedScene _blackOutTransition;
 	
 	[Export(PropertyHint.File, "*.tscn")]
     private string _mainMenuScenePath;
@@ -22,8 +25,8 @@ internal partial class ResultMenu : CanvasLayer
 		_sceneManager = Singletons.GetInstance<SceneManager>();
 		_saveManager = Singletons.GetInstance<SaveManager>();
 
-		_menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath);
-		_retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath);
+		_menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition);
+		_retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath, _blackOutTransition);
     }
 
 	public void NotifyScore(int score)

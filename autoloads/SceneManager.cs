@@ -42,7 +42,7 @@ internal partial class SceneManager : Node, ISingleton
 		fadeOutEnded += () => transitionInstance.QueueFree();
 
 		transitionInstance.PlayFadeInAnimation(fadeInEnded);
-		AddSibling(transitionInstance);
+		AddChild(transitionInstance);
 	}
 
 	public void ChangeScene(string scenePath, Action<Node> sceneLoaded = null)
