@@ -21,9 +21,9 @@ internal partial class Player : CharacterBody2D
     private AudioStream _hitBlockedSound;
 
     [Export]
-    private Texture2D PlayerRightTexture;
+    private Texture2D _playerRightTexture;
     [Export]
-    private Texture2D PlayerLeftTexture;
+    private Texture2D _playerLeftTexture;
 
     [Export]
 	private float _maxSpeed;
@@ -137,9 +137,9 @@ internal partial class Player : CharacterBody2D
         Vector2 moveInput = GetMoveInput();
 
         if (moveInput == Vector2.Right)
-            _sprite.Texture = PlayerRightTexture;
+            _sprite.Texture = _playerRightTexture;
 
         if (moveInput == Vector2.Left)
-            _sprite.Texture = PlayerLeftTexture;
+            _sprite.Texture = _playerLeftTexture;
     }
 }
