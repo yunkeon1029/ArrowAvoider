@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bved8q3s0620x"]
+[gd_scene load_steps=20 format=3 uid="uid://bved8q3s0620x"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
 [ext_resource type="PackedScene" uid="uid://clavx2kj7q8xx" path="res://prefabs/stone/stone.tscn" id="2_0p778"]
 [ext_resource type="PackedScene" uid="uid://c1cnfxl00k3qb" path="res://ui/pause_menu/pause_menu.tscn" id="2_hlqfn"]
+[ext_resource type="AudioStream" uid="uid://qo2qicldjvu6" path="res://music/raspberry_adventure.mp3" id="3_epo3o"]
 [ext_resource type="Script" path="res://prefabs/DespawnArea.cs" id="3_hqt2k"]
 [ext_resource type="PackedScene" uid="uid://ofndjx6dpejd" path="res://transitions/sweep_up.tscn" id="3_kr6x7"]
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="5_18brx"]
@@ -13,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://dwpiq4ml881o" path="res://ui/heart_container/heart_container.tscn" id="8_25pmh"]
 [ext_resource type="Script" path="res://prefabs/ScoreManager.cs" id="8_c37p6"]
 [ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="10_a3qia"]
+[ext_resource type="Script" path="res://prefabs/PlaylistRegister.cs" id="13_j586v"]
+[ext_resource type="AudioStream" uid="uid://ugq2ky15p3kc" path="res://music/cooking_banana.mp3" id="15_0t771"]
+[ext_resource type="AudioStream" uid="uid://b6wbyukp8njsf" path="res://music/塩コショウはかけましょう.mp3" id="16_g7rp0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -109,6 +113,10 @@ offset_bottom = -103.0
 
 [node name="ScoreManager" type="Node" parent="."]
 script = ExtResource("8_c37p6")
+
+[node name="PlaylistManager" type="Node" parent="."]
+script = ExtResource("13_j586v")
+_playlist = Array[AudioStream]([ExtResource("15_0t771"), ExtResource("3_epo3o"), ExtResource("16_g7rp0")])
 
 [node name="ClearColorOverrider" type="Node" parent="."]
 script = ExtResource("10_a3qia")

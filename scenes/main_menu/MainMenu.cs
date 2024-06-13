@@ -12,6 +12,8 @@ internal partial class MainMenu : Node
 	[Export]
 	private PackedScene _settingsMenu;
 	[Export]
+	private PackedScene _creditsMenu;
+	[Export]
 	private PackedScene _blackOutTransition;
 
 	[Export(PropertyHint.File, "*.tscn")]

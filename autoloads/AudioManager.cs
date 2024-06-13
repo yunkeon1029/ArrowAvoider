@@ -3,7 +3,7 @@ using System;
 
 internal partial class AudioManager : Node, ISingleton
 {
-    public AudioStreamPlayer MusicPlayer { get; private set; }
+    private AudioStreamPlayer _musicPlayer;
 
     public AudioManager()
     {
@@ -29,17 +29,16 @@ internal partial class AudioManager : Node, ISingleton
 
     public void PlayMusic(AudioStream audioStream, Action<AudioStreamPlayer> modifyMusic = null)
     {
-		MusicPlayer?.QueueFree();
-		MusicPlayer = new();
+        _musicPlayer?.QueueFree();
+		_musicPlayer = new();
 
-        AddChild(MusicPlayer);
+        AddChild(_musicPlayer);
 
-        MusicPlayer.Stream = audioStream;
-        MusicPlayer.Bus = "Music";
-        MusicPlayer.Play();
+        _musicPlayer.Stream = audioStream;
+        _musicPlayer.Bus = "Music";
+        _musicPlayer.Play();
 
-        modifyMusic?.Invoke(MusicPlayer);
-        MusicPlayer.Finished += () => MusicPlayer.Play();
+        modifyMusic?.Invoke(_musicPlayer);
     }
 
     public void PlaySFX(AudioStream audioStream, Action<AudioStreamPlayer> modifySFX = null)
@@ -53,5 +52,16 @@ internal partial class AudioManager : Node, ISingleton
 
         modifySFX?.Invoke(instance);
         instance.Finished += () => instance.QueueFree();
+    }
+
+    public AudioStream GetPlayingMusic()
+    {
+        if (_musicPlayer == null)
+            return null;
+
+        if (_musicPlayer.Playing == false)
+            return null;
+
+        return _musicPlayer.Stream;
     }
 }
