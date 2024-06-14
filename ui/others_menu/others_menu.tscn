@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1cnfxl00k3qb"]
+[gd_scene load_steps=3 format=3 uid="uid://bvgojxboiuitk"]
 
-[ext_resource type="Script" path="res://ui/pause_menu/PauseMenu.cs" id="1_bfdrd"]
-[ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_6v85l"]
-[ext_resource type="PackedScene" uid="uid://ofndjx6dpejd" path="res://transitions/sweep_up.tscn" id="3_566j2"]
-[ext_resource type="PackedScene" uid="uid://bpnurwejypjp6" path="res://transitions/black_out.tscn" id="4_b3jv0"]
+[ext_resource type="Script" path="res://ui/others_menu/OthersMenu.cs" id="1_i6y67"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh2iw"]
 bg_color = Color(0.8, 0.827451, 0.870588, 1)
@@ -17,21 +14,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("_continueButton", "_settingsButton", "_restartButton", "_menuButton")]
+[node name="OthersMenu" type="CanvasLayer" node_paths=PackedStringArray("_returnButton")]
 process_mode = 3
-script = ExtResource("1_bfdrd")
-_continueButton = NodePath("Buttons/ContinueButton")
-_settingsButton = NodePath("Buttons/SettingsButton")
-_restartButton = NodePath("Buttons/RestartButton")
-_menuButton = NodePath("Buttons/MenuButton")
-_gameScenePath = "res://scenes/game/game.tscn"
-_mainMenuScenePath = "res://scenes/main_menu/main_menu.tscn"
-_settingsMenu = ExtResource("2_6v85l")
-_sweepUpTransition = ExtResource("3_566j2")
-_blackOutTransition = ExtResource("4_b3jv0")
+script = ExtResource("1_i6y67")
+_returnButton = NodePath("Buttons/ReturnButton")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,7 +30,7 @@ grow_vertical = 2
 color = Color(0.243137, 0.243137, 0.243137, 0.521569)
 
 [node name="WindowBackground" type="Panel" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -54,7 +44,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vh2iw")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -68,31 +58,31 @@ grow_vertical = 2
 theme_override_constants/separation = 31
 alignment = 1
 
-[node name="ContinueButton" type="Button" parent="Buttons"]
+[node name="ReturnButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-text = "Continue"
+text = "Return"
 
-[node name="SettingsButton" type="Button" parent="Buttons"]
+[node name="TutorialButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-text = "Settings"
+text = "Tutorial"
 
-[node name="RestartButton" type="Button" parent="Buttons"]
+[node name="CreditsButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-text = "Restart"
+text = "Credits"
 
-[node name="MenuButton" type="Button" parent="Buttons"]
+[node name="ExitButton" type="Button" parent="Buttons"]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-text = "Menu
+text = "Exit
 "

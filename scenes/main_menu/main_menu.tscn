@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx22g8eyujq1a"]
+[gd_scene load_steps=16 format=3 uid="uid://cx22g8eyujq1a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenu.cs" id="1_62vya"]
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_a5uyi"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bpnurwejypjp6" path="res://transitions/black_out.tscn" id="3_twr56"]
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="4_8wyjj"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="5_6km80"]
+[ext_resource type="PackedScene" uid="uid://bvgojxboiuitk" path="res://ui/others_menu/others_menu.tscn" id="5_pq12l"]
 [ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="6_7axwg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ld3s4"]
@@ -50,12 +51,14 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MainMenu" type="Node" node_paths=PackedStringArray("_startButton", "_settingsButton", "_exitButton")]
+[node name="MainMenu" type="Node" node_paths=PackedStringArray("_ui", "_startButton", "_settingsButton", "_othersButton")]
 script = ExtResource("1_62vya")
+_ui = NodePath("UI")
 _startButton = NodePath("UI/MenuOptions/StartButton")
 _settingsButton = NodePath("UI/MenuOptions/SettingsButton")
-_exitButton = NodePath("UI/MenuOptions/ExitButton")
+_othersButton = NodePath("UI/MenuOptions/OthersButton")
 _settingsMenu = ExtResource("2_a5uyi")
+_othersMenu = ExtResource("5_pq12l")
 _blackOutTransition = ExtResource("3_twr56")
 _gameScenePath = "res://scenes/game/game.tscn"
 
@@ -122,7 +125,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3hnie")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c20qm")
 text = "Settings"
 
-[node name="ExitButton" type="Button" parent="UI/MenuOptions"]
+[node name="OthersButton" type="Button" parent="UI/MenuOptions"]
 custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
@@ -130,7 +133,7 @@ theme_override_font_sizes/font_size = 37
 theme_override_styles/normal = SubResource("StyleBoxFlat_w0qbv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3hnie")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c20qm")
-text = "Exit"
+text = "Others"
 
 [node name="LeftArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("4_8wyjj")
