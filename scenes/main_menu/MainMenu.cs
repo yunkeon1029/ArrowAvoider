@@ -3,18 +3,16 @@ using Godot;
 internal partial class MainMenu : Node
 {
 	[Export]
-	private CanvasLayer _ui;
-	[Export]
 	private BaseButton _startButton;
 	[Export]
 	private BaseButton _settingsButton;
 	[Export]
-	private BaseButton _othersButton;
+	private BaseButton _exitButton;
 
 	[Export]
 	private PackedScene _settingsMenu;
 	[Export]
-	private PackedScene _othersMenu;
+	private PackedScene _creditsMenu;
 	[Export]
 	private PackedScene _blackOutTransition;
 
@@ -27,7 +25,7 @@ internal partial class MainMenu : Node
 
 		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath, _blackOutTransition);
 		_settingsButton.Pressed += OpenSettingsMenu;
-		_othersButton.Pressed += OpenOthersMenu;
+		_exitButton.Pressed += () => GetTree().Quit();
     }
 
 	private void OpenSettingsMenu()
@@ -38,15 +36,5 @@ internal partial class MainMenu : Node
 		settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
 
         AddChild(settingsMenu);
-	}
-
-	public void OpenOthersMenu()
-	{
-		var othersMenu = _othersMenu.Instantiate();
-
-		othersMenu.TreeEntered += () => _ui.Visible = false;
-		othersMenu.TreeExited += () => _ui.Visible = true;
-
-		AddChild(othersMenu);
 	}
 }

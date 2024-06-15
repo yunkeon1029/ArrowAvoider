@@ -40,7 +40,7 @@ grow_vertical = 2
 color = Color(0.243137, 0.243137, 0.243137, 0.521569)
 
 [node name="WindowBackground" type="Panel" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -54,7 +54,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vh2iw")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

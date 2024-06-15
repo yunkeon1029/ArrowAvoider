@@ -25,7 +25,7 @@ grow_vertical = 2
 color = Color(0.968627, 0.988235, 0.988235, 1)
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -43,7 +43,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MenuButton" type="Button" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -59,7 +59,7 @@ text = "Menu
 "
 
 [node name="RetryButton" type="Button" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
