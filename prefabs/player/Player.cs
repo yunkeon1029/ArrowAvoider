@@ -13,6 +13,8 @@ internal partial class Player : CharacterBody2D
     public StaticBody2D Collider { get; private set; }
 
     [Export]
+    private AnimationPlayer _animationPlayer;
+    [Export]
     private Sprite2D _sprite;
 
     [Export]
@@ -26,6 +28,9 @@ internal partial class Player : CharacterBody2D
     private Texture2D _playerLeftTexture;
 
     [Export]
+    private string _fadeOutAnimationName;
+
+    [Export]
 	private float _maxSpeed;
 	[Export]
 	private float _accelerationRate;
@@ -37,6 +42,13 @@ internal partial class Player : CharacterBody2D
 
     private Vector2 _velocity;
     private float _leftInvincibilityTime;
+
+    public override void _Ready()
+    {
+        HealthManager.HealthDepleted += () => CollisionLayer = 0;
+        HealthManager.HealthDepleted += () => CollisionMask = 0;
+        HealthManager.HealthDepleted += () => _animationPlayer.Play(_fadeOutAnimationName);
+    }
 
     public override void _PhysicsProcess(double elapsedTime)
     {
@@ -117,7 +129,7 @@ internal partial class Player : CharacterBody2D
 
     private void StartInvincibility()
     {
-        if (_invincibilityTime <= 0)
+        if (_invincibilityTime <= 0 || HealthManager.Health == 0)
             return;
 
         _leftInvincibilityTime = _invincibilityTime;
