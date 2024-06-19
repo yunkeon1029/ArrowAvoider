@@ -28,7 +28,7 @@ internal partial class WindowManager : Node, ISingleton
 	{
 		var saveManager = Singletons.GetInstance<SaveManager>();
 
-		bool fullScreen = (bool?)saveManager.GetData("FullScreen") ?? true;
+		bool fullScreen = (bool?)saveManager.GetData(SaveName.FullScreen) ?? true;
 		bool currentFullScreen = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen;
 
 		if (fullScreen == true && currentFullScreen == false)

@@ -17,11 +17,11 @@ internal partial class AudioManager : Node, ISingleton
     {
         var saveManager = Singletons.GetInstance<SaveManager>();
 
-        int bgmBusIndex = AudioServer.GetBusIndex("Music");
-        int sfxBusIndex = AudioServer.GetBusIndex("SFX");
+        int bgmBusIndex = AudioServer.GetBusIndex(BusName.Music);
+        int sfxBusIndex = AudioServer.GetBusIndex(BusName.SFX);
 
-        float musicVolume = (float?)saveManager.GetData("MusicVolume") ?? 0.5f;
-        float sfxVolume = (float?)saveManager.GetData("SfxVolume") ?? 0.5f;
+        float musicVolume = (float?)saveManager.GetData(SaveName.MusicVolume) ?? 0.5f;
+        float sfxVolume = (float?)saveManager.GetData(SaveName.SfxVolume) ?? 0.5f;
 
         AudioServer.SetBusVolumeDb(bgmBusIndex, Mathf.LinearToDb(musicVolume));
         AudioServer.SetBusVolumeDb(sfxBusIndex, Mathf.LinearToDb(sfxVolume));
@@ -35,7 +35,7 @@ internal partial class AudioManager : Node, ISingleton
         AddChild(_musicPlayer);
 
         _musicPlayer.Stream = audioStream;
-        _musicPlayer.Bus = "Music";
+        _musicPlayer.Bus = BusName.Music;
         _musicPlayer.Play();
 
         modifyMusic?.Invoke(_musicPlayer);
@@ -47,7 +47,7 @@ internal partial class AudioManager : Node, ISingleton
         AddChild(instance);
 
         instance.Stream = audioStream;
-        instance.Bus = "SFX";
+        instance.Bus = BusName.SFX;
         instance.Play();
 
         modifySFX?.Invoke(instance);

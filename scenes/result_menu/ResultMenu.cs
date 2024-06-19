@@ -31,14 +31,14 @@ internal partial class ResultMenu : CanvasLayer
 
 	public void NotifyScore(int score)
 	{
-		int highScore = (int?)_saveManager.GetData("HighScore") ?? 0;
+		int highScore = (int?)_saveManager.GetData(SaveName.HighScore) ?? 0;
 
 		_scoreLabel.Text = $"Score: {score} \n" +
 						   $"High Score: {highScore}";
 
 		if (score > highScore)
 		{
-			_saveManager.SetData("HighScore", score);
+			_saveManager.SetData(SaveName.HighScore, score);
 			_scoreLabel.Text = $"High Score: {score}";
 		}
 	}

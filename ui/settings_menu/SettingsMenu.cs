@@ -21,12 +21,12 @@ internal partial class SettingsMenu : CanvasLayer
         _audioManager = Singletons.GetInstance<AudioManager>();
         _windowManager = Singletons.GetInstance<WindowManager>();
 
-        _musicVolumeSlider.Value = (double?)_saveManager.GetData("MusicVolume") ?? 0.5f;
-        _sfxVolumeSlider.Value = (double?)_saveManager.GetData("SfxVolume") ?? 0.5f;
-        _fullScreenCheckBox.ButtonPressed = (bool?)_saveManager.GetData("FullScreen") ?? true;
+        _musicVolumeSlider.Value = (double?)_saveManager.GetData(SaveName.MusicVolume) ?? 0.5f;
+        _sfxVolumeSlider.Value = (double?)_saveManager.GetData(SaveName.SfxVolume) ?? 0.5f;
+        _fullScreenCheckBox.ButtonPressed = (bool?)_saveManager.GetData(SaveName.FullScreen) ?? true;
 
-        _musicVolumeSlider.ValueChanged += value => _saveManager.SetData("MusicVolume", value);
-        _sfxVolumeSlider.ValueChanged += value => _saveManager.SetData("SfxVolume", value);
+        _musicVolumeSlider.ValueChanged += value => _saveManager.SetData(SaveName.MusicVolume, value);
+        _sfxVolumeSlider.ValueChanged += value => _saveManager.SetData(SaveName.SfxVolume, value);
 
         _musicVolumeSlider.ValueChanged += _ => _audioManager.UpdateVolume();
         _sfxVolumeSlider.ValueChanged += _ => _audioManager.UpdateVolume();
@@ -43,7 +43,7 @@ internal partial class SettingsMenu : CanvasLayer
 
     private void FullScreenCheckBoxToggled(bool value)
     {
-        _saveManager.SetData("FullScreen", value);
+        _saveManager.SetData(SaveName.FullScreen, value);
         _windowManager.UpdateWindowMode();
     }
 }
