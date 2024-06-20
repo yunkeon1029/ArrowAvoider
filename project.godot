@@ -25,7 +25,7 @@ SceneManager="res://autoloads/SceneManager.cs"
 SaveManager="res://autoloads/SaveManager.cs"
 AudioManager="res://autoloads/AudioManager.cs"
 WindowManager="res://autoloads/WindowManager.cs"
-PlaylistManager="*res://autoloads/PlaylistManager.cs"
+PlaylistManager="res://autoloads/PlaylistManager.cs"
 
 [display]
 
