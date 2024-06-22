@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cx22g8eyujq1a"]
+[gd_scene load_steps=17 format=3 uid="uid://cx22g8eyujq1a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenu.cs" id="1_62vya"]
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_a5uyi"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="4_8wyjj"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="5_6km80"]
 [ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="6_7axwg"]
+[ext_resource type="Script" path="res://prefabs/PlaylistRegister.cs" id="7_1jgge"]
+[ext_resource type="AudioStream" uid="uid://18tk6u8kx1y1" path="res://music/caramel.mp3" id="8_uxdsf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ld3s4"]
 distance = -100.0
@@ -159,6 +161,10 @@ offset_left = 70.0
 offset_top = -169.0
 offset_right = 248.0
 offset_bottom = -102.0
+
+[node name="PlaylistManager" type="Node" parent="."]
+script = ExtResource("7_1jgge")
+_playlist = Array[AudioStream]([ExtResource("8_uxdsf")])
 
 [node name="ClearColorOverrider" type="Node" parent="."]
 script = ExtResource("6_7axwg")

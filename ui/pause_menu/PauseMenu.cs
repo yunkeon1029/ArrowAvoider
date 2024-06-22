@@ -18,11 +18,21 @@ internal partial class PauseMenu : CanvasLayer
 	private string _mainMenuScenePath;
 
 	[Export]
+	private AudioEffect _audioEffect;
+	[Export]
 	private PackedScene _settingsMenu;
 	[Export]
 	private PackedScene _sweepUpTransition;
 	[Export]
 	private PackedScene _blackOutTransition;
+
+	private int? _audioEffectIndex;
+
+	public PauseMenu()
+	{
+		TreeEntered += AddAudioEffect;
+		TreeExited += RemoveAudioEffect;
+	}
 
     public override void _Ready()
     {
@@ -54,6 +64,28 @@ internal partial class PauseMenu : CanvasLayer
         settingsMenu.TreeEntered += () => Visible = false;
         settingsMenu.TreeExited += () => Visible = true;
 
+		settingsMenu.TreeEntered += RemoveAudioEffect;
+		settingsMenu.TreeExited += AddAudioEffect;
+
         AddSibling(settingsMenu);
+	}
+
+	private void AddAudioEffect()
+	{
+		int masterBusIndex = AudioServer.GetBusIndex(BusName.Master);
+
+		AudioServer.AddBusEffect(masterBusIndex, _audioEffect);
+		_audioEffectIndex = AudioServer.GetBusEffectCount(masterBusIndex) - 1;
+	}
+
+	private void RemoveAudioEffect()
+	{
+		if (_audioEffectIndex == null)
+			return;
+
+		int masterBusIndex = AudioServer.GetBusIndex(BusName.Master);
+
+		AudioServer.RemoveBusEffect(masterBusIndex, _audioEffectIndex ?? -1);
+		_audioEffectIndex = null;
 	}
 }
