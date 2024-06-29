@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1ddmxfwq34q3"]
+
+[ext_resource type="Script" path="res://prefabs/MasterVolumeModifier.cs" id="1_4rpu2"]
+[ext_resource type="Script" path="res://prefabs/TransitionAnimation.cs" id="1_mhsk3"]
+
+[sub_resource type="Animation" id="Animation_7gyde"]
+resource_name = "FadeVolume"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MasterVolumeModifier:MasterVolume")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uojsd"]
+_data = {
+"FadeVolume": SubResource("Animation_7gyde")
+}
+
+[node name="VolumeCrossfade" type="CanvasLayer" node_paths=PackedStringArray("_transitionPlayer")]
+script = ExtResource("1_mhsk3")
+_transitionPlayer = NodePath("AnimationPlayer")
+_fadeInAnimationName = "FadeVolume"
+_fadeOutAnimationName = "FadeVolume"
+_playFadeOutBackwards = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "FadeVolume"
+libraries = {
+"": SubResource("AnimationLibrary_uojsd")
+}
+
+[node name="MasterVolumeModifier" type="Node" parent="."]
+script = ExtResource("1_4rpu2")
+MasterVolume = 1.0

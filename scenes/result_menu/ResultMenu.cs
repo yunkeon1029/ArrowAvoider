@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 internal partial class ResultMenu : CanvasLayer
 {
@@ -11,6 +12,8 @@ internal partial class ResultMenu : CanvasLayer
 
 	[Export]
 	private PackedScene _blackOutTransition;
+	[Export]
+	private PackedScene _volumeCrossfadeTransition;
 	
 	[Export(PropertyHint.File, "*.tscn")]
     private string _mainMenuScenePath;
@@ -25,8 +28,8 @@ internal partial class ResultMenu : CanvasLayer
 		_sceneManager = Singletons.GetInstance<SceneManager>();
 		_saveManager = Singletons.GetInstance<SaveManager>();
 
-		_menuButton.Pressed += () => _sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition);
 		_retryButton.Pressed += () => _sceneManager.ChangeScene(_gameScenePath, _blackOutTransition);
+		_menuButton.Pressed += ChangeSceneToMenu;
     }
 
 	public void NotifyScore(int score)
@@ -42,4 +45,17 @@ internal partial class ResultMenu : CanvasLayer
 			_scoreLabel.Text = $"High Score: {score}";
 		}
 	}
+
+	private void ChangeSceneToMenu()
+    {
+        var sceneManager = Singletons.GetInstance<SceneManager>();
+        var volumeCrossfade = _volumeCrossfadeTransition.Instantiate<TransitionAnimation>();
+
+        Action<Node> sceneLoaded = _ => volumeCrossfade.PlayFadeOutAnimation(volumeCrossfade.QueueFree);
+
+        volumeCrossfade.PlayFadeInAnimation();
+        sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition, sceneLoaded);
+        
+        sceneManager.AddChild(volumeCrossfade);
+    }
 }

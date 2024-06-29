@@ -25,6 +25,8 @@ internal partial class PauseMenu : CanvasLayer
 	private PackedScene _sweepUpTransition;
 	[Export]
 	private PackedScene _blackOutTransition;
+	[Export]
+	private PackedScene _volumeCrossfadeTransition;
 
 	private int? _audioEffectIndex;
 
@@ -40,9 +42,9 @@ internal partial class PauseMenu : CanvasLayer
 
 		_continueButton.Pressed += QueueFree;
 		_settingsButton.Pressed += OpenSettingsMenu;
+		_menuButton.Pressed += ChangeSceneToMenu;
 
 		_restartButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath, _sweepUpTransition);
-		_menuButton.Pressed += () => sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition);
 
 		_restartButton.Pressed += () => ProcessMode = ProcessModeEnum.Disabled;
 		_menuButton.Pressed += () => ProcessMode = ProcessModeEnum.Disabled;
@@ -88,4 +90,17 @@ internal partial class PauseMenu : CanvasLayer
 		AudioServer.RemoveBusEffect(masterBusIndex, _audioEffectIndex ?? -1);
 		_audioEffectIndex = null;
 	}
+
+	private void ChangeSceneToMenu()
+    {
+        var sceneManager = Singletons.GetInstance<SceneManager>();
+        var volumeCrossfade = _volumeCrossfadeTransition.Instantiate<TransitionAnimation>();
+
+        Action<Node> sceneLoaded = _ => volumeCrossfade.PlayFadeOutAnimation(volumeCrossfade.QueueFree);
+
+        volumeCrossfade.PlayFadeInAnimation();
+        sceneManager.ChangeScene(_mainMenuScenePath, _blackOutTransition, sceneLoaded);
+        
+        sceneManager.AddChild(volumeCrossfade);
+    }
 }

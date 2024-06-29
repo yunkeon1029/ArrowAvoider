@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 internal partial class MainMenu : Node
 {
@@ -12,9 +13,9 @@ internal partial class MainMenu : Node
 	[Export]
 	private PackedScene _settingsMenu;
 	[Export]
-	private PackedScene _creditsMenu;
-	[Export]
 	private PackedScene _blackOutTransition;
+	[Export]
+	private PackedScene _volumeCrossfadeTransition;
 
 	[Export(PropertyHint.File, "*.tscn")]
 	private string _gameScenePath;
@@ -23,7 +24,7 @@ internal partial class MainMenu : Node
     {
 		var sceneManager = Singletons.GetInstance<SceneManager>();
 
-		_startButton.Pressed += () => sceneManager.ChangeScene(_gameScenePath, _blackOutTransition);
+		_startButton.Pressed += ChangeSceneToGame;
 		_settingsButton.Pressed += OpenSettingsMenu;
 		_exitButton.Pressed += () => GetTree().Quit();
     }
@@ -36,5 +37,18 @@ internal partial class MainMenu : Node
 		settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
 
         AddChild(settingsMenu);
+	}
+
+	private void ChangeSceneToGame()
+	{
+		var sceneManager = Singletons.GetInstance<SceneManager>();
+        var volumeCrossfade = _volumeCrossfadeTransition.Instantiate<TransitionAnimation>();
+
+        Action<Node> sceneLoaded = _ => volumeCrossfade.PlayFadeOutAnimation(volumeCrossfade.QueueFree);
+
+        volumeCrossfade.PlayFadeInAnimation();
+        sceneManager.ChangeScene(_gameScenePath, _blackOutTransition, sceneLoaded);
+        
+        sceneManager.AddChild(volumeCrossfade);
 	}
 }

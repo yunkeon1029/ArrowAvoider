@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cx22g8eyujq1a"]
+[gd_scene load_steps=18 format=3 uid="uid://cx22g8eyujq1a"]
 
 [ext_resource type="Script" path="res://scenes/main_menu/MainMenu.cs" id="1_62vya"]
 [ext_resource type="PackedScene" uid="uid://cevdfe0yjneat" path="res://ui/settings_menu/settings_menu.tscn" id="2_a5uyi"]
 [ext_resource type="Script" path="res://prefabs/DespawnArea.cs" id="3_jg26c"]
 [ext_resource type="PackedScene" uid="uid://bpnurwejypjp6" path="res://transitions/black_out.tscn" id="3_twr56"]
 [ext_resource type="Script" path="res://prefabs/ObjectSpawner.cs" id="4_8wyjj"]
+[ext_resource type="PackedScene" uid="uid://d1ddmxfwq34q3" path="res://transitions/volume_crossfade.tscn" id="4_shcha"]
 [ext_resource type="PackedScene" uid="uid://cv122lu7n8asn" path="res://prefabs/arrow/arrow.tscn" id="5_6km80"]
 [ext_resource type="Script" path="res://prefabs/ClearColorOverrider.cs" id="6_7axwg"]
 [ext_resource type="Script" path="res://prefabs/PlaylistRegister.cs" id="7_1jgge"]
@@ -59,6 +60,7 @@ _settingsButton = NodePath("UI/MenuOptions/SettingsButton")
 _exitButton = NodePath("UI/MenuOptions/ExitButton")
 _settingsMenu = ExtResource("2_a5uyi")
 _blackOutTransition = ExtResource("3_twr56")
+_volumeCrossfadeTransition = ExtResource("4_shcha")
 _gameScenePath = "res://scenes/game/game.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
