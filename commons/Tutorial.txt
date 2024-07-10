@@ -1,0 +1,3 @@
+- use wasd or arrow keys to move left and right
+- press esc to pause the game
+- press f11 to toggle fullscreen
