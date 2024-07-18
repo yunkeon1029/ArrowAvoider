@@ -29,9 +29,9 @@ PlaylistManager="res://autoloads/PlaylistManager.cs"
 
 [display]
 
-window/size/viewport_width=630
-window/size/viewport_height=500
+window/size/mode=2
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
