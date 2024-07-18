@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bved8q3s0620x"]
+[gd_scene load_steps=23 format=3 uid="uid://bved8q3s0620x"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.cs" id="1_g7nvj"]
 [ext_resource type="PackedScene" uid="uid://b3yilsht1xyk1" path="res://prefabs/player/player.tscn" id="1_xvoc0"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://prefabs/PlaylistRegister.cs" id="13_j586v"]
 [ext_resource type="AudioStream" uid="uid://ugq2ky15p3kc" path="res://music/cooking_banana.mp3" id="15_0t771"]
 [ext_resource type="AudioStream" uid="uid://b6wbyukp8njsf" path="res://music/塩コショウはかけましょう.mp3" id="16_g7rp0"]
+[ext_resource type="Texture2D" uid="uid://brqxqf4xsk43p" path="res://prefabs/arrow/arrow.png" id="18_dppd7"]
+[ext_resource type="Texture2D" uid="uid://c3jgr1l7pnwi0" path="res://prefabs/gem/gem.png" id="19_vcg8b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kctsc"]
 distance = -100.0
@@ -25,7 +27,12 @@ distance = -100.0
 font_size = 24
 font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nf1t6"]
+font_size = 70
+font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
+
 [node name="Game" type="Node" node_paths=PackedStringArray("Player", "ScoreManager", "_heartContainer", "_scoreLabel")]
+process_mode = 4
 script = ExtResource("1_g7nvj")
 Player = NodePath("Player")
 ScoreManager = NodePath("ScoreManager")
@@ -35,18 +42,16 @@ _pauseMenu = ExtResource("2_hlqfn")
 _sweepUpTransition = ExtResource("3_kr6x7")
 _resultMenuScenePath = "res://scenes/result_menu/result_menu.tscn"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(0.992946, 1)
-zoom = Vector2(4, 4)
-
 [node name="Player" parent="." instance=ExtResource("1_xvoc0")]
 position = Vector2(0, 42)
 _invincibilityModulate = Color(1, 1, 1, 0.501961)
 
 [node name="LeftStone" parent="." instance=ExtResource("2_0p778")]
+visible = false
 position = Vector2(110, 42)
 
 [node name="RightStone" parent="." instance=ExtResource("2_0p778")]
+visible = false
 position = Vector2(-110, 42)
 
 [node name="DespawnArea" type="Area2D" parent="."]
@@ -59,11 +64,16 @@ shape = SubResource("WorldBoundaryShape2D_kctsc")
 offset_left = -182.0
 offset_top = 50.0
 offset_right = 182.0
-offset_bottom = 90.0
+offset_bottom = 133.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(3, 3)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ScoreLabel" type="Label" parent="UI"]
+visible = false
 texture_filter = 1
 offset_left = 7.0
 offset_right = 186.0
@@ -71,6 +81,7 @@ offset_bottom = 38.0
 label_settings = SubResource("LabelSettings_i103w")
 
 [node name="HealthBar" parent="UI" instance=ExtResource("8_25pmh")]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -80,6 +91,23 @@ offset_right = -91.0
 offset_bottom = 15.0
 grow_horizontal = 0
 scale = Vector2(3.9, 3.9)
+
+[node name="Title" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -250.0
+offset_right = 242.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Arrow Avoider"
+label_settings = SubResource("LabelSettings_nf1t6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("5_18brx")
@@ -121,3 +149,63 @@ _playlist = Array[AudioStream]([ExtResource("15_0t771"), ExtResource("3_epo3o"),
 [node name="ClearColorOverrider" type="Node" parent="."]
 script = ExtResource("10_a3qia")
 ClearColor = Color(0.811765, 0.929412, 0.929412, 1)
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(48, 27)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(-19, 9)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow4" type="Sprite2D" parent="."]
+position = Vector2(-69, 29)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow5" type="Sprite2D" parent="."]
+position = Vector2(-86, -17)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow6" type="Sprite2D" parent="."]
+position = Vector2(-39, 28)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow8" type="Sprite2D" parent="."]
+position = Vector2(35, 37)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow9" type="Sprite2D" parent="."]
+position = Vector2(82, 22)
+texture = ExtResource("18_dppd7")
+
+[node name="Gem" type="Sprite2D" parent="."]
+position = Vector2(23, 9)
+texture = ExtResource("19_vcg8b")
+
+[node name="Gem2" type="Sprite2D" parent="."]
+position = Vector2(-65, 1)
+texture = ExtResource("19_vcg8b")
+
+[node name="Arrow10" type="Sprite2D" parent="."]
+position = Vector2(70, -18)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow15" type="Sprite2D" parent="."]
+position = Vector2(88, -13)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow16" type="Sprite2D" parent="."]
+position = Vector2(-37, -2)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow17" type="Sprite2D" parent="."]
+position = Vector2(-95, 38)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+position = Vector2(-23, -14)
+texture = ExtResource("18_dppd7")
+
+[node name="Arrow7" type="Sprite2D" parent="."]
+position = Vector2(32, -19)
+texture = ExtResource("18_dppd7")
