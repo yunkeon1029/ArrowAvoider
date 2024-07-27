@@ -12,12 +12,9 @@ internal partial class PlaylistManager : Node, ISingleton
         TreeExited += () => Singletons.RemoveInstance(this);
 	}
 	
-    public void PlayNextSong()
+    public void PlayNextSong(AudioStream previousMusic = null)
     {
-        var audioManager = Singletons.GetInstance<AudioManager>();
-        var currentMusic = audioManager.GetPlayingMusic();
-
-        var nextPlayableMusic = Playlist?.Where(music => music != currentMusic || Playlist.Length <= 1)
+        var nextPlayableMusic = Playlist?.Where(music => music != previousMusic || Playlist.Length <= 1)
                                          .ToArray();
 
         if (nextPlayableMusic == null)
@@ -26,9 +23,19 @@ internal partial class PlaylistManager : Node, ISingleton
         if (nextPlayableMusic.Length != 0)
         {
             int nextMusicIndex = GD.RandRange(0, nextPlayableMusic.Length - 1);
+
+            var audioManager = Singletons.GetInstance<AudioManager>();
             var nextMusic = nextPlayableMusic[nextMusicIndex];
 
-            audioManager.PlayMusic(nextMusic, musicPlayer => musicPlayer.Finished += PlayNextSong);
+            audioManager.PlayMusic(nextMusic, ModifyMusic);
         }
+    }
+
+    private void ModifyMusic(AudioStreamPlayer musicPlayer)
+    {
+        var audioManager = Singletons.GetInstance<AudioManager>();
+        var currentMusic = audioManager.GetPlayingMusic();
+
+        musicPlayer.Finished += () => PlayNextSong(currentMusic);
     }
 }
