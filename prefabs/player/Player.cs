@@ -90,7 +90,7 @@ internal partial class Player : CharacterBody2D
     private void CalculateHitDamage(float damage)
     {
         if (_leftInvincibilityTime > 0 || damage <= 0)
-                return;
+            return;
 
         HealthManager.Health -= damage;
         StartInvincibility();

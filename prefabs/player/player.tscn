@@ -50,6 +50,7 @@ _fadeOutAnimationName = "FadeOut"
 _maxSpeed = 90.0
 _accelerationRate = 1000.0
 _invincibilityTime = 0.7
+_invincibilityModulate = Color(1, 1, 1, 0.501961)
 
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("4_wnw0l")
