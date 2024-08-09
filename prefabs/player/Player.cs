@@ -96,7 +96,7 @@ internal partial class Player : CharacterBody2D
         StartInvincibility();
     }
 
-	public void CalculateMovement(double elapsedTime)
+	private void CalculateMovement(double elapsedTime)
 	{
         Vector2 moveInput = GetMoveInput();
         Vector2 targetVelocity = Vector2.Zero;
