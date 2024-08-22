@@ -32,7 +32,7 @@ internal partial class ObjectSpawner : Node
 		}
     }
 
-	protected virtual void SpawnObject()
+	private void SpawnObject()
 	{
 		Node obj = _spawningObject.Instantiate();
 		Vector2 spawnPos = GetSpawnPos();
@@ -47,7 +47,7 @@ internal partial class ObjectSpawner : Node
 		EmitSignal(SignalName.ObjectSpawned, obj);
 	}
 
-	protected virtual Vector2 GetSpawnPos()
+	private Vector2 GetSpawnPos()
 	{
 		Vector2 minSpawnPos = _spawnArea.Position;
 		Vector2 maxSpawnPos = _spawnArea.Position + _spawnArea.Size * _spawnArea.Scale;
