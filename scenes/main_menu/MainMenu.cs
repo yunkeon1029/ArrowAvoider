@@ -20,14 +20,14 @@ internal partial class MainMenu : Node
 	[Export(PropertyHint.File, "*.tscn")]
 	private string _gameScenePath;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		var sceneManager = Singletons.GetInstance<SceneManager>();
 
 		_startButton.Pressed += ChangeSceneToGame;
 		_settingsButton.Pressed += OpenSettingsMenu;
 		_exitButton.Pressed += () => GetTree().Quit();
-    }
+	}
 
 	private void OpenSettingsMenu()
 	{
@@ -36,19 +36,19 @@ internal partial class MainMenu : Node
 		settingsMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
 		settingsMenu.TreeExited += () => ProcessMode = ProcessModeEnum.Inherit;
 
-        AddChild(settingsMenu);
+		AddChild(settingsMenu);
 	}
 
 	private void ChangeSceneToGame()
 	{
 		var sceneManager = Singletons.GetInstance<SceneManager>();
-        var volumeCrossfade = _volumeCrossfadeTransition.Instantiate<TransitionAnimation>();
+		var volumeCrossfade = _volumeCrossfadeTransition.Instantiate<TransitionAnimation>();
 
-        Action<Node> sceneLoaded = _ => volumeCrossfade.PlayFadeOutAnimation(volumeCrossfade.QueueFree);
+		Action<Node> sceneLoaded = _ => volumeCrossfade.PlayFadeOutAnimation(volumeCrossfade.QueueFree);
 
-        volumeCrossfade.PlayFadeInAnimation();
-        sceneManager.ChangeScene(_gameScenePath, _blackOutTransition, sceneLoaded);
-        
-        sceneManager.AddChild(volumeCrossfade);
+		volumeCrossfade.PlayFadeInAnimation();
+		sceneManager.ChangeScene(_gameScenePath, _blackOutTransition, sceneLoaded);
+		
+		sceneManager.AddChild(volumeCrossfade);
 	}
 }
