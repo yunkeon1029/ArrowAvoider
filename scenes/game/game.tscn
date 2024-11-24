@@ -41,7 +41,6 @@ zoom = Vector2(4, 4)
 
 [node name="Player" parent="." instance=ExtResource("1_xvoc0")]
 position = Vector2(0, 42)
-_invincibilityModulate = Color(1, 1, 1, 0.501961)
 
 [node name="LeftStone" parent="." instance=ExtResource("2_0p778")]
 position = Vector2(110, 42)
