@@ -18,13 +18,6 @@ distance = -100.0
 font_size = 65
 font_color = Color(0.0392157, 0.0588235, 0.0862745, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n7nf"]
-bg_color = Color(0.445313, 0.453125, 0.453125, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hnie"]
 bg_color = Color(0.521569, 0.529412, 0.529412, 1)
 corner_radius_top_left = 3
@@ -34,6 +27,13 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c20qm"]
 bg_color = Color(0.388235, 0.396078, 0.396078, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4n7nf"]
+bg_color = Color(0.445313, 0.453125, 0.453125, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -111,9 +111,9 @@ custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-theme_override_styles/normal = SubResource("StyleBoxFlat_4n7nf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3hnie")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c20qm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4n7nf")
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="UI/MenuOptions"]
@@ -121,9 +121,9 @@ custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-theme_override_styles/normal = SubResource("StyleBoxFlat_jd4ty")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3hnie")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c20qm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jd4ty")
 text = "Settings"
 
 [node name="ExitButton" type="Button" parent="UI/MenuOptions"]
@@ -131,9 +131,9 @@ custom_minimum_size = Vector2(0, 73)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 37
-theme_override_styles/normal = SubResource("StyleBoxFlat_w0qbv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3hnie")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_c20qm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w0qbv")
 text = "Exit"
 
 [node name="LeftArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
