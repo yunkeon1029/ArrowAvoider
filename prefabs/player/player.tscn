@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://b3yilsht1xyk1"]
 
-[ext_resource type="Script" path="res://prefabs/player/Player.cs" id="1_hy6gv"]
+[ext_resource type="Script" uid="uid://cc0oj0chteor" path="res://prefabs/player/Player.cs" id="1_hy6gv"]
 [ext_resource type="AudioStream" uid="uid://byvivygnqlbdr" path="res://prefabs/player/PlayerHit.wav" id="2_p0w8g"]
 [ext_resource type="AudioStream" uid="uid://bej6a2ukvili0" path="res://prefabs/player/PlayerHitBlocked.wav" id="3_fk1pv"]
-[ext_resource type="Script" path="res://components/HealthManager.cs" id="3_xmlqw"]
+[ext_resource type="Script" uid="uid://1eeqqmeyhhwh" path="res://components/HealthManager.cs" id="3_xmlqw"]
 [ext_resource type="Texture2D" uid="uid://cknm7x1qwdyym" path="res://prefabs/player/player_right.png" id="4_wnw0l"]
 [ext_resource type="Texture2D" uid="uid://djoaywhq5egfj" path="res://prefabs/player/player_left.png" id="5_txhgn"]
 
@@ -32,7 +32,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_adtmg"]
 _data = {
-"FadeOut": SubResource("Animation_yo2qj")
+&"FadeOut": SubResource("Animation_yo2qj")
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthManager", "Collider", "_animationPlayer", "_sprite")]
@@ -73,5 +73,5 @@ MaxHealth = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_adtmg")
+&"": SubResource("AnimationLibrary_adtmg")
 }

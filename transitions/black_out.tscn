@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpnurwejypjp6"]
 
-[ext_resource type="Script" path="res://prefabs/TransitionAnimation.cs" id="1_2iha7"]
+[ext_resource type="Script" uid="uid://dao5htra2v2mn" path="res://prefabs/TransitionAnimation.cs" id="1_2iha7"]
 
 [sub_resource type="Animation" id="Animation_7gyde"]
 resource_name = "BlackOut"
@@ -21,7 +21,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uojsd"]
 _data = {
-"BlackOut": SubResource("Animation_7gyde")
+&"BlackOut": SubResource("Animation_7gyde")
 }
 
 [node name="BlackOut" type="CanvasLayer" node_paths=PackedStringArray("_transitionPlayer")]
@@ -34,7 +34,7 @@ _playFadeOutBackwards = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_uojsd")
+&"": SubResource("AnimationLibrary_uojsd")
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]

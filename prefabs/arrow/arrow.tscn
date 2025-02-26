@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv122lu7n8asn"]
 
-[ext_resource type="Script" path="res://prefabs/arrow/Arrow.cs" id="1_l0266"]
-[ext_resource type="Script" path="res://components/FallingObject.cs" id="2_vqlev"]
+[ext_resource type="Script" uid="uid://bdtl7xdsh5j61" path="res://prefabs/arrow/Arrow.cs" id="1_l0266"]
+[ext_resource type="Script" uid="uid://bhh4048dhculw" path="res://components/FallingObject.cs" id="2_vqlev"]
 [ext_resource type="Texture2D" uid="uid://brqxqf4xsk43p" path="res://prefabs/arrow/arrow.png" id="3_f8n0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqydm"]

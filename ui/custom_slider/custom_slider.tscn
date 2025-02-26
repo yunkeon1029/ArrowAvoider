@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7q185vhbfpg4"]
 
-[ext_resource type="Script" path="res://ui/custom_slider/CustomSlider.cs" id="1_c1rg5"]
+[ext_resource type="Script" uid="uid://yiokfw3ibatl" path="res://ui/custom_slider/CustomSlider.cs" id="1_c1rg5"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mcs3s"]
 color = Color(0.968627, 0.988235, 0.988235, 1)

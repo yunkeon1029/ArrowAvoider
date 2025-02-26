@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ddmxfwq34q3"]
 
-[ext_resource type="Script" path="res://prefabs/MasterVolumeModifier.cs" id="1_4rpu2"]
-[ext_resource type="Script" path="res://prefabs/TransitionAnimation.cs" id="1_mhsk3"]
+[ext_resource type="Script" uid="uid://cbq0yrb0cvqtp" path="res://prefabs/MasterVolumeModifier.cs" id="1_4rpu2"]
+[ext_resource type="Script" uid="uid://dao5htra2v2mn" path="res://prefabs/TransitionAnimation.cs" id="1_mhsk3"]
 
 [sub_resource type="Animation" id="Animation_7gyde"]
 resource_name = "FadeVolume"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uojsd"]
 _data = {
-"FadeVolume": SubResource("Animation_7gyde")
+&"FadeVolume": SubResource("Animation_7gyde")
 }
 
 [node name="VolumeCrossfade" type="CanvasLayer" node_paths=PackedStringArray("_transitionPlayer")]
