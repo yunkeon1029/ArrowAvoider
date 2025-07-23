@@ -126,8 +126,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 223.0
 grow_vertical = 2
-text = "SFX
-"
+text = "SFX"
 label_settings = SubResource("LabelSettings_5op6f")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -178,8 +177,8 @@ grow_vertical = 2
 scale = Vector2(0.165, 0.165)
 focus_mode = 0
 theme_override_icons/checked = ExtResource("3_oj2vq")
-theme_override_icons/checked_disabled = ExtResource("3_oj2vq")
 theme_override_icons/unchecked = ExtResource("4_moflo")
+theme_override_icons/checked_disabled = ExtResource("3_oj2vq")
 theme_override_icons/unchecked_disabled = ExtResource("4_moflo")
 icon_alignment = 1
 
