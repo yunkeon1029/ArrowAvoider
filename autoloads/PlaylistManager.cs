@@ -6,12 +6,12 @@ internal partial class PlaylistManager : Node, ISingleton
     [Export]
     public AudioStream[] Playlist;
 
-	public PlaylistManager()
-	{
-		TreeEntered += () => Singletons.AddInstance(this);
+    public PlaylistManager()
+    {
+        TreeEntered += () => Singletons.AddInstance(this);
         TreeExited += () => Singletons.RemoveInstance(this);
-	}
-	
+    }
+    
     public void PlayNextSong(AudioStream previousMusic = null)
     {
         var nextPlayableMusic = Playlist?.Where(music => music != previousMusic || Playlist.Length <= 1)

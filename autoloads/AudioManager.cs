@@ -30,7 +30,7 @@ internal partial class AudioManager : Node, ISingleton
     public void PlayMusic(AudioStream audioStream, Action<AudioStreamPlayer> modifyMusic = null)
     {
         _musicPlayer?.QueueFree();
-		_musicPlayer = new();
+        _musicPlayer = new();
 
         AddChild(_musicPlayer);
 

@@ -39,27 +39,27 @@ internal partial class Game : Node, ISingleton
 
         ScoreManager.ScoreChanged += _ => UpdateScoreLabel(ScoreManager.Score);
 
-		UpdateHeartContainer();
-		UpdateScoreLabel(ScoreManager.Score);
+        UpdateHeartContainer();
+        UpdateScoreLabel(ScoreManager.Score);
 
-		RequestReady();
+        RequestReady();
     }
 
     public override void _Process(double elapsedTime)
     {
-		if (Input.IsActionJustPressed(ActionName.Escape))
-			OpenPauseMenu();
+        if (Input.IsActionJustPressed(ActionName.Escape))
+            OpenPauseMenu();
     }
 
     private void UpdateHeartContainer()
-	{
+    {
         var healthManager = Player.HealthManager;
 
-		float maxHealth = healthManager.MaxHealth;
-		float health = healthManager.Health;
+        float maxHealth = healthManager.MaxHealth;
+        float health = healthManager.Health;
 
-		_heartContainer.Update(maxHealth, health);
-	}
+        _heartContainer.Update(maxHealth, health);
+    }
 
     private void UpdateScoreLabel(float score)
     {
@@ -77,7 +77,7 @@ internal partial class Game : Node, ISingleton
 
     private void OpenPauseMenu()
     {
-		var pauseMenu = _pauseMenu.Instantiate<PauseMenu>();
+        var pauseMenu = _pauseMenu.Instantiate<PauseMenu>();
 
         pauseMenu.TreeEntered += () => ProcessMode = ProcessModeEnum.Disabled;
         pauseMenu.TreeExiting += () => ProcessMode = ProcessModeEnum.Always;
