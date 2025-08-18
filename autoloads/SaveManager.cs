@@ -18,22 +18,22 @@ internal partial class SaveManager : Node, ISingleton
         if (!FileAccess.FileExists(SAVE_FILE_PATH))
             FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
 
-        string jsonString = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Read)
-                                      .GetAsText();
+		string jsonString = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Read)
+									  .GetAsText();
 
         if (jsonString == "" || jsonString == null)
             jsonString = "{ }";
 
         SaveData = Json.ParseString(jsonString)
-                       .AsGodotDictionary<string, Variant>();
+					   .AsGodotDictionary<string, Variant>();
     }
 
     public override void _ExitTree()
     {
-        using var saveFile = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
-        string jsonString =  Json.Stringify(SaveData, "\t");
+		using var saveFile = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
+		string jsonString =  Json.Stringify(SaveData, "\t");
 
-        saveFile.StoreLine(jsonString);
+		saveFile.StoreLine(jsonString);
     }
 
     public void SetData(string name, Variant? value)

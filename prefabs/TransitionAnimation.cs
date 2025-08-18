@@ -24,7 +24,7 @@ internal partial class TransitionAnimation : CanvasLayer
         if (_playFadeInBackwards == true)
             _transitionPlayer.PlayBackwards(_fadeInAnimationName);
 
-        InvokeOnAnimationFinished(_ => animationEnded?.Invoke());
+		InvokeOnAnimationFinished(_ => animationEnded?.Invoke());
     }
 
     public void PlayFadeOutAnimation(Action animationEnded = null)
@@ -35,14 +35,14 @@ internal partial class TransitionAnimation : CanvasLayer
         if (_playFadeOutBackwards == true)
             _transitionPlayer.PlayBackwards(_fadeOutAnimationName);
 
-        InvokeOnAnimationFinished(_ => animationEnded?.Invoke());
-    }
+		InvokeOnAnimationFinished(_ => animationEnded?.Invoke());
+	}
 
-    private void InvokeOnAnimationFinished(Action<string> invokingAction)
-    {
-        string signalName = AnimationPlayer.SignalName.AnimationFinished;
-        uint flags = (uint)ConnectFlags.OneShot;
+	private void InvokeOnAnimationFinished(Action<string> invokingAction)
+	{
+		string signalName = AnimationPlayer.SignalName.AnimationFinished;
+		uint flags = (uint)ConnectFlags.OneShot;
 
         _transitionPlayer.Connect(signalName, Callable.From(invokingAction), flags);
-    }
+	}
 }
