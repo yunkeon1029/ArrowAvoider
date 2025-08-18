@@ -31,9 +31,9 @@ internal partial class Player : CharacterBody2D
     private string _fadeOutAnimationName;
 
     [Export]
-	private float _maxSpeed;
-	[Export]
-	private float _accelerationRate;
+    private float _maxSpeed;
+    [Export]
+    private float _accelerationRate;
 
     [Export]
     private float _invincibilityTime;
@@ -96,13 +96,13 @@ internal partial class Player : CharacterBody2D
         StartInvincibility();
     }
 
-	private void CalculateMovement(double elapsedTime)
-	{
+    private void CalculateMovement(double elapsedTime)
+    {
         Vector2 moveInput = GetMoveInput();
         Vector2 targetVelocity = Vector2.Zero;
 
-		if (moveInput != Vector2.Zero)
-			targetVelocity = moveInput.Normalized() * _maxSpeed;
+        if (moveInput != Vector2.Zero)
+            targetVelocity = moveInput.Normalized() * _maxSpeed;
 
         _velocity = _velocity.MoveToward(targetVelocity, _accelerationRate * (float)elapsedTime);
 
@@ -113,7 +113,7 @@ internal partial class Player : CharacterBody2D
 
         if (collisionResult != null)
             _velocity = Vector2.Zero;
-	}
+    }
 
     private void CalculateInvincibility(double elapsedTime)
     {

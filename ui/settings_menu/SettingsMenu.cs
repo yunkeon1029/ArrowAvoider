@@ -36,10 +36,10 @@ internal partial class SettingsMenu : CanvasLayer
     }
 
     public override void _Process(double elapsedTime)
-	{
-		if (Input.IsActionJustPressed(ActionName.Escape))
+    {
+        if (Input.IsActionJustPressed(ActionName.Escape))
             QueueFree();
-	}
+    }
 
     private void FullScreenCheckBoxToggled(bool value)
     {
