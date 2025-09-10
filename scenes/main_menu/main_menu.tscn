@@ -55,13 +55,13 @@ corner_radius_bottom_left = 3
 
 [node name="MainMenu" type="Node" node_paths=PackedStringArray("_startButton", "_settingsButton", "_exitButton")]
 script = ExtResource("1_62vya")
+_startButton = NodePath("UI/MenuOptions/StartButton")
+_settingsButton = NodePath("UI/MenuOptions/SettingsButton")
+_exitButton = NodePath("UI/MenuOptions/ExitButton")
 _settingsMenu = ExtResource("2_a5uyi")
 _blackOutTransition = ExtResource("3_twr56")
 _volumeCrossfadeTransition = ExtResource("4_shcha")
 _gameScenePath = "res://scenes/game/game.tscn"
-_startButton = NodePath("UI/MenuOptions/StartButton")
-_settingsButton = NodePath("UI/MenuOptions/SettingsButton")
-_exitButton = NodePath("UI/MenuOptions/ExitButton")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.992946, 1)
@@ -139,9 +139,9 @@ text = "Exit"
 [node name="LeftArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("4_8wyjj")
 _spawningObject = ExtResource("5_6km80")
+_spawnArea = NodePath("SpawnArea")
 _spawnRate = 4.0
 _maxSpawnRate = 60.0
-_spawnArea = NodePath("SpawnArea")
 
 [node name="SpawnArea" type="ReferenceRect" parent="LeftArrowSpawner"]
 visible = false
@@ -153,9 +153,9 @@ offset_bottom = -102.0
 [node name="RightArrowSpawner" type="Node" parent="." node_paths=PackedStringArray("_spawnArea")]
 script = ExtResource("4_8wyjj")
 _spawningObject = ExtResource("5_6km80")
+_spawnArea = NodePath("SpawnArea")
 _spawnRate = 4.0
 _maxSpawnRate = 60.0
-_spawnArea = NodePath("SpawnArea")
 
 [node name="SpawnArea" type="ReferenceRect" parent="RightArrowSpawner"]
 visible = false
